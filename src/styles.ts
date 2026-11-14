@@ -3,9 +3,9 @@
 // The subtle divider color used throughout the original design (--line).
 export const LINE = 'rgba(180,205,230,0.18)'
 
-// Centered content container (was .wrap). Tighter gutters on small screens.
+// Centered content container (was .wrap). Wider with tighter gutters.
 export const wrap =
-  'w-[min(1120px,calc(100%-40px))] max-[460px]:w-[calc(100%-32px)] mx-auto'
+  'w-[min(1320px,calc(100%-24px))] max-[460px]:w-[calc(100%-20px)] mx-auto'
 
 // Small uppercase label (was .eyebrow).
 export const eyebrow =
@@ -13,14 +13,14 @@ export const eyebrow =
 
 // Pill button (was .button). Append `buttonOutline` for the outline variant.
 export const button =
-  'inline-flex items-center justify-center gap-[9px] px-[18px] py-[11px] rounded-full bg-green-dark text-white font-semibold border border-transparent transition duration-200 hover:-translate-y-0.5 hover:bg-[#20a65c]'
+  'inline-flex items-center justify-center gap-[9px] px-[18px] py-[11px] rounded-full bg-green-dark text-white font-semibold border border-[#6b7a8d] transition duration-200 hover:-translate-y-0.5 hover:border-green hover:bg-[#20a65c]'
 
 export const buttonOutline =
-  'bg-transparent border-[rgba(230,240,255,0.5)] hover:border-green hover:text-green hover:bg-transparent'
+  'bg-transparent border-[#6b7a8d] hover:border-green hover:text-green hover:bg-transparent'
 
 // Section vertical rhythm (was `section`).
 export const section = 'py-[82px] [scroll-margin-top:82px] max-[620px]:py-[60px]'
 
 // Section heading (h2).
 export const heading =
-  'text-[clamp(28px,4vw,42px)] tracking-[-0.04em] leading-[1.15] mt-2'
+  'text-[clamp(28px,4vw,42px)] font-extrabold tracking-[-0.04em] leading-[1.15] mt-2'

@@ -15,7 +15,7 @@ function Contact() {
         <div className="flex items-center justify-between gap-7 max-[620px]:flex-col max-[620px]:items-start">
           <div>
             <div className={eyebrow}>Let's connect</div>
-            <h2 className="text-[clamp(25px,3.5vw,36px)] tracking-[-0.04em] leading-[1.15] mt-2">
+            <h2 className="text-[clamp(25px,3.5vw,36px)] font-extrabold tracking-[-0.04em] leading-[1.15] mt-2">
               Have a project in mind?
               <br />
               Let's build something impactful.

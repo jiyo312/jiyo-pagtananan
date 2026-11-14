@@ -12,15 +12,15 @@ function Projects() {
           <div className={eyebrow}>Featured projects</div>
           <h2 className={heading}>Turning Science into Scalable Solutions</h2>
         </div>
-        <div className="grid grid-cols-2 gap-5 max-[620px]:grid-cols-1">
+        <div className="grid grid-cols-2 gap-5 max-[850px]:grid-cols-1">
           {projects.map((project) => (
             <article
-              className="bg-surface border rounded-[18px] overflow-hidden transition-[transform,border-color] duration-200 hover:-translate-y-1 hover:border-[rgba(67,211,107,0.55)]"
+              className="flex max-[620px]:flex-col bg-surface border rounded-[18px] overflow-hidden transition-[transform,border-color] duration-200 hover:-translate-y-1 hover:border-[rgba(67,211,107,0.55)]"
               style={{ borderColor: LINE }}
               key={project.title}
             >
               <div
-                className={`min-h-[175px] grid place-items-center text-[62px] ${
+                className={`shrink-0 w-[40%] max-[620px]:w-full grid place-items-center text-[62px] min-h-[175px] max-[620px]:min-h-[160px] ${
                   project.artVariant === 'blue'
                     ? 'bg-[linear-gradient(135deg,#173b5a,#25334b)]'
                     : 'bg-[linear-gradient(135deg,#1e4c3e,#152c43)]'

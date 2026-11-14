@@ -36,7 +36,7 @@ function Header() {
         </button>
 
         <nav
-          className={`flex items-center gap-6 max-[850px]:absolute max-[850px]:top-[64px] max-[850px]:left-0 max-[850px]:right-0 max-[850px]:flex-col max-[850px]:items-stretch max-[850px]:px-[22px] max-[850px]:py-2 max-[850px]:bg-[#0b1726] max-[850px]:border-b ${
+          className={`flex items-center gap-6 ml-auto max-[850px]:ml-0 max-[850px]:absolute max-[850px]:top-[64px] max-[850px]:left-0 max-[850px]:right-0 max-[850px]:flex-col max-[850px]:items-stretch max-[850px]:px-[22px] max-[850px]:py-2 max-[850px]:bg-[#0b1726] max-[850px]:border-b ${
             menuOpen ? 'max-[850px]:flex' : 'max-[850px]:hidden'
           }`}
           style={{ borderColor: LINE }}
@@ -46,7 +46,7 @@ function Header() {
               key={link.href}
               href={link.href}
               onClick={closeMenu}
-              className="text-[#d8e1ed] text-sm hover:text-green max-[850px]:py-3 max-[850px]:border-b max-[850px]:border-[rgba(180,205,230,0.1)] max-[850px]:last:border-b-0"
+              className="text-[#d8e1ed] text-sm hover:underline hover:decoration-green hover:decoration-2 hover:underline-offset-[6px] max-[850px]:py-3 max-[850px]:border-b max-[850px]:border-[rgba(180,205,230,0.1)] max-[850px]:last:border-b-0"
             >
               {link.label}
             </a>

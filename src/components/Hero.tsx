@@ -1,3 +1,5 @@
+import { FaLinkedin } from 'react-icons/fa6'
+import { SiGmail, SiSubstack } from 'react-icons/si'
 import heroBg from '../assets/portfolio-hero-bg.jpg'
 import jiyoPortrait from '../assets/jiyo.png'
 import { button, buttonOutline, eyebrow, wrap } from '../styles'
@@ -17,7 +19,7 @@ function Hero() {
       <div className={`${wrap} relative z-[2]`}>
         <div className="relative z-[1] max-w-[690px] py-[75px] max-[620px]:py-[65px]">
           <div className={eyebrow}>Full Stack Engineer · Philippines</div>
-          <h1 className="text-[clamp(42px,7vw,76px)] leading-[1.02] tracking-[-0.055em] mt-3 mb-5">
+          <h1 className="text-[clamp(42px,7vw,76px)] font-extrabold leading-[1.02] tracking-[-0.055em] mt-3 mb-5">
             Jiyo Pagtananan
           </h1>
           <p className="text-[clamp(18px,2.3vw,24px)] max-w-[600px] text-[#d7e2ee] mb-7">
@@ -29,7 +31,8 @@ function Hero() {
               className={`${button} max-[460px]:w-full`}
               href="mailto:jiyocollin@gmail.com"
             >
-              ✉ Contact Me →
+              <SiGmail className="text-[18px]" aria-hidden />
+              Contact Me →
             </a>
             <a
               className={`${button} ${buttonOutline} max-[460px]:w-full`}
@@ -37,7 +40,8 @@ function Hero() {
               target="_blank"
               rel="noreferrer"
             >
-              LinkedIn ↗
+              <FaLinkedin className="text-[18px]" aria-hidden />
+              LinkedIn
             </a>
             <a
               className={`${button} ${buttonOutline} max-[460px]:w-full`}
@@ -45,7 +49,8 @@ function Hero() {
               target="_blank"
               rel="noreferrer"
             >
-              Blog ↗
+              <SiSubstack className="text-[18px]" aria-hidden />
+              Blog
             </a>
           </div>
         </div>
