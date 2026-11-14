@@ -1,18 +1,24 @@
+import heroBg from '../assets/portfolio-hero-bg.jpg'
+import jiyoPortrait from '../assets/jiyo.png'
 import { button, buttonOutline, eyebrow, wrap } from '../styles'
 
 function Hero() {
   return (
     <section
-      className="relative overflow-hidden grid items-center min-h-[520px] max-[620px]:min-h-[470px] [scroll-margin-top:82px] bg-[radial-gradient(ellipse_at_72%_35%,#234b47_0,transparent_42%),linear-gradient(110deg,#081321_12%,#102438_62%,#163b35)] after:content-[''] after:absolute after:inset-0 after:opacity-[0.12] after:pointer-events-none after:bg-[length:34px_34px] after:bg-[linear-gradient(135deg,transparent_48%,#8ee6a3_49%,transparent_50%)]"
+      className="relative overflow-hidden grid items-center min-h-[520px] max-[620px]:min-h-[470px] [scroll-margin-top:82px] bg-cover bg-center after:content-[''] after:absolute after:inset-0 after:pointer-events-none after:bg-[linear-gradient(100deg,rgba(8,19,33,0.95)_0%,rgba(8,19,33,0.8)_28%,rgba(8,19,33,0.3)_48%,rgba(8,19,33,0)_68%)]"
+      style={{ backgroundImage: `url(${heroBg})` }}
       id="home"
     >
-      <div className={wrap}>
+      <img
+        src={jiyoPortrait}
+        alt="Jiyo Collin Pagtananan"
+        className="absolute bottom-0 right-0 z-[1] h-full w-auto max-w-[55%] object-contain object-bottom pointer-events-none select-none max-[850px]:opacity-40 max-[620px]:hidden"
+      />
+      <div className={`${wrap} relative z-[2]`}>
         <div className="relative z-[1] max-w-[690px] py-[75px] max-[620px]:py-[65px]">
           <div className={eyebrow}>Full Stack Engineer · Philippines</div>
           <h1 className="text-[clamp(42px,7vw,76px)] leading-[1.02] tracking-[-0.055em] mt-3 mb-5">
-            Jiyo Collin
-            <br />
-            Pagtananan
+            Jiyo Pagtananan
           </h1>
           <p className="text-[clamp(18px,2.3vw,24px)] max-w-[600px] text-[#d7e2ee] mb-7">
             Building technology that helps scientists and farmers grow a better

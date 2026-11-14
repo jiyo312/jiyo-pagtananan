@@ -14,47 +14,30 @@ function Skills() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-9">
-          {skillCategories.map((category) => {
-            const CategoryIcon = category.icon
-            return (
-              <div key={category.label}>
-                <h3 className="text-green font-semibold text-[15px] mb-4 flex items-center gap-2">
-                  <CategoryIcon className="text-[18px]" aria-hidden />
-                  {category.label}
-                </h3>
-                <div className="grid grid-cols-8 gap-3 max-[850px]:grid-cols-4 max-[620px]:grid-cols-2">
-                  {category.items.map((item) => {
-                    const ItemIcon = item.icon
-                    return (
-                      <div
-                        className="flex flex-col items-center text-center px-2 py-[18px] bg-surface border rounded-xl text-sm"
-                        style={{ borderColor: LINE }}
-                        key={item.name}
-                      >
-                        {item.fullColor ? (
-                          <ItemIcon
-                            size={34}
-                            className="mb-2 rounded-md"
-                            aria-hidden
-                          />
-                        ) : (
-                          <ItemIcon
-                            className="text-[28px] mb-2"
-                            style={{
-                              color: item.color ?? 'var(--color-green)',
-                            }}
-                            aria-hidden
-                          />
-                        )}
-                        {item.name}
-                      </div>
-                    )
-                  })}
+        <div className="flex gap-3 overflow-x-auto pb-3 skill-scroll snap-x">
+          {skillCategories.flatMap((category) =>
+            category.items.map((item) => {
+              const ItemIcon = item.icon
+              return (
+                <div
+                  className="shrink-0 w-[120px] snap-start flex flex-col items-center justify-center text-center px-2 py-[18px] bg-surface border rounded-xl text-sm"
+                  style={{ borderColor: LINE }}
+                  key={item.name}
+                >
+                  {item.fullColor ? (
+                    <ItemIcon size={30} className="aws-blend mb-2" aria-hidden />
+                  ) : (
+                    <ItemIcon
+                      className="text-[28px] mb-2"
+                      style={{ color: item.color ?? 'var(--color-green)' }}
+                      aria-hidden
+                    />
+                  )}
+                  {item.name}
                 </div>
-              </div>
-            )
-          })}
+              )
+            }),
+          )}
         </div>
       </div>
     </section>

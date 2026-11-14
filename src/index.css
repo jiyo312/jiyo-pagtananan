@@ -13,6 +13,39 @@
     Roboto, Arial, sans-serif;
 }
 
+/* Make the official AWS icons blend into the card: drop their solid colored
+   background tile and recolor the glyph to match the accent. */
+.aws-blend path:first-of-type {
+  fill: transparent;
+}
+
+.aws-blend path {
+  fill: var(--color-green);
+}
+
+/* Thin, accent-colored horizontal scrollbar for the skill rows. */
+.skill-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-green) transparent;
+}
+
+.skill-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.skill-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.skill-scroll::-webkit-scrollbar-thumb {
+  background: rgba(67, 211, 107, 0.5);
+  border-radius: 999px;
+}
+
+.skill-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--color-green);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

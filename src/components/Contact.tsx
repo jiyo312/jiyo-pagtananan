@@ -1,3 +1,4 @@
+import footerBg from '../assets/portfolio-footer-bg.jpg'
 import { contactLinks } from '../portfolio-data'
 import { button, eyebrow, LINE, wrap } from '../styles'
 
@@ -6,10 +7,11 @@ const year = new Date().getFullYear()
 function Contact() {
   return (
     <section
-      className="pt-[65px] pb-[35px] [scroll-margin-top:82px] bg-[linear-gradient(180deg,#0d1a2a,#07111e)]"
+      className="relative overflow-hidden pt-[65px] pb-[35px] [scroll-margin-top:82px] bg-cover bg-center after:content-[''] after:absolute after:inset-0 after:pointer-events-none after:bg-[linear-gradient(180deg,rgba(13,26,42,0.88),rgba(7,17,30,0.94))]"
+      style={{ backgroundImage: `url(${footerBg})` }}
       id="contact"
     >
-      <div className={wrap}>
+      <div className={`${wrap} relative z-[1]`}>
         <div className="flex items-center justify-between gap-7 max-[620px]:flex-col max-[620px]:items-start">
           <div>
             <div className={eyebrow}>Let's connect</div>
