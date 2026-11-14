@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import codewithjiyoIcon from '../assets/codewithjiyo-icon.webp'
+import jiyoDevJournal from '../assets/jiyo-dev-journal.png'
 import { navLinks } from '../portfolio-data'
-import { button, LINE, wrap } from '../styles'
+import { LINE, wrap } from '../styles'
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -50,23 +52,41 @@ function Header() {
             </a>
           ))}
           <a
-            href="https://github.com/"
+            href="https://codewithjiyo.com"
             target="_blank"
             rel="noreferrer"
             onClick={closeMenu}
-            className="hidden max-[850px]:block text-green font-semibold py-3"
+            className="hidden max-[850px]:inline-flex items-center gap-2 my-2 w-fit px-[18px] py-[9px] rounded-full bg-[#fefefe]"
           >
-            ◉ GitHub
+            <img
+              src={codewithjiyoIcon}
+              alt=""
+              className="w-5 h-5 rounded-full"
+            />
+            <img
+              src={jiyoDevJournal}
+              alt="jiyo-dev-journal"
+              className="h-5 w-auto"
+            />
           </a>
         </nav>
 
         <a
-          className={`${button} max-[850px]:hidden`}
-          href="https://github.com/"
+          className="inline-flex items-center gap-2 px-[18px] py-[9px] rounded-full bg-[#fefefe] border border-transparent transition duration-200 hover:-translate-y-0.5 hover:border-green max-[850px]:hidden"
+          href="https://codewithjiyo.com"
           target="_blank"
           rel="noreferrer"
         >
-          ◉ GitHub
+          <img
+            src={codewithjiyoIcon}
+            alt=""
+            className="w-5 h-5 rounded-full"
+          />
+          <img
+            src={jiyoDevJournal}
+            alt="jiyo-dev-journal"
+            className="h-5 w-auto"
+          />
         </a>
       </div>
     </header>

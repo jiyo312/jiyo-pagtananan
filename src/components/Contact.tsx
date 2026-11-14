@@ -19,22 +19,27 @@ function Contact() {
               Let's build something impactful.
             </h2>
           </div>
-          <div className="flex flex-col gap-[9px] text-[#c7d5e4] text-sm">
-            {contactLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                {...(link.external
-                  ? { target: '_blank', rel: 'noreferrer' }
-                  : {})}
-              >
-                {link.label}
-              </a>
-            ))}
+          <div className="flex flex-col gap-3 text-[#c7d5e4] text-sm">
+            {contactLinks.map((link) => {
+              const LinkIcon = link.icon
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="inline-flex items-center gap-2.5 hover:text-green"
+                  {...(link.external
+                    ? { target: '_blank', rel: 'noreferrer' }
+                    : {})}
+                >
+                  <LinkIcon className="text-green text-[18px]" aria-hidden />
+                  {link.label}
+                </a>
+              )
+            })}
           </div>
           <a
             className={`${button} max-[620px]:w-full`}
-            href="mailto:YOUR_EMAIL@example.com"
+            href="mailto:jiyocollin@gmail.com"
           >
             Get in Touch →
           </a>

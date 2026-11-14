@@ -32,10 +32,12 @@ import {
   SiPostgresql,
   SiPython,
   SiReact,
+  SiSubstack,
   SiTailwindcss,
   SiTerraform,
   SiTypescript,
 } from 'react-icons/si'
+import { FaLinkedin } from 'react-icons/fa6'
 import {
   LuBoxes,
   LuCheckCheck,
@@ -43,6 +45,7 @@ import {
   LuDatabase,
   LuGitBranch,
   LuGlobe,
+  LuMail,
   LuLayers,
   LuPlug,
   LuPuzzle,
@@ -106,6 +109,7 @@ export interface SkillCategory {
 export interface ContactLink {
   href: string
   label: string
+  icon: SkillIcon
   external?: boolean
 }
 
@@ -319,15 +323,17 @@ export const skillCategories: SkillCategory[] = [
 ]
 
 export const contactLinks: ContactLink[] = [
-  { href: 'mailto:YOUR_EMAIL@example.com', label: '✉ YOUR_EMAIL@example.com' },
+  { href: 'mailto:jiyocollin@gmail.com', label: 'jiyocollin@gmail.com', icon: LuMail },
   {
-    href: 'https://linkedin.com/in/YOUR_LINKEDIN',
-    label: '▣ linkedin.com/in/YOUR_LINKEDIN',
+    href: 'https://www.linkedin.com/in/jiyo-pagtananan-5880a0148/',
+    label: 'linkedin.com/in/jiyo-pagtananan',
+    icon: FaLinkedin,
     external: true,
   },
   {
-    href: 'https://github.com/YOUR_GITHUB',
-    label: '◉ github.com/YOUR_GITHUB',
+    href: 'https://codewithjiyo.com',
+    label: 'codewithjiyo.com',
+    icon: SiSubstack,
     external: true,
   },
 ]

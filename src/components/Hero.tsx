@@ -21,13 +21,13 @@ function Hero() {
           <div className="flex flex-wrap gap-3 max-[460px]:flex-col max-[460px]:items-stretch">
             <a
               className={`${button} max-[460px]:w-full`}
-              href="mailto:YOUR_EMAIL@example.com"
+              href="mailto:jiyocollin@gmail.com"
             >
               ✉ Contact Me →
             </a>
             <a
               className={`${button} ${buttonOutline} max-[460px]:w-full`}
-              href="https://www.linkedin.com/"
+              href="https://www.linkedin.com/in/jiyo-pagtananan-5880a0148/"
               target="_blank"
               rel="noreferrer"
             >
@@ -35,11 +35,11 @@ function Hero() {
             </a>
             <a
               className={`${button} ${buttonOutline} max-[460px]:w-full`}
-              href="https://github.com/"
+              href="https://codewithjiyo.com"
               target="_blank"
               rel="noreferrer"
             >
-              GitHub ↗
+              Blog ↗
             </a>
           </div>
         </div>
