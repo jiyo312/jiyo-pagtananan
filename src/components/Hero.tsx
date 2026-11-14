@@ -18,12 +18,15 @@ function Hero() {
             Building technology that helps scientists and farmers grow a better
             tomorrow.
           </p>
-          <div className="flex flex-wrap gap-3">
-            <a className={button} href="mailto:YOUR_EMAIL@example.com">
+          <div className="flex flex-wrap gap-3 max-[460px]:flex-col max-[460px]:items-stretch">
+            <a
+              className={`${button} max-[460px]:w-full`}
+              href="mailto:YOUR_EMAIL@example.com"
+            >
               ✉ Contact Me →
             </a>
             <a
-              className={`${button} ${buttonOutline}`}
+              className={`${button} ${buttonOutline} max-[460px]:w-full`}
               href="https://www.linkedin.com/"
               target="_blank"
               rel="noreferrer"
@@ -31,7 +34,7 @@ function Hero() {
               LinkedIn ↗
             </a>
             <a
-              className={`${button} ${buttonOutline}`}
+              className={`${button} ${buttonOutline} max-[460px]:w-full`}
               href="https://github.com/"
               target="_blank"
               rel="noreferrer"

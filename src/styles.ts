@@ -3,8 +3,9 @@
 // The subtle divider color used throughout the original design (--line).
 export const LINE = 'rgba(180,205,230,0.18)'
 
-// Centered content container (was .wrap).
-export const wrap = 'w-[min(1120px,calc(100%-40px))] mx-auto'
+// Centered content container (was .wrap). Tighter gutters on small screens.
+export const wrap =
+  'w-[min(1120px,calc(100%-40px))] max-[460px]:w-[calc(100%-32px)] mx-auto'
 
 // Small uppercase label (was .eyebrow).
 export const eyebrow =

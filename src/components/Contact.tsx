@@ -32,7 +32,10 @@ function Contact() {
               </a>
             ))}
           </div>
-          <a className={button} href="mailto:YOUR_EMAIL@example.com">
+          <a
+            className={`${button} max-[620px]:w-full`}
+            href="mailto:YOUR_EMAIL@example.com"
+          >
             Get in Touch →
           </a>
         </div>
