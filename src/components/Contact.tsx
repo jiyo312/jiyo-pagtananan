@@ -1,0 +1,51 @@
+import { contactLinks } from '../portfolio-data'
+import { button, eyebrow, LINE, wrap } from '../styles'
+
+const year = new Date().getFullYear()
+
+function Contact() {
+  return (
+    <section
+      className="pt-[65px] pb-[35px] [scroll-margin-top:82px] bg-[linear-gradient(180deg,#0d1a2a,#07111e)]"
+      id="contact"
+    >
+      <div className={wrap}>
+        <div className="flex items-center justify-between gap-7 max-[620px]:flex-col max-[620px]:items-start">
+          <div>
+            <div className={eyebrow}>Let's connect</div>
+            <h2 className="text-[clamp(25px,3.5vw,36px)] tracking-[-0.04em] leading-[1.15] mt-2">
+              Have a project in mind?
+              <br />
+              Let's build something impactful.
+            </h2>
+          </div>
+          <div className="flex flex-col gap-[9px] text-[#c7d5e4] text-sm">
+            {contactLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                {...(link.external
+                  ? { target: '_blank', rel: 'noreferrer' }
+                  : {})}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+          <a className={button} href="mailto:YOUR_EMAIL@example.com">
+            Get in Touch →
+          </a>
+        </div>
+        <footer
+          className="border-t mt-[45px] pt-5 text-center text-[#8293a7] text-[13px]"
+          style={{ borderColor: LINE }}
+        >
+          © {year} Jiyo Collin Pagtananan · Building technology for a food-secure
+          future 🌾
+        </footer>
+      </div>
+    </section>
+  )
+}
+
+export default Contact
