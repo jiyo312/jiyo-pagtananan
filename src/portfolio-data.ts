@@ -1,3 +1,60 @@
+import type { ComponentType, SVGProps } from 'react'
+import {
+  ArchitectureServiceAmazonAPIGateway,
+  ArchitectureServiceAmazonEC2,
+  ArchitectureServiceAmazonSimpleQueueService,
+  ArchitectureServiceAmazonSimpleStorageService,
+  ArchitectureServiceAmazonVirtualPrivateCloud,
+  ArchitectureServiceAWSLambda,
+} from 'aws-react-icons'
+import {
+  SiAngular,
+  SiBitbucket,
+  SiConfluence,
+  SiCss,
+  SiDocker,
+  SiFastapi,
+  SiGit,
+  SiGithub,
+  SiHostinger,
+  SiHtml5,
+  SiIonic,
+  SiJavascript,
+  SiJenkins,
+  SiJira,
+  SiJquery,
+  SiLaravel,
+  SiLiquibase,
+  SiMongodb,
+  SiMysql,
+  SiNamecheap,
+  SiPhp,
+  SiPostgresql,
+  SiPython,
+  SiReact,
+  SiTailwindcss,
+  SiTerraform,
+  SiTypescript,
+} from 'react-icons/si'
+import {
+  LuBoxes,
+  LuCheckCheck,
+  LuCloud,
+  LuDatabase,
+  LuGitBranch,
+  LuGlobe,
+  LuLayers,
+  LuPlug,
+  LuPuzzle,
+  LuRefreshCw,
+  LuRocket,
+  LuServer,
+  LuServerCog,
+  LuSmartphone,
+  LuTrendingUp,
+  LuWrench,
+} from 'react-icons/lu'
+
 export interface NavLink {
   href: string
   label: string
@@ -29,9 +86,21 @@ export interface ImpactItem {
   text: string
 }
 
-export interface Skill {
-  icon: string
+export type SkillIcon = ComponentType<SVGProps<SVGSVGElement> & { size?: number | string }>
+
+export interface SkillItem {
+  icon: SkillIcon
   name: string
+  /** Official brand color, when the icon is a monochrome brand mark. */
+  color?: string
+  /** True for official multi-color icons (e.g. AWS) that bring their own colors. */
+  fullColor?: boolean
+}
+
+export interface SkillCategory {
+  label: string
+  icon: SkillIcon
+  items: SkillItem[]
 }
 
 export interface ContactLink {
@@ -127,15 +196,126 @@ export const impactItems: ImpactItem[] = [
   { icon: '👥', text: 'Contributed to improved rice varieties and food security.' },
 ]
 
-export const skills: Skill[] = [
-  { icon: '⚛', name: 'React' },
-  { icon: 'TS', name: 'TypeScript' },
-  { icon: '⬢', name: 'Node.js' },
-  { icon: '🐍', name: 'Python' },
-  { icon: '🐘', name: 'PostgreSQL' },
-  { icon: '☁', name: 'AWS' },
-  { icon: '▣', name: 'Docker' },
-  { icon: '⌘', name: 'Git' },
+export const skillCategories: SkillCategory[] = [
+  {
+    label: 'Languages',
+    icon: LuLayers,
+    items: [
+      { icon: SiJavascript, name: 'JavaScript', color: '#f7df1e' },
+      { icon: SiTypescript, name: 'TypeScript', color: '#3178c6' },
+      { icon: SiPhp, name: 'PHP', color: '#777bb4' },
+      { icon: SiPython, name: 'Python', color: '#3776ab' },
+    ],
+  },
+  {
+    label: 'Frontend',
+    icon: LuLayers,
+    items: [
+      { icon: SiReact, name: 'React', color: '#61dafb' },
+      { icon: SiAngular, name: 'Angular', color: '#dd0031' },
+      { icon: SiJquery, name: 'jQuery', color: '#0769ad' },
+      { icon: SiHtml5, name: 'HTML5', color: '#e34f26' },
+      { icon: SiCss, name: 'CSS3', color: '#663399' },
+      { icon: SiTailwindcss, name: 'Tailwind CSS', color: '#06b6d4' },
+    ],
+  },
+  {
+    label: 'Mobile',
+    icon: LuSmartphone,
+    items: [{ icon: SiIonic, name: 'Ionic Framework', color: '#3880ff' }],
+  },
+  {
+    label: 'Backend',
+    icon: LuServer,
+    items: [
+      { icon: SiFastapi, name: 'FastAPI', color: '#009688' },
+      { icon: SiLaravel, name: 'Laravel', color: '#ff2d20' },
+      { icon: LuPuzzle, name: 'Slim Microframework' },
+      { icon: LuPlug, name: 'REST APIs' },
+    ],
+  },
+  {
+    label: 'Cloud & Serverless',
+    icon: LuCloud,
+    items: [
+      { icon: ArchitectureServiceAWSLambda, name: 'AWS Lambda', fullColor: true },
+      {
+        icon: ArchitectureServiceAmazonSimpleQueueService,
+        name: 'SQS',
+        fullColor: true,
+      },
+      {
+        icon: ArchitectureServiceAmazonSimpleStorageService,
+        name: 'S3',
+        fullColor: true,
+      },
+      { icon: ArchitectureServiceAmazonEC2, name: 'EC2', fullColor: true },
+      {
+        icon: ArchitectureServiceAmazonAPIGateway,
+        name: 'API Gateway',
+        fullColor: true,
+      },
+      {
+        icon: ArchitectureServiceAmazonVirtualPrivateCloud,
+        name: 'VPC',
+        fullColor: true,
+      },
+    ],
+  },
+  {
+    label: 'Databases',
+    icon: LuDatabase,
+    items: [
+      { icon: SiPostgresql, name: 'PostgreSQL', color: '#4169e1' },
+      { icon: SiMysql, name: 'MySQL', color: '#4479a1' },
+      { icon: SiMongodb, name: 'MongoDB', color: '#47a248' },
+      { icon: SiLiquibase, name: 'Liquibase', color: '#2962ff' },
+    ],
+  },
+  {
+    label: 'DevOps & Infrastructure',
+    icon: LuWrench,
+    items: [
+      { icon: SiDocker, name: 'Docker', color: '#2496ed' },
+      { icon: SiDocker, name: 'Docker Compose', color: '#2496ed' },
+      { icon: SiJenkins, name: 'Jenkins', color: '#d24939' },
+      { icon: LuBoxes, name: 'Docker Swarm' },
+      { icon: SiTerraform, name: 'Terraform', color: '#7b42bc' },
+    ],
+  },
+  {
+    label: 'Hosting & Domains',
+    icon: LuGlobe,
+    items: [
+      { icon: LuServerCog, name: 'Bluehost' },
+      { icon: SiHostinger, name: 'Hostinger', color: '#673de6' },
+      { icon: SiNamecheap, name: 'Namecheap', color: '#de3723' },
+    ],
+  },
+  {
+    label: 'Engineering Practices',
+    icon: LuRocket,
+    items: [
+      { icon: LuLayers, name: 'Full-Stack Development' },
+      { icon: LuWrench, name: 'System Modernization' },
+      { icon: LuRocket, name: 'Performance Optimization' },
+      { icon: LuTrendingUp, name: 'Scalability' },
+      { icon: LuRefreshCw, name: 'Background Processing' },
+      { icon: LuCheckCheck, name: 'Automated Testing' },
+    ],
+  },
+  {
+    label: 'Collaboration & Tools',
+    icon: LuGitBranch,
+    items: [
+      { icon: SiGit, name: 'Git', color: '#f05032' },
+      { icon: SiGithub, name: 'GitHub' },
+      { icon: SiBitbucket, name: 'Bitbucket', color: '#0052cc' },
+      { icon: SiJira, name: 'Jira', color: '#0052cc' },
+      { icon: SiConfluence, name: 'Confluence', color: '#172b4d' },
+      { icon: LuRefreshCw, name: 'Agile/Scrum' },
+    ],
+  },
 ]
 
 export const contactLinks: ContactLink[] = [
