@@ -162,10 +162,25 @@ export interface Project {
   caseStudy?: CaseStudy
 }
 
+export type RolePointTag = 'build' | 'rebuild' | 'maintain'
+
+export interface RolePoint {
+  text: string
+  tag: RolePointTag
+  /** When true, the point is grouped under a "Side projects" sub-heading. */
+  sideProject?: boolean
+}
+
 export interface Role {
   title: string
-  date: string
-  points: string[]
+  /** Short duration label shown inline (e.g. "2 years"). */
+  duration: string
+  /** Full start–end range revealed on hover (e.g. "Oct 2022 – Present"). */
+  dateRange: string
+  location: string
+  /** Remote / onsite breakdown (e.g. "Remote" or "6 mos onsite · 2 yrs remote"). */
+  workMode: string
+  points: RolePoint[]
 }
 
 export interface ImpactItem {
@@ -391,28 +406,51 @@ export const projects: Project[] = [
 export const roles: Role[] = [
   {
     title: 'Breeding Analytics Team · Software Engineer',
-    date: 'Oct 2022 – Present · Los Baños, Philippines',
+    duration: '2 years',
+    dateRange: 'Jan 2025 – Dec 2026',
+    location: 'Los Baños, Philippines',
+    workMode: 'Onsite',
     points: [
-      'Phenotypic Data Manager — development & maintenance',
-      'Molecular Data Analysis — greenfield development',
-      'Analysis Request Manager — maintenance',
+      { text: 'Phenotypic Data Manager', tag: 'maintain' },
+      { text: 'Analysis Request Manager', tag: 'maintain' },
+    ],
+  },
+  {
+    title: 'Breeding Analytics Team · Software Engineer',
+    duration: '2 years',
+    dateRange: 'Oct 2022 – Sep 2024',
+    location: 'Los Baños, Philippines',
+    workMode: 'Remote',
+    points: [
+      { text: 'Phenotypic Data Manager', tag: 'build' },
+      { text: 'Molecular Data Analysis', tag: 'build' },
     ],
   },
   {
     title: 'Rice Crop Manager Team · Software Engineer',
-    date: 'Jan 2022 – Dec 2022 · Los Baños, Philippines',
+    duration: '1 year',
+    dateRange: 'Jan 2022 – Dec 2022',
+    location: 'Los Baños, Philippines',
+    workMode: 'Remote',
     points: [
-      'RCM Philippines, RCM PH Statistics, and Mel Builder',
-      'Offline-capable mobile and progressive web applications',
-      'RCM Myanmar, Indonesia, and Odisha support',
+      { text: 'Rice Crop Manager Advisory Service', tag: 'rebuild' },
+      { text: 'Mel Builder', tag: 'build', sideProject: true },
+      { text: 'RCM Myanmar', tag: 'maintain', sideProject: true },
+      { text: 'RCM Indonesia', tag: 'maintain', sideProject: true },
+      { text: 'RCM Odisha (backend)', tag: 'rebuild', sideProject: true },
     ],
   },
   {
     title: 'Rice Crop Manager Team · Junior Software Engineer',
-    date: 'Jul 2019 – Dec 2021 · Los Baños, Philippines',
+    duration: '2.5 years',
+    dateRange: 'Jul 2019 – Dec 2021',
+    location: 'Los Baños, Philippines',
+    workMode: '6 mos onsite · 2 yrs remote',
     points: [
-      'User Registration and RCM PH Statistics (legacy maintenance)',
-      'Farmer/Field Registration and Download (legacy & greenfield)',
+      { text: 'User Registration', tag: 'maintain' },
+      { text: 'RCM PH Statistics', tag: 'maintain' },
+      { text: 'Farmer/Field Registration and Download', tag: 'maintain' },
+      { text: 'Farmer/Field Registration and Download', tag: 'build' },
     ],
   },
 ]
