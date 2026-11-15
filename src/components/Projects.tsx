@@ -1,7 +1,12 @@
+import { useState } from 'react'
+import type { Project } from '../portfolio-data'
 import { projects } from '../portfolio-data'
 import { eyebrow, heading, LINE, section, wrap } from '../styles'
+import ProjectModal from './ProjectModal'
 
 function Projects() {
+  const [activeProject, setActiveProject] = useState<Project | null>(null)
+
   return (
     <section
       className={`${section} bg-[linear-gradient(180deg,rgba(20,38,57,0.45),transparent)]`}
@@ -46,17 +51,31 @@ function Projects() {
                     </span>
                   ))}
                 </div>
-                <a
-                  className="text-[#76c9ff] font-semibold"
-                  href="#experience"
-                >
-                  Explore my contributions →
-                </a>
+                {project.caseStudy ? (
+                  <button
+                    type="button"
+                    className="text-[#76c9ff] font-semibold hover:text-green"
+                    onClick={() => setActiveProject(project)}
+                  >
+                    Explore my contributions →
+                  </button>
+                ) : (
+                  <a className="text-[#76c9ff] font-semibold" href="#experience">
+                    Explore my contributions →
+                  </a>
+                )}
               </div>
             </article>
           ))}
         </div>
       </div>
+
+      {activeProject?.caseStudy ? (
+        <ProjectModal
+          caseStudy={activeProject.caseStudy}
+          onClose={() => setActiveProject(null)}
+        />
+      ) : null}
     </section>
   )
 }

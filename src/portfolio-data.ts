@@ -43,10 +43,15 @@ import {
   LuCheckCheck,
   LuCloud,
   LuDatabase,
+  LuFileText,
   LuGitBranch,
   LuGlobe,
-  LuMail,
+  LuHistory,
   LuLayers,
+  LuLayoutGrid,
+  LuMail,
+  LuMapPin,
+  LuMessageSquare,
   LuPlug,
   LuPuzzle,
   LuRefreshCw,
@@ -55,6 +60,8 @@ import {
   LuServerCog,
   LuSmartphone,
   LuTrendingUp,
+  LuUsers,
+  LuWifiOff,
   LuWrench,
 } from 'react-icons/lu'
 
@@ -69,13 +76,86 @@ export interface StatItem {
   description: string
 }
 
+export interface CaseStudyFact {
+  label: string
+  value: string
+}
+
+export interface CaseStudyMetric {
+  icon: SkillIcon
+  value: string
+  label: string
+}
+
+export interface CaseStudyFeature {
+  icon: SkillIcon
+  title: string
+  description: string
+}
+
+export interface CaseStudyBeforeAfter {
+  before: string
+  after: string
+}
+
+export interface CaseStudyImpact {
+  audience: string
+  text: string
+}
+
+export interface CaseStudySource {
+  label: string
+  href: string
+}
+
+export interface CaseStudy {
+  title: string
+  /** Optional link to the live product, shown next to the title. */
+  liveUrl?: string
+  /** One-line hook shown under the title. */
+  tagline: string
+  summary: string
+  /** Optional citation for the figures quoted in the summary/metrics. */
+  source?: CaseStudySource
+  /** Quick-reference chips (role, timeline, stack, etc.). */
+  facts: CaseStudyFact[]
+  /** Headline numbers shown in a stat strip. */
+  metrics: CaseStudyMetric[]
+  /** The problem framing. */
+  problem: {
+    intro: string
+    points: string[]
+  }
+  /** Legacy limitations, each a titled card. */
+  legacy: {
+    intro: string
+    items: { title: string; description: string }[]
+    /** The fragmented legacy apps that were consolidated. */
+    consolidatedApps: string[]
+  }
+  /** Capabilities added when extending/rebuilding the legacy system. */
+  features: {
+    intro: string
+    items: CaseStudyFeature[]
+  }
+  /** Technology modernization shown as before → after. */
+  modernization: {
+    intro: string
+    changes: CaseStudyBeforeAfter[]
+  }
+  /** Impact per audience. */
+  impact: CaseStudyImpact[]
+}
+
 export interface Project {
+  id: string
   art: string
   artVariant?: 'blue'
   title: string
   tagline: string
   description: string
   tags: string[]
+  caseStudy?: CaseStudy
 }
 
 export interface Role {
@@ -144,14 +224,154 @@ export const stats: StatItem[] = [
 
 export const projects: Project[] = [
   {
+    id: 'rcm',
     art: '🌾📱',
     title: 'Rice Crop Manager (RCM)',
     tagline: 'Scaling scientific farming recommendations to farmers',
     description:
       "A mobile and web application that delivers IRRI's site-specific fertilizer recommendations to farmers across the Philippines, Indonesia, Myanmar, and India.",
     tags: ['Web', 'Mobile', 'PWA', 'Offline-first'],
+    caseStudy: {
+      title: 'Rice Crop Manager Advisory Service',
+      liveUrl: 'https://rcm.da.gov.ph/home',
+      tagline:
+        'Bringing IRRI scientists\u2019 site-specific farming recommendations to millions of farmers.',
+      summary:
+        'Government extension workers interview farmers about their farm and field practices. The app turns that input into a tailored one-page recommendation on the timing, type, and amount of fertilizer across the rice crop lifecycle \u2014 from planting to harvest. Since 2014, RCMAS has reached more than 2.6 million farmers in the Philippines and generated 3.3 million precision-agriculture recommendations.',
+      source: {
+        label: 'Source: IRRI News — reaching more farmers through the cluster approach',
+        href: 'https://www.irri.org/news-and-events/news/irri-and-da-reach-more-farmers-through-cluster-approach',
+      },
+      facts: [
+        { label: 'Role', value: 'Software Engineer' },
+        { label: 'Org', value: 'IRRI' },
+        { label: 'Since', value: '2014' },
+        { label: 'Platform', value: 'Web · Mobile · PWA' },
+      ],
+      metrics: [
+        { icon: LuUsers, value: '2.6M+', label: 'farmers reached' },
+        { icon: LuFileText, value: '3.3M', label: 'recommendations generated' },
+        { icon: LuLayoutGrid, value: '5→1', label: 'apps unified into RCMAS' },
+        { icon: LuWifiOff, value: 'Offline', label: 'field data collection' },
+      ],
+      problem: {
+        intro:
+          'I worked alongside agronomists who develop site-specific farming methods and want to scale them across the Philippines. Turning that science into something every farmer can use is hard:',
+        points: [
+          'Farming conditions vary by location \u2014 soil, irrigation, and rice varieties all differ field to field.',
+          'Weather and fertilizer prices shift over time, making decisions more complex each season.',
+          'Farmers and extension workers can\u2019t solve complex agronomic equations before every planting season.',
+          'The core challenge: make scientifically developed recommendations accessible, practical, and field-ready.',
+        ],
+      },
+      legacy: {
+        intro:
+          'A legacy system already solved much of this, but it had real limitations that capped its reach.',
+        items: [
+          {
+            title: 'Limited accessibility',
+            description:
+              'Built for desktop users with reliable internet \u2014 yet extension workers collect field data in remote areas with little or no connectivity, often on small devices.',
+          },
+          {
+            title: 'No audit trails',
+            description:
+              'No way to track who created, edited, or updated farmer, field, and worker records \u2014 made hard by many independent apps, each with its own database.',
+          },
+          {
+            title: 'Fragmented apps & databases',
+            description:
+              'Separate databases complicated migration and maintenance, and forced developers to work across multiple codebases.',
+          },
+        ],
+        consolidatedApps: ['RCMFFR', 'FFRDL', 'RCMPH', 'PHRASTAT', 'RCMSMS'],
+      },
+      features: {
+        intro:
+          'After rebuilding the legacy system into a unified platform, we added new capabilities it never had \u2014 closing the gaps that limited the original applications:',
+        items: [
+          {
+            icon: LuWifiOff,
+            title: 'Offline capabilities',
+            description:
+              'Collect and manage farmer and field data in remote locations with no internet connection.',
+          },
+          {
+            icon: LuSmartphone,
+            title: 'Mobile application',
+            description:
+              'A mobile-friendly experience that works comfortably on the small devices used in the field.',
+          },
+          {
+            icon: LuHistory,
+            title: 'CRUD audit trails',
+            description:
+              'Track creation, updates, and modifications across farmer, field, and worker transactions.',
+          },
+          {
+            icon: LuMapPin,
+            title: 'Google Maps integration',
+            description:
+              'Visualize uploaded GPX files directly on Google Maps.',
+          },
+          {
+            icon: LuDatabase,
+            title: 'Database consolidation',
+            description:
+              'Unified fragmented databases to simplify migration, maintenance, and handoff.',
+          },
+          {
+            icon: LuMessageSquare,
+            title: 'SMS integration',
+            description:
+              'Timely reminders that help farmers follow recommended practices across the crop cycle.',
+          },
+        ],
+      },
+      modernization: {
+        intro:
+          'We consolidated the independent apps and databases into one platform \u2014 the Rice Crop Manager Advisory Service (RCMAS) \u2014 and modernized the stack for maintainability and a better user experience.',
+        changes: [
+          {
+            before: 'Vanilla HTML, CSS, jQuery, PHP',
+            after: 'Angular, Ionic, PHP Slim Micro Framework',
+          },
+          {
+            before: 'Inconsistent, ad-hoc UI styling',
+            after: 'Unified design system (Angular Material + Ionic)',
+          },
+          {
+            before: 'Server-side rendered pages',
+            after: 'Responsive Single-Page Application (SPA)',
+          },
+        ],
+      },
+      impact: [
+        {
+          audience: 'Partner organizations',
+          text: 'No need to build recommendation systems from scratch. After handoff, they maintain RCMAS, own their data, and run their own implementations.',
+        },
+        {
+          audience: 'Extension workers',
+          text: 'Collect farmer and field information in remote locations, even with limited or no internet connectivity.',
+        },
+        {
+          audience: 'Partner developers',
+          text: 'Easier to maintain and extend thanks to a unified architecture, consolidated database, and modern stack.',
+        },
+        {
+          audience: 'Partner agronomists',
+          text: 'Easier to maintain the complex calculations behind recommendations, so scientific improvements land faster.',
+        },
+        {
+          audience: 'Farmers',
+          text: 'Better recommendations that aim to raise rice yields while cutting unnecessary fertilizer costs.',
+        },
+      ],
+    },
   },
   {
+    id: 'ebs',
     art: '🧬📊',
     artVariant: 'blue',
     title: 'Enterprise Breeding System (EBS)',
