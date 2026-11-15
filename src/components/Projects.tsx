@@ -2,10 +2,14 @@ import { useState } from 'react'
 import type { Project } from '../portfolio-data'
 import { projects } from '../portfolio-data'
 import { eyebrow, heading, LINE, section, wrap } from '../styles'
+import ImageLightbox from './ImageLightbox'
 import ProjectModal from './ProjectModal'
 
 function Projects() {
   const [activeProject, setActiveProject] = useState<Project | null>(null)
+  const [preview, setPreview] = useState<{ src: string; alt: string } | null>(
+    null,
+  )
 
   return (
     <section
@@ -25,13 +29,38 @@ function Projects() {
               key={project.title}
             >
               <div
-                className={`shrink-0 w-[40%] max-[620px]:w-full grid place-items-center text-[62px] min-h-[175px] max-[620px]:min-h-[160px] ${
+                className={`shrink-0 w-[40%] max-[620px]:w-full grid place-items-center text-[62px] min-h-[175px] max-[620px]:min-h-[160px] overflow-hidden ${
                   project.artVariant === 'blue'
                     ? 'bg-[linear-gradient(135deg,#173b5a,#25334b)]'
                     : 'bg-[linear-gradient(135deg,#1e4c3e,#152c43)]'
                 }`}
               >
-                {project.art}
+                {project.image ? (
+                  <button
+                    type="button"
+                    className="group relative w-full h-full cursor-zoom-in"
+                    onClick={() =>
+                      setPreview({
+                        src: project.image!,
+                        alt: `${project.title} screenshot`,
+                      })
+                    }
+                    aria-label={`View ${project.title} screenshot`}
+                  >
+                    <img
+                      src={project.image}
+                      alt={`${project.title} screenshot`}
+                      className="w-full h-full object-cover transition duration-200 group-hover:scale-[1.03]"
+                    />
+                    <span className="absolute inset-0 grid place-items-end justify-center pb-3 opacity-0 group-hover:opacity-100 transition bg-gradient-to-t from-black/50 to-transparent">
+                      <span className="text-[12px] font-semibold text-white bg-black/50 rounded-full px-3 py-1">
+                        Click to view full image
+                      </span>
+                    </span>
+                  </button>
+                ) : (
+                  project.art
+                )}
               </div>
               <div className="p-6">
                 <h3 className="text-[22px] mb-2">{project.title}</h3>
@@ -74,6 +103,14 @@ function Projects() {
         <ProjectModal
           caseStudy={activeProject.caseStudy}
           onClose={() => setActiveProject(null)}
+        />
+      ) : null}
+
+      {preview ? (
+        <ImageLightbox
+          src={preview.src}
+          alt={preview.alt}
+          onClose={() => setPreview(null)}
         />
       ) : null}
     </section>

@@ -15,11 +15,10 @@ function About() {
             to Software Engineering
           </h2>
           <p className="text-[#d2deea] text-[17px] mt-3">
-            I'm a Full Stack Engineer from the Philippines, with 7+ years of
-            experience at the International Rice Research Institute (IRRI). I
-            previously worked in rice research and development in Los Baños,
-            where I turned complex scientific workflows into scalable web and
-            mobile solutions.
+            I'm a Software Engineer with 7+ years of experience in agricultural
+            research and development. I create scalable digital solutions that
+            empower researchers to develop improved crop varieties faster and
+            help bring innovative farming practices to more farmers.
           </p>
         </div>
         <div className="grid grid-cols-3 gap-3 max-[850px]:mt-2.5 max-[620px]:grid-cols-1">

@@ -1,4 +1,6 @@
 import type { ComponentType, SVGProps } from 'react'
+import ebsImage from './assets/ebs.png'
+import rcmImage from './assets/rcm.png'
 import {
   ArchitectureServiceAmazonAPIGateway,
   ArchitectureServiceAmazonEC2,
@@ -150,6 +152,8 @@ export interface CaseStudy {
 export interface Project {
   id: string
   art: string
+  /** Optional screenshot shown in the card art panel. */
+  image?: string
   artVariant?: 'blue'
   title: string
   tagline: string
@@ -226,6 +230,7 @@ export const projects: Project[] = [
   {
     id: 'rcm',
     art: '🌾📱',
+    image: rcmImage,
     title: 'Rice Crop Manager (RCM)',
     tagline: 'Scaling scientific farming recommendations to farmers',
     description:
@@ -373,6 +378,7 @@ export const projects: Project[] = [
   {
     id: 'ebs',
     art: '🧬📊',
+    image: ebsImage,
     artVariant: 'blue',
     title: 'Enterprise Breeding System (EBS)',
     tagline: 'Accelerating rice breeding',
