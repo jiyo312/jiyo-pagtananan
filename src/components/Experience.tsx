@@ -160,34 +160,82 @@ function ImpactCard({ role }: { role: Role }) {
                     >
                       {c.label}
                     </span>
-                    <span>{c.text}</span>
+                    {Array.isArray(c.text) ? (
+                      <ul className="space-y-1.5 m-0">
+                        {c.text.map((t) => {
+                          const main = typeof t === 'string' ? t : t.text
+                          const subItems =
+                            typeof t === 'string' ? null : t.subItems
+                          return (
+                            <li key={main}>
+                              <div className="flex gap-2.5">
+                                <span className="mt-[7px] shrink-0 w-1.5 h-1.5 rounded-full bg-green" />
+                                <span>{main}</span>
+                              </div>
+                              {subItems ? (
+                                <ul className="space-y-1 m-0 mt-1 pl-[16px]">
+                                  {subItems.map((s) => (
+                                    <li className="flex gap-2.5" key={s}>
+                                      <span className="mt-[7px] shrink-0 w-1 h-1 rounded-full bg-muted" />
+                                      <span className="text-muted text-[12px]">
+                                        {s}
+                                      </span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : null}
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    ) : (
+                      <span>{c.text}</span>
+                    )}
                   </li>
                 ))}
               </ul>
             ) : null}
 
             {active === 'strengths' && role.strengths ? (
-              <>
-                <p className="text-[#c8d5e3] text-[13px] leading-relaxed m-0 mb-2.5">
-                  {role.strengths.intro}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {role.strengths.items.map((item) => (
-                    <span
-                      className="text-[12px] font-semibold px-2.5 py-1 rounded-full bg-[rgba(67,211,107,0.14)] text-green border border-[rgba(67,211,107,0.4)]"
-                      key={item}
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </>
+              <div className="space-y-4">
+                {role.strengths.map((group) => (
+                  <div key={group.intro}>
+                    <p className="text-[#c8d5e3] text-[13px] leading-relaxed m-0 mb-2.5">
+                      {group.intro}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {group.items.map((item) => (
+                        <span
+                          className="text-[12px] font-semibold px-2.5 py-1 rounded-full bg-[rgba(67,211,107,0.14)] text-green border border-[rgba(67,211,107,0.4)]"
+                          key={item}
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             ) : null}
 
             {active === 'teamImpact' && role.teamImpact ? (
-              <p className="text-[#c8d5e3] text-[13px] leading-relaxed m-0">
-                {role.teamImpact}
-              </p>
+              <ul className="space-y-3 m-0">
+                {role.teamImpact.map((item) => (
+                  <li key={item.did}>
+                    <div className="flex gap-2.5 text-[#dce8f5] text-[13px] font-medium leading-relaxed">
+                      <span className="mt-[7px] shrink-0 w-1.5 h-1.5 rounded-full bg-[#76c9ff]" />
+                      <span>{item.did}</span>
+                    </div>
+                    <div className="flex gap-2 pl-[16px] mt-1 text-muted text-[12px] leading-relaxed">
+                      <LuArrowRight
+                        className="shrink-0 text-[#76c9ff] text-[14px] mt-[2px]"
+                        aria-hidden
+                      />
+                      <span>{item.benefit}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             ) : null}
           </div>
         </div>

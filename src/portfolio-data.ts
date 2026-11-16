@@ -189,15 +189,19 @@ export interface Role {
   points: RolePoint[]
   /** Short summary of contributions, as one or more brief paragraphs. */
   summary?: string[]
-  /** Detailed contributions, each with a short label and description. */
-  contribution?: { label: string; text: string; tag: RolePointTag }[]
-  /** Strengths demonstrated in this role. */
+  /** A contribution line, optionally with nested sub-items. */
+  contribution?: {
+    label: string
+    tag: RolePointTag
+    text: string | (string | { text: string; subItems: string[] })[]
+  }[]
+  /** Strengths demonstrated in this role, as one or more groups. */
   strengths?: {
     intro: string
     items: string[]
-  }
-  /** Team-level impact for this role. */
-  teamImpact?: string
+  }[]
+  /** Team-level impact for this role, each as an action and its benefit. */
+  teamImpact?: { did: string; benefit: string }[]
 }
 
 export interface ImpactItem {
@@ -549,34 +553,99 @@ export const roles: Role[] = [
       },
     ],
     summary: [
-      'Enabled all registered users to access RCM Statistics and RCM Farmer and Field Download.',
+      'Enabled all verified and registered users to access RCM Statistics and RCM Farmer and Field Download.',
       'Released a bug-free version of RCM Farmer and Field Download, RCM User Registration, and RCM Statistics.',
       'Contributed to the modernization of RCM Farmer and Field Registration to a unified RCMAS app.',
     ],
     contribution: [
       {
-        label: 'Minor Bugs',
-        tag: 'maintain',
-        text: 'Resolved authentication and registration defects, including inconsistent password hashing, duplicate emails, broken reset links and disposable email domains',
+        label: 'New Feature',
+        tag: 'build',
+        text: 'Built an API endpoint powering the RCMAS app’s offline mode, downloading the full list of farmers and their fields ahead of time so practices can be collected while interviewing in remote sites without connectivity.',
       },
       {
         label: 'Rebuild Feature',
         tag: 'rebuild',
-        text: 'Rebuilt the legacy RCM farmer and field registration form using Angular components, its API endpoints, and storage to the new consolidated database in the new app, RCMAS.',
+        text: [
+          'Rebuilt the legacy RCM farmer and field registration form using Angular components, its API endpoints, and storage to the new consolidated database in the new app, RCMAS.',
+          {
+            text: 'Rebuilt the legacy core RCM PH, including:',
+            subItems: [
+              'A Contact Us API endpoint that lets users send questions, suggestions, and concerns straight to the RCM team’s email.',
+              'An API endpoint for viewing the generated recommendation.',
+              'An API endpoint for persisting one of the interview form sections to the database.',
+            ],
+          },
+        ],
       },
       {
-        label: 'Minor improvements',
+        label: 'Improvements',
         tag: 'improve',
-        text: 'Refactored the existing authentication into a reusable endpoint for RCM Farmer and Field Registration Download and RCM Statistics.',
+        text: [
+          'Refactored the existing authentication into a reusable endpoint for RCM Farmer and Field Registration Download and RCM Statistics.',
+          'Refactored a section of the interview form into its own module for easier codebase navigation.',
+        ],
+      },
+      {
+        label: 'Bugs',
+        tag: 'maintain',
+        text: [
+          'Resolved authentication and registration defects, including inconsistent password hashing, duplicate emails, broken reset links, and disposable email domains.',
+          'Fixed UI issues when reviewing fertilizer rates, timing/splitting, and other crop-management sections, plus form validations critical to later interview sections for reliable recommendations.',
+        ],
       },
     ],
-    strengths: {
-      intro:
-        'Navigating unfamiliar legacy apps while picking up new tech on the job showed I’m a fast learner. I quickly adopted:',
-      items: ['Angular', 'Docker', 'Git & Team Branching Strategy'],
-    },
-    teamImpact:
-      'Set up the Docker-based local dev environment for a team of 5–8 developers. This boosted team productivity by keeping every machine’s environment consistent, making it easy to build new features and replicate bugs.',
+    strengths: [
+      {
+        intro:
+          'Navigating unfamiliar legacy apps while picking up new tech on the job showed I’m a fast learner. I quickly adopted:',
+        items: ['Angular', 'Docker', 'Git & Team Branching Strategy'],
+      },
+      {
+        intro:
+          'Owning the environments from local to deployment to handoff showed I can take on the responsibility needed to deliver a project. Along the way I learned:',
+        items: ['Jenkins', 'AWS EC2', 'AWS S3', 'AWS VPC', 'Terraform', 'Liquibase'],
+      },
+      {
+        intro:
+          'I don’t just ship features — I care about quality without slowing delivery, adding automated UI and API testing. I learned:',
+        items: ['Postman', 'CodeceptJS', 'Angular Testing Library'],
+      },
+      {
+        intro:
+          'Rebuilding multiple legacy applications into a single app taught me to break problems into smaller pieces, making complex projects doable, organized, and less risky. I learned:',
+        items: [
+          'Task breakdown',
+          'Prioritization',
+          'Estimation',
+          'Feedback',
+          'Iteration',
+          'Collaboration',
+        ],
+      },
+    ],
+    teamImpact: [
+      {
+        did: 'Built a CI/CD pipeline from the Docker-based local environment through dev and staging for a team of 5–8 developers.',
+        benefit:
+          'Kept environments consistent, making it easy to ship features, reproduce bugs, and run integration testing and user training.',
+      },
+      {
+        did: 'Ran capacity-building sessions and documented local setup, deployment, and database backup and restoration.',
+        benefit:
+          'Ensured a smooth handoff of the unified RCMAS from IRRI to partner organizations.',
+      },
+      {
+        did: 'Applied the service/repository pattern in the API and split a section of the interview form into its own module.',
+        benefit:
+          'Kept the codebase maintainable and easier for the team to navigate.',
+      },
+      {
+        did: 'Added end-to-end tests for the interview form (sections 1–6) and API tests for the recommendation-generation endpoints.',
+        benefit:
+          'Ensured the forms work as expected and generated recommendations are reliable and correct, while letting the team test changes faster.',
+      },
+    ],
   },
 ]
 
