@@ -1,4 +1,6 @@
-import type { RolePoint, RolePointTag } from '../portfolio-data'
+import { useState } from 'react'
+import { LuArrowRight, LuCode, LuSparkles, LuUsers, LuZap } from 'react-icons/lu'
+import type { Role, RolePoint, RolePointTag } from '../portfolio-data'
 import { impactItems, roles } from '../portfolio-data'
 import { eyebrow, heading, LINE, section, wrap } from '../styles'
 
@@ -19,37 +21,180 @@ const tagStyles: Record<
       'bg-[rgba(118,201,255,0.14)] text-[#76c9ff] border-[rgba(118,201,255,0.4)]',
   },
   maintain: {
-    label: 'Maintain',
-    title: 'Maintain — resolving minor bug fixes and improvements',
+    label: 'Legacy application',
+    title: 'Legacy application — resolving minor bug fixes and improvements',
     className:
       'bg-[rgba(246,173,85,0.12)] text-[#f6ad55] border-[rgba(246,173,85,0.35)]',
+  },
+  improve: {
+    label: 'Improvement',
+    title: 'Improvement — refactoring and enhancements to existing code',
+    className:
+      'bg-[rgba(192,132,252,0.14)] text-[#c084fc] border-[rgba(192,132,252,0.4)]',
   },
 }
 
 function PointList({ points }: { points: RolePoint[] }) {
   return (
-    <ul className="text-[#c8d5e3] m-0 space-y-1.5">
+    <div className="grid grid-cols-2 gap-2.5 max-[620px]:grid-cols-1">
       {points.map((point, i) => {
         const badge = tagStyles[point.tag]
         return (
-          <li
-            className="flex flex-wrap items-center gap-x-2 gap-y-1"
+          <div
+            className="flex flex-col gap-2 bg-surface border rounded-lg p-3.5 transition hover:border-[rgba(67,211,107,0.5)]"
+            style={{ borderColor: LINE }}
             key={point.text + point.tag + i}
           >
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-green shrink-0" />
-              {point.text}
-            </span>
-            <span
-              className={`text-[11px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full border cursor-help ${badge.className}`}
-              title={badge.title}
-            >
-              {badge.label}
-            </span>
-          </li>
+            <div className="flex items-start justify-between gap-2">
+              <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[#dce8f5] text-[14px] font-semibold leading-snug">
+                {point.text}
+                {point.abbr ? (
+                  <span className="text-[11px] font-mono font-normal px-2 py-0.5 rounded-md bg-[#26384e] text-[#aab8c9]">
+                    {point.abbr}
+                  </span>
+                ) : null}
+              </span>
+              <span
+                className={`shrink-0 text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full border cursor-help ${badge.className}`}
+                title={badge.title}
+              >
+                {badge.label}
+              </span>
+            </div>
+            {point.description ? (
+              <p className="text-muted text-[13px] leading-snug">
+                {point.description}
+              </p>
+            ) : null}
+            {point.mergedInto ? (
+              <div className="flex items-center gap-1.5">
+                <LuArrowRight className="text-green text-[14px]" aria-hidden />
+                <span className="text-[11px] text-muted">merged into</span>
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-[rgba(118,201,255,0.14)] text-[#76c9ff]">
+                  {point.mergedInto}
+                </span>
+              </div>
+            ) : null}
+          </div>
         )
       })}
-    </ul>
+    </div>
+  )
+}
+
+type TabKey = 'contribution' | 'strengths' | 'teamImpact'
+
+function ImpactCard({ role }: { role: Role }) {
+  const tabs: { key: TabKey; label: string }[] = []
+  if (role.strengths) tabs.push({ key: 'strengths', label: 'Strengths' })
+  if (role.teamImpact) tabs.push({ key: 'teamImpact', label: 'Team impact' })
+  if (role.contribution) tabs.push({ key: 'contribution', label: 'Contribution' })
+
+  const [active, setActive] = useState<TabKey | null>(tabs[0]?.key ?? null)
+
+  if (!role.summary) return null
+
+  return (
+    <div
+      className="mt-3.5 rounded-xl border overflow-hidden bg-[linear-gradient(135deg,rgba(67,211,107,0.1),rgba(67,211,107,0.02))]"
+      style={{ borderColor: 'rgba(67,211,107,0.3)' }}
+    >
+      <div className="flex items-center gap-2 px-4 pt-3.5">
+        <span className="grid place-items-center w-6 h-6 rounded-full bg-[rgba(67,211,107,0.18)]">
+          <LuSparkles className="text-green text-[14px]" aria-hidden />
+        </span>
+        <span className="text-green text-[11px] font-extrabold uppercase tracking-[0.12em]">
+          Impact
+        </span>
+      </div>
+
+      <ul className="px-4 pt-2 space-y-1.5 m-0">
+        {role.summary.map((para) => (
+          <li
+            className="flex gap-2.5 text-[#c8d5e3] text-[13px] leading-relaxed"
+            key={para}
+          >
+            <span className="mt-[7px] shrink-0 w-1.5 h-1.5 rounded-full bg-green" />
+            <span>{para}</span>
+          </li>
+        ))}
+      </ul>
+
+      {tabs.length > 0 ? (
+        <div className="px-4 pb-4 pt-3.5">
+          <div
+            className="flex flex-wrap gap-1.5 border-b pb-2.5"
+            style={{ borderColor: LINE }}
+            role="tablist"
+          >
+            {tabs.map((tab) => {
+              const isActive = tab.key === active
+              return (
+                <button
+                  key={tab.key}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActive(tab.key)}
+                  className={`text-[12px] font-semibold px-3 py-1.5 rounded-full transition ${
+                    isActive
+                      ? 'bg-green text-[#06231a]'
+                      : 'text-muted hover:text-[#dce8f5]'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              )
+            })}
+          </div>
+
+          <div className="pt-3">
+            {active === 'contribution' && role.contribution ? (
+              <ul className="space-y-3 m-0">
+                {role.contribution.map((c, i) => (
+                  <li
+                    className="flex flex-col gap-1.5 text-[#c8d5e3] text-[13px] leading-relaxed"
+                    key={c.label + i}
+                  >
+                    <span
+                      className={`self-start text-[10px] font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded border ${tagStyles[c.tag].className}`}
+                    >
+                      {c.label}
+                    </span>
+                    <span>{c.text}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+
+            {active === 'strengths' && role.strengths ? (
+              <>
+                <p className="text-[#c8d5e3] text-[13px] leading-relaxed m-0 mb-2.5">
+                  {role.strengths.intro}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {role.strengths.items.map((item) => (
+                    <span
+                      className="text-[12px] font-semibold px-2.5 py-1 rounded-full bg-[rgba(67,211,107,0.14)] text-green border border-[rgba(67,211,107,0.4)]"
+                      key={item}
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </>
+            ) : null}
+
+            {active === 'teamImpact' && role.teamImpact ? (
+              <p className="text-[#c8d5e3] text-[13px] leading-relaxed m-0">
+                {role.teamImpact}
+              </p>
+            ) : null}
+          </div>
+        </div>
+      ) : (
+        <div className="pb-4" />
+      )}
+    </div>
   )
 }
 
@@ -123,6 +268,7 @@ function Experience() {
                     </>
                   )
                 })()}
+                <ImpactCard role={role} />
               </article>
             ))}
           </div>
@@ -142,6 +288,7 @@ function Experience() {
             ))}
           </aside>
         </div>
+
       </div>
     </section>
   )

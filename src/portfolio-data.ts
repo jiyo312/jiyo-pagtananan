@@ -162,11 +162,17 @@ export interface Project {
   caseStudy?: CaseStudy
 }
 
-export type RolePointTag = 'build' | 'rebuild' | 'maintain'
+export type RolePointTag = 'build' | 'rebuild' | 'maintain' | 'improve'
 
 export interface RolePoint {
   text: string
   tag: RolePointTag
+  /** Concise one-line description of the project. */
+  description?: string
+  /** Optional short code / abbreviation (e.g. "RCMFFR"). */
+  abbr?: string
+  /** Optional "migrated into" target shown as an arrow (e.g. "RCMAS"). */
+  mergedInto?: string
   /** When true, the point is grouped under a "Side projects" sub-heading. */
   sideProject?: boolean
 }
@@ -181,6 +187,17 @@ export interface Role {
   /** Remote / onsite breakdown (e.g. "Remote" or "6 mos onsite · 2 yrs remote"). */
   workMode: string
   points: RolePoint[]
+  /** Short summary of contributions, as one or more brief paragraphs. */
+  summary?: string[]
+  /** Detailed contributions, each with a short label and description. */
+  contribution?: { label: string; text: string; tag: RolePointTag }[]
+  /** Strengths demonstrated in this role. */
+  strengths?: {
+    intro: string
+    items: string[]
+  }
+  /** Team-level impact for this role. */
+  teamImpact?: string
 }
 
 export interface ImpactItem {
@@ -411,8 +428,22 @@ export const roles: Role[] = [
     location: 'Los Baños, Philippines',
     workMode: 'Onsite',
     points: [
-      { text: 'Phenotypic Data Manager', tag: 'maintain' },
-      { text: 'Analysis Request Manager', tag: 'maintain' },
+      {
+        text: 'Phenotypic Data Manager',
+        description:
+          'Manages field trial observations and phenotypic measurements for breeders.',
+        tag: 'maintain',
+      },
+      {
+        text: 'Analysis Request Manager',
+        description:
+          'Coordinates and tracks breeders’ requests for statistical analysis.',
+        tag: 'maintain',
+      },
+    ],
+    summary: [
+      'Returned onsite to maintain breeding analytics tools.',
+      'I resolved bugs and shipped improvements that keep researchers’ data workflows reliable.',
     ],
   },
   {
@@ -422,8 +453,22 @@ export const roles: Role[] = [
     location: 'Los Baños, Philippines',
     workMode: 'Remote',
     points: [
-      { text: 'Phenotypic Data Manager', tag: 'build' },
-      { text: 'Molecular Data Analysis', tag: 'build' },
+      {
+        text: 'Phenotypic Data Manager',
+        description:
+          'Built the platform for capturing and managing phenotypic trial data.',
+        tag: 'build',
+      },
+      {
+        text: 'Molecular Data Analysis',
+        description:
+          'Developed tooling to process and analyze molecular marker data.',
+        tag: 'build',
+      },
+    ],
+    summary: [
+      'Built greenfield analytics tools from the ground up.',
+      'These gave breeders new ways to capture phenotypic data and analyze molecular markers, speeding up variety development.',
     ],
   },
   {
@@ -433,11 +478,42 @@ export const roles: Role[] = [
     location: 'Los Baños, Philippines',
     workMode: 'Remote',
     points: [
-      { text: 'Rice Crop Manager Advisory Service', tag: 'rebuild' },
-      { text: 'Mel Builder', tag: 'build', sideProject: true },
-      { text: 'RCM Myanmar', tag: 'maintain', sideProject: true },
-      { text: 'RCM Indonesia', tag: 'maintain', sideProject: true },
-      { text: 'RCM Odisha (backend)', tag: 'rebuild', sideProject: true },
+      {
+        text: 'Rice Crop Manager Advisory Service',
+        description:
+          'Unified platform delivering site-specific fertilizer recommendations to farmers.',
+        tag: 'rebuild',
+      },
+      {
+        text: 'Mel Builder',
+        description:
+          'Internal tool for building and configuring recommendation logic.',
+        tag: 'build',
+        sideProject: true,
+      },
+      {
+        text: 'RCM Myanmar',
+        description: 'Localized RCM deployment for farmers in Myanmar.',
+        tag: 'maintain',
+        sideProject: true,
+      },
+      {
+        text: 'RCM Indonesia',
+        description: 'Localized RCM deployment for farmers in Indonesia.',
+        tag: 'maintain',
+        sideProject: true,
+      },
+      {
+        text: 'RCM Odisha (backend)',
+        description: 'Rebuilt the backend for the RCM deployment in Odisha, India.',
+        tag: 'rebuild',
+        sideProject: true,
+      },
+    ],
+    summary: [
+      'Contributed to the rebuild of the core advisory platform into the Rice Crop Manager Advisory Service.',
+      'Added offline, mobile, PWA, and audit-trail capabilities.',
+      'Supported country deployments across Myanmar, Indonesia, and India.',
     ],
   },
   {
@@ -447,11 +523,60 @@ export const roles: Role[] = [
     location: 'Los Baños, Philippines',
     workMode: '6 mos onsite · 2 yrs remote',
     points: [
-      { text: 'User Registration', tag: 'maintain' },
-      { text: 'RCM PH Statistics', tag: 'maintain' },
-      { text: 'Farmer/Field Registration and Download', tag: 'maintain' },
-      { text: 'Farmer/Field Registration and Download', tag: 'build' },
+      {
+        text: 'RCM User Registration',
+        description:
+          'Records user information and manages profiles for extension workers and system accounts.',
+        tag: 'maintain',
+      },
+      {
+        text: 'RCM Farmer and Field Download',
+        description:
+          'Exports PDF lists of farmers and fields, filtered by region, for field interviews.',
+        tag: 'maintain',
+      },
+      {
+        text: 'RCM Statistics',
+        description:
+          'Aggregates totals for farmers, fields, recommendations, and hectares measured nationwide.',
+        tag: 'maintain',
+      },
+      {
+        text: 'RCM Farmer and Field Registration',
+        description:
+          'Registers farmer and field details, including GPX files, for a tailored recommendation.',
+        tag: 'rebuild',
+      },
     ],
+    summary: [
+      'Enabled all registered users to access RCM Statistics and RCM Farmer and Field Download.',
+      'Released a bug-free version of RCM Farmer and Field Download, RCM User Registration, and RCM Statistics.',
+      'Contributed to the modernization of RCM Farmer and Field Registration to a unified RCMAS app.',
+    ],
+    contribution: [
+      {
+        label: 'Minor Bugs',
+        tag: 'maintain',
+        text: 'Resolved authentication and registration defects, including inconsistent password hashing, duplicate emails, broken reset links and disposable email domains',
+      },
+      {
+        label: 'Rebuild Feature',
+        tag: 'rebuild',
+        text: 'Rebuilt the legacy RCM farmer and field registration form using Angular components, its API endpoints, and storage to the new consolidated database in the new app, RCMAS.',
+      },
+      {
+        label: 'Minor improvements',
+        tag: 'improve',
+        text: 'Refactored the existing authentication into a reusable endpoint for RCM Farmer and Field Registration Download and RCM Statistics.',
+      },
+    ],
+    strengths: {
+      intro:
+        'Navigating unfamiliar legacy apps while picking up new tech on the job showed I’m a fast learner. I quickly adopted:',
+      items: ['Angular', 'Docker', 'Git & Team Branching Strategy'],
+    },
+    teamImpact:
+      'Set up the Docker-based local dev environment for a team of 5–8 developers. This boosted team productivity by keeping every machine’s environment consistent, making it easy to build new features and replicate bugs.',
   },
 ]
 
