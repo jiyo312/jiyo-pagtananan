@@ -265,17 +265,16 @@ function CommitShareChart({
   )
 }
 
-type TabKey = 'contribution' | 'strengths' | 'teamImpact'
+type TabKey = 'strengths' | 'teamImpact'
 
 function ImpactCard({ role }: { role: Role }) {
   const tabs: { key: TabKey; label: string }[] = []
   if (role.strengths) tabs.push({ key: 'strengths', label: 'Strengths' })
   if (role.teamImpact) tabs.push({ key: 'teamImpact', label: 'Team impact' })
-  if (role.contribution) tabs.push({ key: 'contribution', label: 'Contribution' })
 
   const [active, setActive] = useState<TabKey | null>(tabs[0]?.key ?? null)
 
-  if (!role.summary) return null
+  if (tabs.length === 0 && !role.summary) return null
 
   return (
     <div
@@ -291,17 +290,19 @@ function ImpactCard({ role }: { role: Role }) {
         </span>
       </div>
 
-      <ul className="px-4 pt-2 space-y-1.5 m-0">
-        {role.summary.map((para) => (
-          <li
-            className="flex gap-2.5 text-[#c8d5e3] text-[13px] leading-relaxed"
-            key={para}
-          >
-            <span className="mt-[7px] shrink-0 w-1.5 h-1.5 rounded-full bg-green" />
-            <span>{para}</span>
-          </li>
-        ))}
-      </ul>
+      {role.summary ? (
+        <ul className="px-4 pt-2 space-y-1.5 m-0">
+          {role.summary.map((para) => (
+            <li
+              className="flex gap-2.5 text-[#c8d5e3] text-[13px] leading-relaxed"
+              key={para}
+            >
+              <span className="mt-[7px] shrink-0 w-1.5 h-1.5 rounded-full bg-green" />
+              <span>{para}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
 
       {tabs.length > 0 ? (
         <div className="px-4 pb-4 pt-3.5">
@@ -331,54 +332,6 @@ function ImpactCard({ role }: { role: Role }) {
           </div>
 
           <div className="pt-3">
-            {active === 'contribution' && role.contribution ? (
-              <ul className="space-y-3 m-0">
-                {role.contribution.map((c, i) => (
-                  <li
-                    className="flex flex-col gap-1.5 text-[#c8d5e3] text-[13px] leading-relaxed"
-                    key={c.label + i}
-                  >
-                    <span
-                      className={`self-start text-[10px] font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded border ${tagStyles[c.tag].className}`}
-                    >
-                      {c.label}
-                    </span>
-                    {Array.isArray(c.text) ? (
-                      <ul className="space-y-1.5 m-0">
-                        {c.text.map((t) => {
-                          const main = typeof t === 'string' ? t : t.text
-                          const subItems =
-                            typeof t === 'string' ? null : t.subItems
-                          return (
-                            <li key={main}>
-                              <div className="flex gap-2.5">
-                                <span className="mt-[7px] shrink-0 w-1.5 h-1.5 rounded-full bg-green" />
-                                <span>{main}</span>
-                              </div>
-                              {subItems ? (
-                                <ul className="space-y-1 m-0 mt-1 pl-[16px]">
-                                  {subItems.map((s) => (
-                                    <li className="flex gap-2.5" key={s}>
-                                      <span className="mt-[7px] shrink-0 w-1 h-1 rounded-full bg-muted" />
-                                      <span className="text-muted text-[12px]">
-                                        {s}
-                                      </span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              ) : null}
-                            </li>
-                          )
-                        })}
-                      </ul>
-                    ) : (
-                      <span>{c.text}</span>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-
             {active === 'strengths' && role.strengths ? (
               <div className="space-y-4">
                 {role.strengths.map((group) => (

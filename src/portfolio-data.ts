@@ -201,12 +201,6 @@ export interface Role {
   points: RolePoint[]
   /** Short summary of contributions, as one or more brief paragraphs. */
   summary?: string[]
-  /** A contribution line, optionally with nested sub-items. */
-  contribution?: {
-    label: string
-    tag: RolePointTag
-    text: string | (string | { text: string; subItems: string[] })[]
-  }[]
   /** Strengths demonstrated in this role, as one or more groups. */
   strengths?: {
     intro: string
@@ -557,13 +551,12 @@ export const roles: Role[] = [
               'Resolved authentication and registration defects: inconsistent password hashing, duplicate emails, broken reset links, and disposable email domains.',
             tech: 'Bug Fixes',
           },
+          {
+            outcome:
+              'Kept users supported by updating the in-app training materials served as downloadable PDFs.',
+            tech: 'Training Materials',
+          },
         ],
-      },
-      {
-        text: 'RCM Farmer and Field Registration',
-        description:
-          'Registers farmer and field details, including GPX files, for a tailored recommendation.',
-        tag: 'maintain',
       },
       {
         text: 'RCM Farmer and Field Download',
@@ -577,12 +570,38 @@ export const roles: Role[] = [
             'Top contributor to RCM Farmer and Field Download out of 2 developers, with 47 of 55 commits.',
           teamCount: 2,
         },
+        notableContributions: [
+          {
+            outcome:
+              'Refactored the existing authentication into a reusable endpoint shared with RCM Statistics.',
+            tech: 'Refactoring',
+          },
+        ],
       },
       {
         text: 'RCM Statistics',
         description:
           'Aggregates totals for farmers, fields, recommendations, and hectares measured nationwide.',
         tag: 'maintain',
+        commitShare: {
+          percent: 65.2,
+          label: 'of commits',
+          caption:
+            'Top contributor to RCM Statistics out of 6 developers, with 122 of 187 commits.',
+          teamCount: 6,
+        },
+        notableContributions: [
+          {
+            outcome:
+              'Refactored the existing authentication into a reusable endpoint shared with RCM Farmer and Field Download.',
+            tech: 'Refactoring',
+          },
+          {
+            outcome:
+              'Restored accurate location filtering by fixing missing dropdown places.',
+            tech: 'Bug Fixes',
+          },
+        ],
       },
        {
         text: 'Rice Crop Manager Advisory Service',
@@ -632,58 +651,25 @@ export const roles: Role[] = [
               'Secured user access with stateless, token-based authentication across the app.',
             tech: 'JWT Authentication',
           },
-        ],
-      },
-     
-    ],
-    summary: [
-      'Enabled all verified and registered users to access RCM Statistics and RCM Farmer and Field Download.',
-      'Released a bug-free version of RCM Farmer and Field Download, RCM User Registration, and RCM Statistics.',
-      'Contributed to the modernization of RCM Farmer and Field Registration to a unified RCMAS app.',
-    ],
-    contribution: [
-      {
-        label: 'New Feature',
-        tag: 'build',
-        text: 'Built an API endpoint powering the RCMAS app’s offline mode, downloading the full list of farmers and their fields ahead of time so practices can be collected while interviewing in remote sites without connectivity.',
-      },
-      {
-        label: 'Rebuild Feature',
-        tag: 'rebuild',
-        text: [
-          'Rebuilt the legacy RCM farmer and field registration form using Angular components, its API endpoints, and storage to the new consolidated database in the new app, RCMAS.',
           {
-            text: 'Rebuilt the legacy core RCM PH, including:',
-            subItems: [
-              'A Contact Us API endpoint that lets users send questions, suggestions, and concerns straight to the RCM team’s email.',
-              'An API endpoint for viewing the generated recommendation.',
-              'An API endpoint for persisting one of the interview form sections to the database.',
-            ],
+            outcome:
+              'Made the codebase easier to navigate by splitting an interview-form section into its own module.',
+            tech: 'Refactoring',
+          },
+          {
+            outcome:
+              'Kept recommendations reliable by fixing crop-management review screens and critical form validations.',
+            tech: 'Bug Fixes',
           },
         ],
       },
-      {
-        label: 'Improvements',
-        tag: 'improve',
-        text: [
-          'Refactored the existing authentication into a reusable endpoint for RCM Farmer and Field Registration Download and RCM Statistics.',
-          'Refactored a section of the interview form into its own module for easier codebase navigation.',
-        ],
-      },
-      {
-        label: 'Bugs',
-        tag: 'maintain',
-        text: [
-          'Resolved authentication and registration defects, including inconsistent password hashing, duplicate emails, broken reset links, and disposable email domains.',
-          'Fixed UI issues when reviewing fertilizer rates, timing/splitting, and other crop-management sections, plus form validations critical to later interview sections for reliable recommendations.',
-        ],
-      },
+     
     ],
     strengths: [
       {
         intro:
           'Navigating unfamiliar legacy apps while picking up new tech on the job showed I’m a fast learner. I quickly adopted:',
-        items: ['Angular', 'Docker', 'Git & Team Branching Strategy'],
+        items: ['Angular', 'TypeScript', 'Docker', 'Git & Team Branching Strategy'],
       },
       {
         intro:
