@@ -39,6 +39,12 @@ const tagStyles: Record<
     className:
       'bg-[rgba(192,132,252,0.14)] text-[#c084fc] border-[rgba(192,132,252,0.4)]',
   },
+  etl: {
+    label: 'ETL',
+    title: 'ETL — extract, transform, and load data pipelines',
+    className:
+      'bg-[rgba(94,234,212,0.12)] text-[#5eead4] border-[rgba(94,234,212,0.4)]',
+  },
 }
 
 function NotableContributionsModal({
@@ -255,10 +261,12 @@ function CommitShareChart({
             <span className="w-2.5 h-2.5 rounded-full bg-green" />
             Me ({share.percent}%)
           </span>
-          <span className="flex items-center gap-1.5 text-muted">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#26384e]" />
-            Team of {share.teamCount} ({(100 - share.percent).toFixed(1)}%)
-          </span>
+          {share.percent < 100 ? (
+            <span className="flex items-center gap-1.5 text-muted">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#26384e]" />
+              Team of {share.teamCount} ({(100 - share.percent).toFixed(1)}%)
+            </span>
+          ) : null}
         </div>
       </div>
     </div>
@@ -400,7 +408,9 @@ function Experience() {
           <div className={eyebrow}>Experience</div>
           <h2 className={heading}>A Journey of Impact at IRRI</h2>
           <div className="flex flex-wrap gap-x-5 gap-y-2 mt-4 text-[13px] text-muted">
-            {(['build', 'rebuild', 'maintain'] as const).map((tag) => (
+            {(
+              ['build', 'rebuild', 'maintain', 'improve', 'etl'] as const
+            ).map((tag) => (
               <span className="flex items-center gap-2" key={tag}>
                 <span
                   className={`text-[11px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full border ${tagStyles[tag].className}`}

@@ -162,7 +162,7 @@ export interface Project {
   caseStudy?: CaseStudy
 }
 
-export type RolePointTag = 'build' | 'rebuild' | 'maintain' | 'improve'
+export type RolePointTag = 'build' | 'rebuild' | 'maintain' | 'improve' | 'etl'
 
 export interface RolePointCommitShare {
   percent: number
@@ -663,7 +663,75 @@ export const roles: Role[] = [
           },
         ],
       },
-     
+      {
+        text: 'RCMAS DevOps',
+        description:
+          'A CLI tool that automates RCMAS deployment to AWS, plus database backup and restoration.',
+        tag: 'build',
+        commitShare: {
+          percent: 100,
+          label: 'of commits',
+          caption: 'Sole contributor — built and maintained the tool end to end.',
+          teamCount: 1,
+        },
+      },
+      {
+        text: 'TEIN',
+        description:
+          'Data pipeline that extracts data from multiple CSVs in Google Drive, transforms it, and loads records into a data warehouse for BI visualization and analytics.',
+        tag: 'etl',
+        commitShare: {
+          percent: 10,
+          label: 'of work',
+          caption: 'Contributor on an 8-member team building the TEIN data pipeline.',
+          teamCount: 8,
+        },
+        notableContributions: [
+          {
+            outcome:
+              'Produced mapping data to align source CSV fields with the data warehouse schema.',
+            tech: 'Data Mapping',
+          },
+          {
+            outcome:
+              'Brought the ETL scripts under version control for safer, trackable changes.',
+            tech: 'Git · Version Control',
+          },
+          {
+            outcome:
+              'Collaborated with an outsourced team to deliver the pipeline together.',
+            tech: 'Team Collaboration',
+          },
+        ],
+      },
+      {
+        text: 'RCM Myanmar',
+        description: 'Localized RCM deployment and maintenance for farmers in Myanmar.',
+        tag: 'maintain',
+        commitShare: {
+          percent: 15,
+          label: 'of work',
+          caption: 'Contributor on a 3-member team localizing RCM for Myanmar.',
+          teamCount: 3,
+        },
+        notableContributions: [
+          {
+            outcome:
+              'Localized recommendations into Burmese so farmers receive guidance in their own language.',
+            tech: 'Localization',
+          },
+          {
+            outcome:
+              'Adjusted the recommendation calculations to fit Myanmar’s local farming conditions.',
+            tech: 'Recommendation Logic',
+          },
+          {
+            outcome:
+              'Updated the interview questionnaire to match local practices and data needs.',
+            tech: 'Interview Form',
+          },
+        ],
+      },
     ],
     strengths: [
       {
