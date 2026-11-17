@@ -661,6 +661,11 @@ export const roles: Role[] = [
               'Kept recommendations reliable by fixing crop-management review screens and critical form validations.',
             tech: 'Bug Fixes',
           },
+          {
+            outcome:
+              'Reached farmers in their own language by localizing SMS reminders and recommendations into Ilocano, Cebuano, Ilonggo, and Visaya.',
+            tech: 'Localization',
+          },
         ],
       },
       {
@@ -742,7 +747,7 @@ export const roles: Role[] = [
       {
         intro:
           'Owning the environments from local to deployment to handoff showed I can take on the responsibility and collaborate when needed to deliver a project. Along the way I learned:',
-        items: ['Jenkins', 'AWS EC2', 'AWS S3', 'AWS VPC', 'Terraform', 'Liquibase', 'Team Collaboration'],
+        items: ['Jenkins', 'AWS EC2', 'AWS S3', 'AWS VPC', 'Terraform', 'Liquibase', 'Bash Scripting', 'Linux', 'Team Collaboration'],
       },
       {
         intro:
@@ -759,6 +764,21 @@ export const roles: Role[] = [
           'Feedback',
           'Iteration',
           'Collaboration',
+        ],
+      },
+      {
+        intro:
+          'Contributing to a data pipeline opened up data engineering and BI for me. I picked up:',
+        items: ['Python', 'AWS Glue', 'AWS Redshift', 'QlikSense'],
+      },
+      {
+        intro:
+          'Working across varied projects gave me exposure to several engineering disciplines:',
+        items: [
+          'Software Engineering',
+          'DevOps',
+          'Data Engineering',
+          'Software Quality Engineering',
         ],
       },
     ],
