@@ -164,6 +164,14 @@ export interface Project {
 
 export type RolePointTag = 'build' | 'rebuild' | 'maintain' | 'improve'
 
+export interface RolePointCommitShare {
+  percent: number
+  label: string
+  caption: string
+  /** Total number of contributors (used in the chart legend). */
+  teamCount: number
+}
+
 export interface RolePoint {
   text: string
   tag: RolePointTag
@@ -173,6 +181,10 @@ export interface RolePoint {
   abbr?: string
   /** Optional "migrated into" target shown as an arrow (e.g. "RCMAS"). */
   mergedInto?: string
+  /** Optional commit-share figure shown as a donut chart under this point. */
+  commitShare?: RolePointCommitShare
+  /** Notable contributions, each an outcome plus the tech that enabled it. */
+  notableContributions?: { outcome: string; tech: string }[]
   /** When true, the point is grouped under a "Side projects" sub-heading. */
   sideProject?: boolean
 }
@@ -532,12 +544,39 @@ export const roles: Role[] = [
         description:
           'Records user information and manages profiles for extension workers and system accounts.',
         tag: 'maintain',
+        commitShare: {
+          percent: 56.1,
+          label: 'of commits',
+          caption:
+            'Top contributor to RCM User Registration out of 5 developers, with 87 of 155 commits.',
+          teamCount: 5,
+        },
+        notableContributions: [
+          {
+            outcome:
+              'Resolved authentication and registration defects: inconsistent password hashing, duplicate emails, broken reset links, and disposable email domains.',
+            tech: 'Bug Fixes',
+          },
+        ],
+      },
+      {
+        text: 'RCM Farmer and Field Registration',
+        description:
+          'Registers farmer and field details, including GPX files, for a tailored recommendation.',
+        tag: 'maintain',
       },
       {
         text: 'RCM Farmer and Field Download',
         description:
           'Exports PDF lists of farmers and fields, filtered by region, for field interviews.',
         tag: 'maintain',
+        commitShare: {
+          percent: 85.5,
+          label: 'of commits',
+          caption:
+            'Top contributor to RCM Farmer and Field Download out of 2 developers, with 47 of 55 commits.',
+          teamCount: 2,
+        },
       },
       {
         text: 'RCM Statistics',
@@ -545,12 +584,57 @@ export const roles: Role[] = [
           'Aggregates totals for farmers, fields, recommendations, and hectares measured nationwide.',
         tag: 'maintain',
       },
-      {
-        text: 'RCM Farmer and Field Registration',
+       {
+        text: 'Rice Crop Manager Advisory Service',
         description:
-          'Registers farmer and field details, including GPX files, for a tailored recommendation.',
+          'A new modern platform that combine all legacy applications that runs on both web and mobile',
         tag: 'rebuild',
+        commitShare: {
+          percent: 27.2,
+          label: 'of commits',
+          caption:
+            'Top contributor to the RCMAS rebuild (UI + API) out of 11 developers, with 796 of 2,925 commits.',
+          teamCount: 11,
+        },
+        notableContributions: [
+          {
+            outcome:
+              'Let extension workers collect farmer and field data offline in remote areas with little or no connectivity.',
+            tech: 'PWA · Service Workers',
+          },
+          {
+            outcome:
+              'Kept farmers on track with their one-page recommendations through automated SMS reminders.',
+            tech: 'SMS Integration · Cron Jobs',
+          },
+          {
+            outcome:
+              'Sped up stakeholder decision-making with interactive graphs and data tables.',
+            tech: 'Data Visualization',
+          },
+          {
+            outcome:
+              'Let users reach the RCM team directly with their questions, suggestions, and concerns.',
+            tech: 'Contact Us API · Email Integration',
+          },
+          {
+            outcome:
+              'Gave users instant access to view their generated one-page recommendation.',
+            tech: 'Recommendation API',
+          },
+          {
+            outcome:
+              'Persisted a section of the interview form so progress is saved reliably to the database.',
+            tech: 'Interview Form API',
+          },
+          {
+            outcome:
+              'Secured user access with stateless, token-based authentication across the app.',
+            tech: 'JWT Authentication',
+          },
+        ],
       },
+     
     ],
     summary: [
       'Enabled all verified and registered users to access RCM Statistics and RCM Farmer and Field Download.',
@@ -603,8 +687,8 @@ export const roles: Role[] = [
       },
       {
         intro:
-          'Owning the environments from local to deployment to handoff showed I can take on the responsibility needed to deliver a project. Along the way I learned:',
-        items: ['Jenkins', 'AWS EC2', 'AWS S3', 'AWS VPC', 'Terraform', 'Liquibase'],
+          'Owning the environments from local to deployment to handoff showed I can take on the responsibility and collaborate when needed to deliver a project. Along the way I learned:',
+        items: ['Jenkins', 'AWS EC2', 'AWS S3', 'AWS VPC', 'Terraform', 'Liquibase', 'Team Collaboration'],
       },
       {
         intro:
