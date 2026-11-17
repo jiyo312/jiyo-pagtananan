@@ -278,7 +278,7 @@ export const projects: Project[] = [
     id: 'rcm',
     art: '🌾📱',
     image: rcmImage,
-    title: 'Rice Crop Manager Advisory Service (RCMAS)',
+    title: 'Rice Crop Manager Advisory Service',
     tagline: 'Scaling scientific farming recommendations to farmers',
     description:  
       "A mobile and web application that delivers IRRI's site-specific fertilizer recommendations to farmers across the Philippines, Indonesia, Myanmar, and India.",
@@ -650,6 +650,10 @@ export const roles: Role[] = [
       },
     ],
     strengths: [
+      {
+        intro: 'Adaptable across shifting contexts:',
+        items: ['Multiple projects', 'Unfamiliar team'],
+      },
       {
         intro: 'Learned to deploy and manage APIs behind a gateway and proxy:',
         items: ['AWS API Gateway', 'NGINX'],
