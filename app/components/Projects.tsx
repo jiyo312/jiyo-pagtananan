@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import type { Project } from '../portfolio-data'
 import { projects } from '../portfolio-data'

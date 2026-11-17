@@ -1,15 +1,10 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import {
-  LuArrowRight,
-  LuCode,
-  LuSparkles,
-  LuUsers,
-  LuX,
-  LuZap,
-} from 'react-icons/lu'
-import type { Role, RolePoint, RolePointTag } from '../portfolio-data'
-import { impactItems, roles } from '../portfolio-data'
-import { eyebrow, heading, LINE, section, wrap } from '../styles'
+import { LuArrowRight, LuSparkles, LuX } from 'react-icons/lu'
+import type { Role, RolePoint, RolePointTag } from '../../app/portfolio-data'
+import { impactItems, roles } from '../../app/portfolio-data'
+import { eyebrow, heading, LINE, section, wrap } from '../../app/styles'
 
 const tagStyles: Record<
   RolePointTag,

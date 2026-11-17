@@ -1,6 +1,8 @@
-import footerBg from '../assets/portfolio-footer-bg.jpg'
-import { contactLinks } from '../portfolio-data'
-import { button, eyebrow, LINE, wrap } from '../styles'
+import footerBgImg from '../assets/portfolio-footer-bg.jpg'
+import { contactLinks } from '../../app/portfolio-data'
+import { button, eyebrow, LINE, wrap } from '../../app/styles'
+
+const footerBg = footerBgImg.src
 
 const year = new Date().getFullYear()
 

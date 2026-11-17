@@ -1,8 +1,13 @@
+'use client'
+
 import { useState } from 'react'
-import codewithjiyoIcon from '../assets/codewithjiyo-icon.webp'
-import jiyoDevJournal from '../assets/jiyo-dev-journal.png'
-import { navLinks } from '../portfolio-data'
-import { LINE, wrap } from '../styles'
+import codewithjiyoIconImg from '../assets/codewithjiyo-icon.webp'
+import jiyoDevJournalImg from '../assets/jiyo-dev-journal.png'
+import { navLinks } from '../../app/portfolio-data'
+import { LINE, wrap } from '../../app/styles'
+
+const codewithjiyoIcon = codewithjiyoIconImg.src
+const jiyoDevJournal = jiyoDevJournalImg.src
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false)

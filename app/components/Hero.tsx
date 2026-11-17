@@ -1,8 +1,11 @@
 import { FaLinkedin } from 'react-icons/fa6'
 import { SiGmail, SiSubstack } from 'react-icons/si'
-import heroBg from '../assets/portfolio-hero-bg.jpg'
-import jiyoPortrait from '../assets/jiyo.png'
-import { button, buttonOutline, eyebrow, wrap } from '../styles'
+import heroBgImg from '../assets/portfolio-hero-bg.jpg'
+import jiyoPortraitImg from '../assets/jiyo.png'
+import { button, buttonOutline, eyebrow, wrap } from '../../app/styles'
+
+const heroBg = heroBgImg.src
+const jiyoPortrait = jiyoPortraitImg.src
 
 function Hero() {
   return (

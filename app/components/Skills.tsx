@@ -1,5 +1,5 @@
-import { skillCategories } from '../portfolio-data'
-import { eyebrow, heading, LINE, section, wrap } from '../styles'
+import { skillCategories } from '../../app/portfolio-data'
+import { eyebrow, heading, LINE, section, wrap } from '../../app/styles'
 
 function Skills() {
   return (

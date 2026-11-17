@@ -6,7 +6,7 @@ import Experience from './components/Experience'
 import Skills from './components/Skills'
 import Contact from './components/Contact'
 
-function App() {
+export default function Home() {
   return (
     <>
       <Header />
@@ -21,5 +21,3 @@ function App() {
     </>
   )
 }
-
-export default App

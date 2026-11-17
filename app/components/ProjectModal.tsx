@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect } from 'react'
 import { LuArrowRight, LuExternalLink, LuX } from 'react-icons/lu'
 import type { CaseStudy } from '../portfolio-data'

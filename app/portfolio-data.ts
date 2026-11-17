@@ -1,6 +1,9 @@
 import type { ComponentType, SVGProps } from 'react'
-import ebsImage from './assets/ebs.png'
-import rcmImage from './assets/rcm.png'
+import ebsImageImport from './assets/ebs.png'
+import rcmImageImport from './assets/rcm.png'
+
+const ebsImage = ebsImageImport.src
+const rcmImage = rcmImageImport.src
 import {
   ArchitectureServiceAmazonAPIGateway,
   ArchitectureServiceAmazonEC2,
