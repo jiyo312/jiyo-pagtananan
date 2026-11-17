@@ -150,45 +150,49 @@ function ProjectModal({ caseStudy, onClose }: ProjectModalProps) {
           </section>
 
           {/* Legacy limitations */}
-          <section>
-            <SectionLabel>Limitations of the legacy system</SectionLabel>
-            <p className="text-[#c8d5e3] leading-relaxed mb-5">
-              {caseStudy.legacy.intro}
-            </p>
-            <div className="grid grid-cols-3 gap-4 max-[620px]:grid-cols-1">
-              {caseStudy.legacy.items.map((item) => (
-                <div
-                  className="bg-surface border rounded-xl p-5"
-                  style={{ borderColor: LINE }}
-                  key={item.title}
-                >
-                  <h4 className="font-bold mb-2">{item.title}</h4>
-                  <p className="text-muted text-[14px] leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-5">
-              <p className="text-muted text-[13px] mb-2">
-                Five independent apps were consolidated into one platform:
+          {caseStudy.legacy ? (
+            <section>
+              <SectionLabel>Limitations of the legacy system</SectionLabel>
+              <p className="text-[#c8d5e3] leading-relaxed mb-5">
+                {caseStudy.legacy.intro}
               </p>
-              <div className="flex flex-wrap gap-2">
-                {caseStudy.legacy.consolidatedApps.map((app) => (
-                  <span
-                    className="text-[12px] font-mono px-2.5 py-1 rounded-md bg-[#26384e] text-[#dce8f5]"
-                    key={app}
+              <div className="grid grid-cols-3 gap-4 max-[620px]:grid-cols-1">
+                {caseStudy.legacy.items.map((item) => (
+                  <div
+                    className="bg-surface border rounded-xl p-5"
+                    style={{ borderColor: LINE }}
+                    key={item.title}
                   >
-                    {app}
-                  </span>
+                    <h4 className="font-bold mb-2">{item.title}</h4>
+                    <p className="text-muted text-[14px] leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
                 ))}
               </div>
-            </div>
-          </section>
+              <div className="mt-5">
+                <p className="text-muted text-[13px] mb-2">
+                  Five independent apps were consolidated into one platform:
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {caseStudy.legacy.consolidatedApps.map((app) => (
+                    <span
+                      className="text-[12px] font-mono px-2.5 py-1 rounded-md bg-[#26384e] text-[#dce8f5]"
+                      key={app}
+                    >
+                      {app}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </section>
+          ) : null}
 
-          {/* Extended capabilities */}
+          {/* Capabilities */}
           <section>
-            <SectionLabel>What added after the rebuild</SectionLabel>
+            <SectionLabel>
+              {caseStudy.features.label ?? 'Key capabilities'}
+            </SectionLabel>
             <p className="text-[#c8d5e3] leading-relaxed mb-5">
               {caseStudy.features.intro}
             </p>
@@ -219,7 +223,8 @@ function ProjectModal({ caseStudy, onClose }: ProjectModalProps) {
           </section>
 
           {/* Modernization before/after */}
-          <section>
+          {caseStudy.modernization ? (
+            <section>
             <SectionLabel>Technology modernization</SectionLabel>
             <p className="text-[#c8d5e3] leading-relaxed mb-5">
               {caseStudy.modernization.intro}
@@ -245,7 +250,8 @@ function ProjectModal({ caseStudy, onClose }: ProjectModalProps) {
                 </div>
               ))}
             </div>
-          </section>
+            </section>
+          ) : null}
 
           {/* Impact */}
           <section>

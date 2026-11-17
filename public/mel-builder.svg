@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" fill="none" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="750" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f2033"/>
+      <stop offset="1" stop-color="#12261c"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#43d36b"/>
+      <stop offset="1" stop-color="#2fb3a0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Backdrop -->
+  <rect width="1200" height="750" fill="url(#bg)"/>
+
+  <!-- App window -->
+  <rect x="40" y="40" width="1120" height="670" rx="18" fill="#132840" stroke="#27405c"/>
+
+  <!-- Title bar -->
+  <rect x="40" y="40" width="1120" height="56" rx="18" fill="#17304c"/>
+  <rect x="40" y="78" width="1120" height="18" fill="#17304c"/>
+  <circle cx="70" cy="68" r="6" fill="#ff5f57"/>
+  <circle cx="92" cy="68" r="6" fill="#febc2e"/>
+  <circle cx="114" cy="68" r="6" fill="#28c840"/>
+  <text x="150" y="73" fill="#dce8f5" font-size="18" font-weight="600">MEL Builder</text>
+  <text x="300" y="73" fill="#7f99b3" font-size="14">Farmer Intervention Survey · Wet Season 2026</text>
+  <rect x="980" y="54" width="150" height="28" rx="14" fill="url(#accent)"/>
+  <text x="1055" y="73" fill="#06281a" font-size="13" font-weight="700" text-anchor="middle">Publish to Field App</text>
+
+  <!-- Left: widget palette -->
+  <rect x="64" y="120" width="230" height="566" rx="12" fill="#0f2338" stroke="#27405c"/>
+  <text x="84" y="152" fill="#8fb0cd" font-size="13" font-weight="700" letter-spacing="1">WIDGETS</text>
+
+  <!-- palette items -->
+  <g font-size="14" fill="#dce8f5">
+    <rect x="84" y="168" width="190" height="42" rx="9" fill="#17304c" stroke="#2b4866"/>
+    <circle cx="106" cy="189" r="7" fill="none" stroke="#43d36b" stroke-width="2"/><circle cx="106" cy="189" r="3" fill="#43d36b"/>
+    <text x="124" y="194">Multiple Choice</text>
+
+    <rect x="84" y="220" width="190" height="42" rx="9" fill="#17304c" stroke="#2b4866"/>
+    <rect x="99" y="182" width="0" height="0"/>
+    <rect x="99" y="181" width="0" height="0"/>
+    <rect x="100" y="182" width="14" height="14" rx="3" fill="none" stroke="#76c9ff" stroke-width="2" transform="translate(0,52)"/>
+    <path d="M103 241 l3 3 l6 -7" stroke="#76c9ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="124" y="246">Checkbox</text>
+
+    <rect x="84" y="272" width="190" height="42" rx="9" fill="#17304c" stroke="#2b4866"/>
+    <rect x="99" y="286" width="18" height="14" rx="3" fill="none" stroke="#ffcf5c" stroke-width="2"/>
+    <path d="M102 291 l5 5 l5 -5" stroke="#ffcf5c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="124" y="298">Dropdown</text>
+
+    <rect x="84" y="324" width="190" height="42" rx="9" fill="#17304c" stroke="#2b4866"/>
+    <rect x="99" y="338" width="18" height="14" rx="3" fill="none" stroke="#c89bff" stroke-width="2"/>
+    <line x1="103" y1="345" x2="113" y2="345" stroke="#c89bff" stroke-width="2"/>
+    <text x="124" y="350">Text Input</text>
+
+    <rect x="84" y="376" width="190" height="42" rx="9" fill="#17304c" stroke="#2b4866"/>
+    <text x="99" y="403" font-size="16" fill="#7fd8c7">1 2 3</text>
+    <text x="150" y="402">Number</text>
+
+    <rect x="84" y="428" width="190" height="42" rx="9" fill="#17304c" stroke="#2b4866"/>
+    <rect x="99" y="442" width="16" height="14" rx="2" fill="none" stroke="#ff9db1" stroke-width="2"/>
+    <line x1="99" y1="447" x2="115" y2="447" stroke="#ff9db1" stroke-width="2"/>
+    <text x="124" y="454">Date</text>
+
+    <rect x="84" y="480" width="190" height="42" rx="9" fill="#17304c" stroke="#2b4866"/>
+    <circle cx="107" cy="501" r="7" fill="none" stroke="#9ad0ff" stroke-width="2"/>
+    <circle cx="107" cy="501" r="2.5" fill="#9ad0ff"/>
+    <text x="124" y="506">GPS Location</text>
+  </g>
+
+  <text x="84" y="562" fill="#8fb0cd" font-size="13" font-weight="700" letter-spacing="1">LOGIC</text>
+  <rect x="84" y="576" width="190" height="42" rx="9" fill="#13263c" stroke="#2b4866" stroke-dasharray="4 4"/>
+  <text x="104" y="602" font-size="14" fill="#8fb0cd">+ Skip Logic Rule</text>
+
+  <!-- Center: form canvas -->
+  <rect x="314" y="120" width="560" height="566" rx="12" fill="#0d1d2f" stroke="#27405c"/>
+  <text x="338" y="152" fill="#dce8f5" font-size="16" font-weight="700">Module: Field &amp; Crop Practices</text>
+  <text x="338" y="174" fill="#6f8aa6" font-size="13">Drag widgets here to build the questionnaire</text>
+
+  <!-- Q1 multiple choice -->
+  <rect x="338" y="190" width="512" height="120" rx="10" fill="#132840" stroke="#2b4866"/>
+  <rect x="338" y="190" width="5" height="120" rx="2.5" fill="#43d36b"/>
+  <text x="360" y="216" fill="#aebfd0" font-size="12">Q1 · Multiple Choice · Required</text>
+  <text x="360" y="240" fill="#f0f6fc" font-size="15" font-weight="600">What rice variety did you plant this season?</text>
+  <g font-size="13" fill="#cdd9e6">
+    <circle cx="368" cy="262" r="6" fill="none" stroke="#43d36b" stroke-width="2"/><circle cx="368" cy="262" r="3" fill="#43d36b"/>
+    <text x="382" y="266">NSIC Rc 222</text>
+    <circle cx="368" cy="286" r="6" fill="none" stroke="#50708c" stroke-width="2"/>
+    <text x="382" y="290">NSIC Rc 160</text>
+    <circle cx="540" cy="262" r="6" fill="none" stroke="#50708c" stroke-width="2"/>
+    <text x="554" y="266">Hybrid</text>
+    <circle cx="540" cy="286" r="6" fill="none" stroke="#50708c" stroke-width="2"/>
+    <text x="554" y="290">Other</text>
+  </g>
+
+  <!-- Q2 dropdown -->
+  <rect x="338" y="326" width="512" height="92" rx="10" fill="#132840" stroke="#2b4866"/>
+  <rect x="338" y="326" width="5" height="92" rx="2.5" fill="#ffcf5c"/>
+  <text x="360" y="352" fill="#aebfd0" font-size="12">Q2 · Dropdown</text>
+  <text x="360" y="376" fill="#f0f6fc" font-size="15" font-weight="600">Select your region</text>
+  <rect x="360" y="388" width="300" height="20" rx="6" fill="#0d1d2f" stroke="#39577a"/>
+  <text x="372" y="403" fill="#cdd9e6" font-size="13">Region VI — Western Visayas</text>
+  <path d="M636 395 l6 6 l6 -6" stroke="#ffcf5c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Q3 checkbox -->
+  <rect x="338" y="434" width="512" height="116" rx="10" fill="#132840" stroke="#2b4866"/>
+  <rect x="338" y="434" width="5" height="116" rx="2.5" fill="#76c9ff"/>
+  <text x="360" y="460" fill="#aebfd0" font-size="12">Q3 · Checkbox · Select all that apply</text>
+  <text x="360" y="484" fill="#f0f6fc" font-size="15" font-weight="600">Which inputs did you receive as subsidy?</text>
+  <g font-size="13" fill="#cdd9e6">
+    <rect x="362" y="500" width="16" height="16" rx="3" fill="none" stroke="#76c9ff" stroke-width="2"/>
+    <path d="M366 508 l3 3 l6 -7" stroke="#76c9ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="388" y="513">Certified seeds</text>
+    <rect x="362" y="524" width="16" height="16" rx="3" fill="none" stroke="#76c9ff" stroke-width="2"/>
+    <path d="M366 532 l3 3 l6 -7" stroke="#76c9ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="388" y="537">Fertilizer</text>
+    <rect x="540" y="500" width="16" height="16" rx="3" fill="none" stroke="#50708c" stroke-width="2"/>
+    <text x="566" y="513">Fuel discount</text>
+    <rect x="540" y="524" width="16" height="16" rx="3" fill="none" stroke="#50708c" stroke-width="2"/>
+    <text x="566" y="537">None</text>
+  </g>
+
+  <!-- drop placeholder -->
+  <rect x="338" y="566" width="512" height="44" rx="10" fill="none" stroke="#39577a" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="594" y="593" fill="#6f8aa6" font-size="13" text-anchor="middle">Drop a widget to add Q4</text>
+
+  <!-- Right: properties panel -->
+  <rect x="894" y="120" width="242" height="566" rx="12" fill="#0f2338" stroke="#27405c"/>
+  <text x="914" y="152" fill="#8fb0cd" font-size="13" font-weight="700" letter-spacing="1">PROPERTIES</text>
+  <text x="914" y="178" fill="#6f8aa6" font-size="12">Q1 · Multiple Choice</text>
+
+  <text x="914" y="212" fill="#aebfd0" font-size="12">Field label</text>
+  <rect x="914" y="220" width="200" height="30" rx="6" fill="#0d1d2f" stroke="#2b4866"/>
+  <text x="926" y="240" fill="#dce8f5" font-size="12">Rice variety</text>
+
+  <text x="914" y="276" fill="#aebfd0" font-size="12">Validation</text>
+  <rect x="914" y="284" width="200" height="30" rx="6" fill="#0d1d2f" stroke="#2b4866"/>
+  <text x="926" y="304" fill="#dce8f5" font-size="12">Required · Single select</text>
+
+  <!-- toggle required -->
+  <text x="914" y="346" fill="#aebfd0" font-size="12">Required</text>
+  <rect x="1078" y="334" width="36" height="18" rx="9" fill="#43d36b"/>
+  <circle cx="1105" cy="343" r="7" fill="#06281a"/>
+
+  <!-- toggle skip logic -->
+  <text x="914" y="378" fill="#aebfd0" font-size="12">Skip logic</text>
+  <rect x="1078" y="366" width="36" height="18" rx="9" fill="#43d36b"/>
+  <circle cx="1105" cy="375" r="7" fill="#06281a"/>
+
+  <rect x="914" y="398" width="200" height="86" rx="8" fill="#13263c" stroke="#2b4866"/>
+  <text x="926" y="420" fill="#8fb0cd" font-size="11" font-weight="700">SKIP RULE</text>
+  <text x="926" y="440" fill="#cdd9e6" font-size="11.5">IF answer = “Hybrid”</text>
+  <text x="926" y="458" fill="#cdd9e6" font-size="11.5">THEN show Q5</text>
+  <text x="926" y="476" fill="#cdd9e6" font-size="11.5">ELSE skip to Q6</text>
+
+  <text x="914" y="516" fill="#aebfd0" font-size="12">Options</text>
+  <rect x="914" y="524" width="200" height="26" rx="6" fill="#0d1d2f" stroke="#2b4866"/>
+  <text x="926" y="541" fill="#dce8f5" font-size="12">NSIC Rc 222</text>
+  <rect x="914" y="556" width="200" height="26" rx="6" fill="#0d1d2f" stroke="#2b4866"/>
+  <text x="926" y="573" fill="#dce8f5" font-size="12">NSIC Rc 160</text>
+  <rect x="914" y="590" width="200" height="26" rx="6" fill="none" stroke="#39577a" stroke-dasharray="4 4"/>
+  <text x="926" y="607" fill="#8fb0cd" font-size="12">+ Add option</text>
+
+  <!-- offline-ready chip -->
+  <rect x="914" y="636" width="200" height="34" rx="8" fill="#13263c" stroke="#2b4866"/>
+  <circle cx="934" cy="653" r="5" fill="#43d36b"/>
+  <text x="948" y="658" fill="#cdd9e6" font-size="12">Offline-ready for field app</text>
+
+  <!-- disclaimer: illustrative mockup, not the real UI -->
+  <rect x="770" y="54" width="200" height="28" rx="14" fill="#2a1f12" stroke="#7a5a1f"/>
+  <text x="870" y="73" fill="#ffcf5c" font-size="12" font-weight="600" text-anchor="middle">Illustrative mockup</text>
+  <text x="600" y="702" fill="#6f8aa6" font-size="12" text-anchor="middle">Illustrative mockup for portfolio purposes — not the actual MEL Builder UI.</text>
+</svg>

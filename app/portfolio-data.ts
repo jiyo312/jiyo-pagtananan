@@ -131,20 +131,22 @@ export interface CaseStudy {
     intro: string
     points: string[]
   }
-  /** Legacy limitations, each a titled card. */
-  legacy: {
+  /** Legacy limitations, each a titled card. Omit for brand-new tools. */
+  legacy?: {
     intro: string
     items: { title: string; description: string }[]
     /** The fragmented legacy apps that were consolidated. */
     consolidatedApps: string[]
   }
-  /** Capabilities added when extending/rebuilding the legacy system. */
+  /** Key capabilities of the product. */
   features: {
+    /** Section heading. Defaults to capabilities framing when omitted. */
+    label?: string
     intro: string
     items: CaseStudyFeature[]
   }
-  /** Technology modernization shown as before → after. */
-  modernization: {
+  /** Technology modernization shown as before → after. Omit for brand-new tools. */
+  modernization?: {
     intro: string
     changes: CaseStudyBeforeAfter[]
   }
@@ -287,9 +289,9 @@ export const projects: Project[] = [
       tagline:
         'Bringing IRRI scientists\u2019 site-specific farming recommendations to millions of farmers.',
       summary:
-        'Government extension workers interview farmers about their farm and field practices. The app turns that input into a tailored one-page recommendation on the timing, type, and amount of fertilizer across the rice crop lifecycle \u2014 from planting to harvest. Since 2014, RCMAS has reached more than 2.6 million farmers in the Philippines and generated 3.3 million precision-agriculture recommendations.',
+        'Government extension workers interview farmers about their farm and field practices. The app turns that input into a tailored one-page recommendation on the timing, type, and amount of fertilizer across the rice crop lifecycle, from planting to harvest. Since 2014, RCMAS has reached more than 2.6 million farmers in the Philippines and generated 3.3 million precision-agriculture recommendations.',
       source: {
-        label: 'Source: IRRI News — reaching more farmers through the cluster approach',
+        label: 'Source: IRRI News, reaching more farmers through the cluster approach',
         href: 'https://www.irri.org/news-and-events/news/irri-and-da-reach-more-farmers-through-cluster-approach',
       },
       facts: [
@@ -308,7 +310,7 @@ export const projects: Project[] = [
         intro:
           'I worked alongside agronomists who develop site-specific farming methods and want to scale them across the Philippines. Turning that science into something every farmer can use is hard:',
         points: [
-          'Farming conditions vary by location \u2014 soil, irrigation, and rice varieties all differ field to field.',
+          'Farming conditions vary by location: soil, irrigation, and rice varieties all differ field to field.',
           'Weather and fertilizer prices shift over time, making decisions more complex each season.',
           'Farmers and extension workers can\u2019t solve complex agronomic equations before every planting season.',
           'The core challenge: make scientifically developed recommendations accessible, practical, and field-ready.',
@@ -321,12 +323,12 @@ export const projects: Project[] = [
           {
             title: 'Limited accessibility',
             description:
-              'Built for desktop users with reliable internet \u2014 yet extension workers collect field data in remote areas with little or no connectivity, often on small devices.',
+              'Built for desktop users with reliable internet, yet extension workers collect field data in remote areas with little or no connectivity, often on small devices.',
           },
           {
             title: 'No audit trails',
             description:
-              'No way to track who created, edited, or updated farmer, field, and worker records \u2014 made hard by many independent apps, each with its own database.',
+              'No way to track who created, edited, or updated farmer, field, and worker records, made hard by many independent apps, each with its own database.',
           },
           {
             title: 'Fragmented apps & databases',
@@ -338,7 +340,7 @@ export const projects: Project[] = [
       },
       features: {
         intro:
-          'After rebuilding the legacy system into a unified platform, we added new capabilities it never had \u2014 closing the gaps that limited the original applications:',
+          'After rebuilding the legacy system into a unified platform, we added new capabilities it never had, closing the gaps that limited the original applications:',
         items: [
           {
             icon: LuWifiOff,
@@ -380,7 +382,7 @@ export const projects: Project[] = [
       },
       modernization: {
         intro:
-          'We consolidated the independent apps and databases into one platform \u2014 the Rice Crop Manager Advisory Service (RCMAS) \u2014 and modernized the stack for maintainability and a better user experience.',
+          'We consolidated the independent apps and databases into one platform, the Rice Crop Manager Advisory Service (RCMAS), and modernized the stack for maintainability and a better user experience.',
         changes: [
           {
             before: 'Vanilla HTML, CSS, jQuery, PHP',
@@ -421,6 +423,111 @@ export const projects: Project[] = [
     },
   },
   {
+    id: 'mel-builder',
+    art: '📋🛠️',
+    image: '/mel-builder.svg',
+    title: 'MEL Builder',
+    tagline: 'Visually configurable surveys for nationwide rice programs',
+    description:
+      'A Monitoring, Evaluation & Learning tool that lets program teams build standardized, offline-ready data-collection forms to measure the effectiveness of rice program interventions.',
+    tags: ['Form builder', 'Survey', 'Offline-first', 'Data validation'],
+    caseStudy: {
+      title: 'MEL Builder',
+      liveUrl: 'https://mel-builder.da.gov.ph/login',
+      tagline:
+        'A Monitoring, Evaluation & Learning tool for measuring the effectiveness of rice program interventions and aiding planning and decision-making.',
+      summary:
+        'DA regional offices and ATI centers collect data from thousands of farmers. MEL Builder lets program teams visually configure survey modules and fields, then pushes standardized, offline-ready forms to the field application used by Agricultural Extension Workers (AEWs), so clean, analysis-ready data flows back into the central database.',
+      source: {
+        label: 'Source: ATI-RTC XI conducts training on MEL tool to boost rice program',
+        href: 'https://ati2.da.gov.ph/ati-11/content/article/ma-crisin-rosan-t-besario/ati-rtc-xi-conducts-training-mel-tool-boost-rice-program',
+      },
+      facts: [
+        { label: 'Role', value: 'Software Engineer' },
+        { label: 'Org', value: 'IRRI' },
+        { label: 'Type', value: 'Internal tool' },
+        { label: 'Users', value: 'Program teams · AEWs' },
+      ],
+      metrics: [
+        { icon: LuLayoutGrid, value: 'No-code', label: 'visual form builder' },
+        { icon: LuCheckCheck, value: 'Uniform', label: 'validation nationwide' },
+        { icon: LuWifiOff, value: 'Offline', label: 'field-ready forms' },
+        { icon: LuTrendingUp, value: 'M&E', label: 'program effectiveness' },
+      ],
+      problem: {
+        intro:
+          'Different DA regional offices and ATI centers collect data from thousands of farmers, which created consistency and maintenance problems:',
+        points: [
+          'Ad-hoc spreadsheets and paper forms led to inconsistent reporting across regions.',
+          'Agricultural programs, subsidy rules, and cropping-season metrics change regularly.',
+          'Teams waited on IT engineers to rewrite code every time a survey question needed to change.',
+          'Field data had to be collected in remote areas with little or no connectivity.',
+        ],
+      },
+      features: {
+        label: 'Key capabilities',
+        intro:
+          'MEL Builder turns form creation into a configurable, self-service workflow with clean data flowing back to the center:',
+        items: [
+          {
+            icon: LuPuzzle,
+            title: 'Survey widgets',
+            description:
+              'Express any survey format with widgets for multiple choice, checkbox, dropdown, and more.',
+          },
+          {
+            icon: LuCheckCheck,
+            title: 'Uniform validation',
+            description:
+              'Enforce consistent data validation, skip logic, and question structures nationwide.',
+          },
+          {
+            icon: LuLayoutGrid,
+            title: 'Visual configuration',
+            description:
+              'Program teams visually configure modules and fields directly in the builder, no code required.',
+          },
+          {
+            icon: LuWifiOff,
+            title: 'Offline-ready forms',
+            description:
+              'Pushes structured, offline-ready questionnaires to the AEW field application.',
+          },
+          {
+            icon: LuDatabase,
+            title: 'Analysis-ready data',
+            description:
+              'Clean, structured responses flow back into the central database for analysis.',
+          },
+          {
+            icon: LuRocket,
+            title: 'Faster iteration',
+            description:
+              'Programs adjust questions on their own schedule instead of waiting on engineering.',
+          },
+        ],
+      },
+      impact: [
+        {
+          audience: 'Program teams',
+          text: 'Configure and update surveys visually, without waiting on engineering, keeping pace with changing programs and metrics.',
+        },
+        {
+          audience: 'Agricultural Extension Workers',
+          text: 'Receive offline-ready forms on the field app and collect data reliably in remote areas.',
+        },
+        {
+          audience: 'DA regional offices & ATI centers',
+          text: 'Report with uniform validation and question structures, producing consistent data nationwide.',
+        },
+        {
+          audience: 'Analysts & decision-makers',
+          text: 'Receive clean, analysis-ready data in the central database to evaluate interventions and plan.',
+        },
+      ],
+    },
+  },
+  {
     id: 'ebs',
     art: '🧬📊',
     image: ebsImage,
@@ -428,7 +535,7 @@ export const projects: Project[] = [
     title: 'Enterprise Breeding System (EBS)',
     tagline: 'Accelerating rice breeding',
     description:
-      'An integrated breeding ecosystem that manages workflows—from experiments to data analysis—helping breeders develop improved varieties faster.',
+      'An integrated breeding ecosystem that manages workflows, from experiments to data analysis, helping breeders develop improved varieties faster.',
     tags: ['Enterprise', 'Analytics', 'Data management'],
   },
 ]
@@ -485,48 +592,72 @@ export const roles: Role[] = [
     ],
   },
   {
-    title: 'Rice Crop Manager Team · Software Engineer',
+    title: '4DFarms Team · Software Engineer',
     duration: '1 year',
     dateRange: 'Jan 2022 – Dec 2022',
     location: 'Los Baños, Philippines',
     workMode: 'Remote',
     points: [
       {
-        text: 'Rice Crop Manager Advisory Service',
-        description:
-          'Unified platform delivering site-specific fertilizer recommendations to farmers.',
-        tag: 'rebuild',
-      },
-      {
         text: 'Mel Builder',
         description:
-          'Internal tool for building and configuring recommendation logic.',
+          'Internal Monitoring, Evaluation & Learning tool that lets program teams visually configure standardized, offline-ready survey forms for rice program data collection.',
         tag: 'build',
         sideProject: true,
-      },
-      {
-        text: 'RCM Myanmar',
-        description: 'Localized RCM deployment for farmers in Myanmar.',
-        tag: 'maintain',
-        sideProject: true,
-      },
-      {
-        text: 'RCM Indonesia',
-        description: 'Localized RCM deployment for farmers in Indonesia.',
-        tag: 'maintain',
-        sideProject: true,
+        notableContributions: [
+          {
+            outcome:
+              'Built a variety of widgets to express survey formats, including multiple choice, checkbox, and dropdown fields.',
+            tech: 'Form Widgets',
+          },
+        ],
       },
       {
         text: 'RCM Odisha (backend)',
-        description: 'Rebuilt the backend for the RCM deployment in Odisha, India.',
+        description:
+          'Backend for a localized Rice Crop Manager deployment in Odisha, India, delivering site-specific advisories tailored to local crops, conditions, and language.',
         tag: 'rebuild',
         sideProject: true,
+        notableContributions: [
+          {
+            outcome:
+              'Extracted the recommendation logic from the monolith legacy app into a separate API, letting the other team design mockups and develop independently without navigating tangled presentation and logic.',
+            tech: 'API Extraction',
+          },
+          {
+            outcome:
+              'Dockerized the new API and deployed it, wrapping the internal endpoints with AWS API Gateway to meet the other team’s requirements.',
+            tech: 'Docker · AWS API Gateway',
+          },
+          {
+            outcome:
+              'Added automated API testing to ensure no regressions were introduced.',
+            tech: 'API Testing',
+          },
+        ],
       },
     ],
-    summary: [
-      'Contributed to the rebuild of the core advisory platform into the Rice Crop Manager Advisory Service.',
-      'Added offline, mobile, PWA, and audit-trail capabilities.',
-      'Supported country deployments across Myanmar, Indonesia, and India.',
+    teamImpact: [
+      {
+        icon: LuUsers,
+        title: 'Self-service data collection',
+        text: 'Enabled program teams to collect data in a standardized way without relying on developers, with forms that adapt to changing requirements.',
+      },
+      {
+        icon: LuLayoutGrid,
+        title: 'Frontend teams unblocked',
+        text: 'Freed the frontend teams to focus on designing and implementing UIs.',
+      },
+    ],
+    strengths: [
+      {
+        intro: 'Learned to deploy and manage APIs behind a gateway and proxy:',
+        items: ['AWS API Gateway', 'NGINX'],
+      },
+      {
+        intro: 'Got hands-on exposure to UI prototyping tools:',
+        items: ['Figma', 'InVision'],
+      },
     ],
   },
   {
@@ -679,7 +810,7 @@ export const roles: Role[] = [
         commitShare: {
           percent: 100,
           label: 'of commits',
-          caption: 'Sole contributor — built and maintained the tool end to end.',
+          caption: 'Sole contributor, built and maintained the tool end to end.',
           teamCount: 1,
         },
       },
@@ -754,7 +885,7 @@ export const roles: Role[] = [
       },
       {
         intro:
-          'I don’t just ship features — I care about quality without slowing delivery, adding automated UI and API testing. I learned:',
+          'I don’t just ship features. I care about quality without slowing delivery, adding automated UI and API testing. I learned:',
         items: ['Postman', 'CodeceptJS', 'Angular Testing Library'],
       },
       {
@@ -804,7 +935,7 @@ export const roles: Role[] = [
       {
         icon: LuCheckCheck,
         title: 'Automated test coverage',
-        text: 'E2E tests for the interview form (sections 1–6) and API tests for recommendation endpoints — reliable results, faster changes.',
+        text: 'E2E tests for the interview form (sections 1–6) and API tests for recommendation endpoints: reliable results, faster changes.',
       },
     ],
   },

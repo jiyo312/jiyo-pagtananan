@@ -444,29 +444,7 @@ function Experience() {
                 <div className="text-muted text-sm mt-[3px] mb-2.5">
                   {role.location} · {role.workMode}
                 </div>
-                {(() => {
-                  const mainPoints = role.points.filter((p) => !p.sideProject)
-                  const sidePoints = role.points.filter((p) => p.sideProject)
-                  const hasSide = sidePoints.length > 0
-                  return (
-                    <>
-                      {hasSide ? (
-                        <div className="text-muted text-[12px] uppercase tracking-wide font-semibold mb-1.5">
-                          Main project
-                        </div>
-                      ) : null}
-                      <PointList points={mainPoints} />
-                      {hasSide ? (
-                        <>
-                          <div className="text-muted text-[12px] uppercase tracking-wide font-semibold mt-3 mb-1.5">
-                            Side projects
-                          </div>
-                          <PointList points={sidePoints} />
-                        </>
-                      ) : null}
-                    </>
-                  )
-                })()}
+                <PointList points={role.points} />
                 <ImpactCard role={role} />
               </article>
             ))}
