@@ -45,10 +45,13 @@ import {
 import { FaLinkedin } from 'react-icons/fa6'
 import {
   LuBoxes,
+  LuChartBar,
   LuCheckCheck,
   LuCloud,
   LuDatabase,
+  LuDna,
   LuFileText,
+  LuFlaskConical,
   LuGitBranch,
   LuGlobe,
   LuHistory,
@@ -61,12 +64,15 @@ import {
   LuPuzzle,
   LuRefreshCw,
   LuRocket,
+  LuSearchCheck,
   LuServer,
   LuServerCog,
   LuSmartphone,
+  LuSprout,
   LuTrendingUp,
   LuUsers,
   LuWifiOff,
+  LuWorkflow,
   LuWrench,
 } from 'react-icons/lu'
 
@@ -150,6 +156,19 @@ export interface CaseStudy {
     intro: string
     changes: CaseStudyBeforeAfter[]
   }
+  /** The specific projects/modules I worked on, explained in plain terms. */
+  contributions?: {
+    /** Section heading. Defaults to "What I worked on" when omitted. */
+    label?: string
+    intro: string
+    items: {
+      icon: SkillIcon
+      name: string
+      /** Optional short tagline (e.g. "The proofreader"). */
+      role?: string
+      description: string
+    }[]
+  }
   /** Impact per audience. */
   impact: CaseStudyImpact[]
 }
@@ -169,50 +188,18 @@ export interface Project {
 
 export type RolePointTag = 'build' | 'rebuild' | 'maintain' | 'improve' | 'etl'
 
-export interface RolePointCommitShare {
-  percent: number
-  label: string
-  caption: string
-  /** Total number of contributors (used in the chart legend). */
-  teamCount: number
-}
-
 export interface RolePoint {
+  /** Short project label shown as a timeline bullet. */
   text: string
+  /** Categorizes the work; rendered as a parenthetical qualifier. */
   tag: RolePointTag
-  /** Concise one-line description of the project. */
-  description?: string
-  /** Optional short code / abbreviation (e.g. "RCMFFR"). */
-  abbr?: string
-  /** Optional "migrated into" target shown as an arrow (e.g. "RCMAS"). */
-  mergedInto?: string
-  /** Optional commit-share figure shown as a donut chart under this point. */
-  commitShare?: RolePointCommitShare
-  /** Notable contributions, each an outcome plus the tech that enabled it. */
-  notableContributions?: { outcome: string; tech: string }[]
-  /** When true, the point is grouped under a "Side projects" sub-heading. */
-  sideProject?: boolean
 }
 
 export interface Role {
   title: string
-  /** Short duration label shown inline (e.g. "2 years"). */
-  duration: string
-  /** Full start–end range revealed on hover (e.g. "Oct 2022 – Present"). */
+  /** Full start–end range shown inline (e.g. "Oct 2022 – Dec 2026"). */
   dateRange: string
-  location: string
-  /** Remote / onsite breakdown (e.g. "Remote" or "6 mos onsite · 2 yrs remote"). */
-  workMode: string
   points: RolePoint[]
-  /** Short summary of contributions, as one or more brief paragraphs. */
-  summary?: string[]
-  /** Strengths demonstrated in this role, as one or more groups. */
-  strengths?: {
-    intro: string
-    items: string[]
-  }[]
-  /** Team-level impact for this role, as compact titled highlights. */
-  teamImpact?: { icon: SkillIcon; title: string; text: string }[]
 }
 
 export interface ImpactItem {
@@ -398,6 +385,55 @@ export const projects: Project[] = [
           },
         ],
       },
+      contributions: {
+        label: 'What I worked on',
+        intro:
+          'Across my years on the RCM team, I built and maintained several apps and was a top contributor on the unified rebuild:',
+        items: [
+          {
+            icon: LuUsers,
+            name: 'RCM User Registration',
+            description:
+              'Records user information and manages profiles for extension workers and system accounts. I was the top contributor and resolved authentication and registration defects.',
+          },
+          {
+            icon: LuFileText,
+            name: 'RCM Farmer and Field Download',
+            description:
+              'Exports PDF lists of farmers and fields, filtered by region, for field interviews. I was the top contributor and refactored authentication into a reusable, shared endpoint.',
+          },
+          {
+            icon: LuChartBar,
+            name: 'RCM Statistics',
+            description:
+              'Aggregates nationwide totals for farmers, fields, recommendations, and hectares measured. I was the top contributor and fixed location filtering and shared authentication.',
+          },
+          {
+            icon: LuBoxes,
+            name: 'Rice Crop Manager Advisory Service (RCMAS)',
+            description:
+              'The unified platform that combined the legacy apps into one web and mobile experience. I contributed across UI and API, adding offline collection, SMS reminders, JWT auth, dashboards, and localization.',
+          },
+          {
+            icon: LuServerCog,
+            name: 'RCMAS DevOps',
+            description:
+              'A CLI tool I built end to end that automates RCMAS deployment to AWS, plus database backup and restoration.',
+          },
+          {
+            icon: LuDatabase,
+            name: 'TEIN',
+            description:
+              'A data pipeline that extracts CSVs from Google Drive, transforms them, and loads records into a data warehouse for BI. I produced the field-to-schema mapping and brought the ETL scripts under version control.',
+          },
+          {
+            icon: LuGlobe,
+            name: 'RCM Myanmar',
+            description:
+              'A localized RCM deployment for farmers in Myanmar. I localized recommendations into Burmese and adjusted the recommendation logic and questionnaire to local conditions.',
+          },
+        ],
+      },
       impact: [
         {
           audience: 'Partner organizations',
@@ -507,6 +543,27 @@ export const projects: Project[] = [
           },
         ],
       },
+      contributions: {
+        label: 'What I worked on',
+        intro:
+          'During this period I contributed to two projects, one building the form builder and one on a localized RCM backend:',
+        items: [
+          {
+            icon: LuPuzzle,
+            name: 'MEL Builder',
+            role: 'Form widgets',
+            description:
+              'Built the form builder itself, including a variety of widgets to express survey formats such as multiple choice, checkbox, and dropdown fields.',
+          },
+          {
+            icon: LuServerCog,
+            name: 'RCM Odisha (backend)',
+            role: 'API extraction & deployment',
+            description:
+              'Extracted the recommendation logic from the monolith legacy app into a separate API so another team could build independently, then dockerized and deployed it behind AWS API Gateway and added automated API tests to guard against regressions.',
+          },
+        ],
+      },
       impact: [
         {
           audience: 'Program teams',
@@ -537,410 +594,152 @@ export const projects: Project[] = [
     description:
       'An integrated breeding ecosystem that manages workflows, from experiments to data analysis, helping breeders develop improved varieties faster.',
     tags: ['Enterprise', 'Analytics', 'Data management'],
+    caseStudy: {
+      title: 'Enterprise Breeding System',
+      tagline:
+        'Open-source breeding informatics that unifies the entire crop-breeding workflow into one platform.',
+      summary:
+        'Breeders understand their crops and develop improved varieties, but staff around the world each worked their own way, across fragmented spreadsheets, separate desktop tools, and isolated databases. EBS is an open-source breeding informatics and data-management platform, developed and led by the CGIAR Excellence in Breeding Platform and Breeding Resources Initiative, that integrates the entire breeding workflow into one centralized system. It supports programs such as CIMMYT, IRRI, and IITA that serve resource-poor farmers across Africa, Asia, and Latin America.',
+      source: {
+        label: 'Source: CGIAR Excellence in Breeding — Enterprise Breeding System',
+        href: 'https://excellenceinbreeding.org/toolbox/tools/enterprise-breeding-system-ebs',
+      },
+      facts: [
+        { label: 'Role', value: 'Software Engineer' },
+        { label: 'Org', value: 'IRRI · CGIAR' },
+        { label: 'Type', value: 'Open source' },
+        { label: 'Scope', value: 'Global, multi-crop' },
+      ],
+      metrics: [
+        { icon: LuWorkflow, value: 'End-to-end', label: 'breeding workflow' },
+        { icon: LuBoxes, value: 'One', label: 'centralized platform' },
+        { icon: LuGlobe, value: '3 centers', label: 'CIMMYT · IRRI · IITA' },
+        { icon: LuUsers, value: 'Global', label: 'breeder collaboration' },
+      ],
+      problem: {
+        intro:
+          'Breeding science is strong, but the data behind it was scattered. Staff across the world each did things their own way:',
+        points: [
+          'Breeders worked in spreadsheets, notebooks, local databases, and assorted ad-hoc tools.',
+          'Inconsistent methods made breeding data hard to manage, compare, and share.',
+          'Fragmented data slowed down the development of improved varieties.',
+          'Global collaboration was difficult without a common system and shared data.',
+        ],
+      },
+      features: {
+        label: 'Key capabilities',
+        intro:
+          'Instead of fragmented spreadsheets, desktop tools, and isolated databases, EBS brings the breeding workflow together through four integrated areas:',
+        items: [
+          {
+            icon: LuSprout,
+            title: 'Core breeding',
+            description:
+              'Create and manage germplasm, field trials, nurseries, seed inventories, and experimental lists.',
+          },
+          {
+            icon: LuFlaskConical,
+            title: 'Service management',
+            description:
+              'Connect directly to internal and external labs for genotypic, quality, and phytosanitary analyses.',
+          },
+          {
+            icon: LuChartBar,
+            title: 'Breeding analytics',
+            description:
+              'Link field and lab data to advanced biometrics, decision-support tools, and genomic estimated breeding values.',
+          },
+          {
+            icon: LuUsers,
+            title: 'Core system & permissions',
+            description:
+              'Manage multi-user roles, institutional permissions, real-time data sharing, and automated tracking of metrics like genetic gain.',
+          },
+        ],
+      },
+      contributions: {
+        label: 'What I worked on',
+        intro:
+          'Within the Breeding Analytics area, I worked on three tools that together help breeders confidently pick the best plants for the next generation:',
+        items: [
+          {
+            icon: LuSearchCheck,
+            name: 'Phenotypic Data Manager (PDM)',
+            role: 'The proofreader',
+            description:
+              'When scientists walk a field measuring plants (height, grain weight), typos and odd numbers happen, like "500 inches" instead of "50". PDM spots the strange values and errors in the field notes and helps clean them up, so bad data doesn’t ruin the experiment.',
+          },
+          {
+            icon: LuTrendingUp,
+            name: 'Analysis Request Manager (ARM)',
+            role: 'The scorekeeper',
+            description:
+              'A crop might thrive in a sunny field but struggle in a rainy one. Once the notes are clean, ARM takes the numbers from different farms, runs the math to account for weather and soil differences, and calculates a fair final score so breeders know which plants truly performed best.',
+          },
+          {
+            icon: LuDna,
+            name: 'Molecular Data Analysis (MDA)',
+            role: 'The DNA detective',
+            description:
+              'A plant can look healthy outside but lack the right genes inside. MDA checks lab results from plant leaves against the genetic code to confirm parents bred properly, catch mixed-up seeds, and spot hidden traits like disease resistance.',
+          },
+        ],
+      },
+      impact: [
+        {
+          audience: 'Breeders',
+          text: 'Collaborate, share, and manage breeding data in one system, speeding up the creation of improved varieties.',
+        },
+        {
+          audience: 'Governments',
+          text: 'Feed growing populations with less farmland and get varieties resilient to local climate challenges, from flooding in the Philippines to drought in India and saltwater intrusion in Vietnam.',
+        },
+        {
+          audience: 'Western donors',
+          text: 'Support efforts to prevent famine and migration in Asia, slow global warming, and keep affordable crops accessible as cropping choices shift.',
+        },
+        {
+          audience: 'Philanthropies',
+          text: 'Advance work that reduces malnutrition and improves lives.',
+        },
+        {
+          audience: 'Private sector',
+          text: 'Supply the crops behind products, logistics, and agricultural inputs such as seeds, fertilizers, and pesticides.',
+        },
+      ],
+    },
   },
 ]
 
 export const roles: Role[] = [
   {
-    title: 'Breeding Analytics Team · Software Engineer',
-    duration: '2 years',
-    dateRange: 'Jan 2025 – Dec 2026',
-    location: 'Los Baños, Philippines',
-    workMode: 'Onsite',
+    title: 'Breeding Analytics Team · Specialist - Information System (Software Engineering)',
+    dateRange: 'Oct 2022 – Dec 2026',
     points: [
-      {
-        text: 'Phenotypic Data Manager',
-        description:
-          'Manages field trial observations and phenotypic measurements for breeders.',
-        tag: 'maintain',
-      },
-      {
-        text: 'Analysis Request Manager',
-        description:
-          'Coordinates and tracks breeders’ requests for statistical analysis.',
-        tag: 'maintain',
-      },
-    ],
-    summary: [
-      'Returned onsite to maintain breeding analytics tools.',
-      'I resolved bugs and shipped improvements that keep researchers’ data workflows reliable.',
+      { text: 'Phenotypic Data Manager', tag: 'build' },
+      { text: 'Molecular Data Analysis', tag: 'build' },
+      { text: 'Analysis Request Manager', tag: 'maintain' },
     ],
   },
   {
-    title: 'Breeding Analytics Team · Software Engineer',
-    duration: '2 years',
-    dateRange: 'Oct 2022 – Sep 2024',
-    location: 'Los Baños, Philippines',
-    workMode: 'Remote',
-    points: [
-      {
-        text: 'Phenotypic Data Manager',
-        description:
-          'Built the platform for capturing and managing phenotypic trial data.',
-        tag: 'build',
-      },
-      {
-        text: 'Molecular Data Analysis',
-        description:
-          'Developed tooling to process and analyze molecular marker data.',
-        tag: 'build',
-      },
-    ],
-    summary: [
-      'Built greenfield analytics tools from the ground up.',
-      'These gave breeders new ways to capture phenotypic data and analyze molecular markers, speeding up variety development.',
-    ],
-  },
-  {
-    title: '4DFarms Team · Software Engineer',
-    duration: '1 year',
+    title: '4DFarms Team · Specialist - Information System (Software Engineering)',
     dateRange: 'Jan 2022 – Dec 2022',
-    location: 'Los Baños, Philippines',
-    workMode: 'Remote',
     points: [
-      {
-        text: 'Mel Builder',
-        description:
-          'Internal Monitoring, Evaluation & Learning tool that lets program teams visually configure standardized, offline-ready survey forms for rice program data collection.',
-        tag: 'build',
-        sideProject: true,
-        notableContributions: [
-          {
-            outcome:
-              'Built a variety of widgets to express survey formats, including multiple choice, checkbox, and dropdown fields.',
-            tech: 'Form Widgets',
-          },
-        ],
-      },
-      {
-        text: 'RCM Odisha (backend)',
-        description:
-          'Backend for a localized Rice Crop Manager deployment in Odisha, India, delivering site-specific advisories tailored to local crops, conditions, and language.',
-        tag: 'rebuild',
-        sideProject: true,
-        notableContributions: [
-          {
-            outcome:
-              'Extracted the recommendation logic from the monolith legacy app into a separate API, letting the other team design mockups and develop independently without navigating tangled presentation and logic.',
-            tech: 'API Extraction',
-          },
-          {
-            outcome:
-              'Dockerized the new API and deployed it, wrapping the internal endpoints with AWS API Gateway to meet the other team’s requirements.',
-            tech: 'Docker · AWS API Gateway',
-          },
-          {
-            outcome:
-              'Added automated API testing to ensure no regressions were introduced.',
-            tech: 'API Testing',
-          },
-        ],
-      },
-    ],
-    teamImpact: [
-      {
-        icon: LuUsers,
-        title: 'Self-service data collection',
-        text: 'Enabled program teams to collect data in a standardized way without relying on developers, with forms that adapt to changing requirements.',
-      },
-      {
-        icon: LuLayoutGrid,
-        title: 'Frontend teams unblocked',
-        text: 'Freed the frontend teams to focus on designing and implementing UIs.',
-      },
-    ],
-    strengths: [
-      {
-        intro: 'Adaptable across shifting contexts:',
-        items: ['Multiple projects', 'Unfamiliar team'],
-      },
-      {
-        intro: 'Learned to deploy and manage APIs behind a gateway and proxy:',
-        items: ['AWS API Gateway', 'NGINX'],
-      },
-      {
-        intro: 'Got hands-on exposure to UI prototyping tools:',
-        items: ['Figma', 'InVision'],
-      },
+      { text: 'Mel Builder', tag: 'build' },
+      { text: 'RCM Odisha (backend)', tag: 'rebuild' },
     ],
   },
   {
-    title: 'Rice Crop Manager Team · Junior Software Engineer',
-    duration: '2.5 years',
+    title: 'Rice Crop Manager Team · Junior Specialist - Information System (Software Engineering)',
     dateRange: 'Jul 2019 – Dec 2021',
-    location: 'Los Baños, Philippines',
-    workMode: '6 mos onsite · 2 yrs remote',
     points: [
-      {
-        text: 'RCM User Registration',
-        description:
-          'Records user information and manages profiles for extension workers and system accounts.',
-        tag: 'maintain',
-        commitShare: {
-          percent: 56.1,
-          label: 'of commits',
-          caption:
-            'Top contributor to RCM User Registration out of 5 developers, with 87 of 155 commits.',
-          teamCount: 5,
-        },
-        notableContributions: [
-          {
-            outcome:
-              'Resolved authentication and registration defects: inconsistent password hashing, duplicate emails, broken reset links, and disposable email domains.',
-            tech: 'Bug Fixes',
-          },
-          {
-            outcome:
-              'Kept users supported by updating the in-app training materials served as downloadable PDFs.',
-            tech: 'Training Materials',
-          },
-        ],
-      },
-      {
-        text: 'RCM Farmer and Field Download',
-        description:
-          'Exports PDF lists of farmers and fields, filtered by region, for field interviews.',
-        tag: 'maintain',
-        commitShare: {
-          percent: 85.5,
-          label: 'of commits',
-          caption:
-            'Top contributor to RCM Farmer and Field Download out of 2 developers, with 47 of 55 commits.',
-          teamCount: 2,
-        },
-        notableContributions: [
-          {
-            outcome:
-              'Refactored the existing authentication into a reusable endpoint shared with RCM Statistics.',
-            tech: 'Refactoring',
-          },
-        ],
-      },
-      {
-        text: 'RCM Statistics',
-        description:
-          'Aggregates totals for farmers, fields, recommendations, and hectares measured nationwide.',
-        tag: 'maintain',
-        commitShare: {
-          percent: 65.2,
-          label: 'of commits',
-          caption:
-            'Top contributor to RCM Statistics out of 6 developers, with 122 of 187 commits.',
-          teamCount: 6,
-        },
-        notableContributions: [
-          {
-            outcome:
-              'Refactored the existing authentication into a reusable endpoint shared with RCM Farmer and Field Download.',
-            tech: 'Refactoring',
-          },
-          {
-            outcome:
-              'Restored accurate location filtering by fixing missing dropdown places.',
-            tech: 'Bug Fixes',
-          },
-        ],
-      },
-       {
-        text: 'Rice Crop Manager Advisory Service',
-        description:
-          'A new modern platform that combine all legacy applications that runs on both web and mobile',
-        tag: 'rebuild',
-        commitShare: {
-          percent: 27.2,
-          label: 'of commits',
-          caption:
-            'Top contributor to the RCMAS rebuild (UI + API) out of 11 developers, with 796 of 2,925 commits.',
-          teamCount: 11,
-        },
-        notableContributions: [
-          {
-            outcome:
-              'Let extension workers collect farmer and field data offline in remote areas with little or no connectivity.',
-            tech: 'PWA · Service Workers',
-          },
-          {
-            outcome:
-              'Kept farmers on track with their one-page recommendations through automated SMS reminders.',
-            tech: 'SMS Integration · Cron Jobs',
-          },
-          {
-            outcome:
-              'Sped up stakeholder decision-making with interactive graphs and data tables.',
-            tech: 'Data Visualization',
-          },
-          {
-            outcome:
-              'Let users reach the RCM team directly with their questions, suggestions, and concerns.',
-            tech: 'Contact Us API · Email Integration',
-          },
-          {
-            outcome:
-              'Gave users instant access to view their generated one-page recommendation.',
-            tech: 'Recommendation API',
-          },
-          {
-            outcome:
-              'Persisted a section of the interview form so progress is saved reliably to the database.',
-            tech: 'Interview Form API',
-          },
-          {
-            outcome:
-              'Secured user access with stateless, token-based authentication across the app.',
-            tech: 'JWT Authentication',
-          },
-          {
-            outcome:
-              'Made the codebase easier to navigate by splitting an interview-form section into its own module.',
-            tech: 'Refactoring',
-          },
-          {
-            outcome:
-              'Kept recommendations reliable by fixing crop-management review screens and critical form validations.',
-            tech: 'Bug Fixes',
-          },
-          {
-            outcome:
-              'Reached farmers in their own language by localizing SMS reminders and recommendations into Ilocano, Cebuano, Ilonggo, and Visaya.',
-            tech: 'Localization',
-          },
-        ],
-      },
-      {
-        text: 'RCMAS DevOps',
-        description:
-          'A CLI tool that automates RCMAS deployment to AWS, plus database backup and restoration.',
-        tag: 'build',
-        commitShare: {
-          percent: 100,
-          label: 'of commits',
-          caption: 'Sole contributor, built and maintained the tool end to end.',
-          teamCount: 1,
-        },
-      },
-      {
-        text: 'TEIN',
-        description:
-          'Data pipeline that extracts data from multiple CSVs in Google Drive, transforms it, and loads records into a data warehouse for BI visualization and analytics.',
-        tag: 'etl',
-        commitShare: {
-          percent: 10,
-          label: 'of work',
-          caption: 'Contributor on an 8-member team building the TEIN data pipeline.',
-          teamCount: 8,
-        },
-        notableContributions: [
-          {
-            outcome:
-              'Produced mapping data to align source CSV fields with the data warehouse schema.',
-            tech: 'Data Mapping',
-          },
-          {
-            outcome:
-              'Brought the ETL scripts under version control for safer, trackable changes.',
-            tech: 'Git · Version Control',
-          },
-          {
-            outcome:
-              'Collaborated with an outsourced team to deliver the pipeline together.',
-            tech: 'Team Collaboration',
-          },
-        ],
-      },
-      {
-        text: 'RCM Myanmar',
-        description: 'Localized RCM deployment and maintenance for farmers in Myanmar.',
-        tag: 'maintain',
-        commitShare: {
-          percent: 15,
-          label: 'of work',
-          caption: 'Contributor on a 3-member team localizing RCM for Myanmar.',
-          teamCount: 3,
-        },
-        notableContributions: [
-          {
-            outcome:
-              'Localized recommendations into Burmese so farmers receive guidance in their own language.',
-            tech: 'Localization',
-          },
-          {
-            outcome:
-              'Adjusted the recommendation calculations to fit Myanmar’s local farming conditions.',
-            tech: 'Recommendation Logic',
-          },
-          {
-            outcome:
-              'Updated the interview questionnaire to match local practices and data needs.',
-            tech: 'Interview Form',
-          },
-        ],
-      },
-    ],
-    strengths: [
-      {
-        intro:
-          'Navigating unfamiliar legacy apps while picking up new tech on the job showed I’m a fast learner. I quickly adopted:',
-        items: ['Angular', 'TypeScript', 'Docker', 'Git & Team Branching Strategy'],
-      },
-      {
-        intro:
-          'Owning the environments from local to deployment to handoff showed I can take on the responsibility and collaborate when needed to deliver a project. Along the way I learned:',
-        items: ['Jenkins', 'AWS EC2', 'AWS S3', 'AWS VPC', 'Terraform', 'Liquibase', 'Bash Scripting', 'Linux', 'Team Collaboration'],
-      },
-      {
-        intro:
-          'I don’t just ship features. I care about quality without slowing delivery, adding automated UI and API testing. I learned:',
-        items: ['Postman', 'CodeceptJS', 'Angular Testing Library'],
-      },
-      {
-        intro:
-          'Rebuilding multiple legacy applications into a single app taught me to break problems into smaller pieces, making complex projects doable, organized, and less risky. I learned:',
-        items: [
-          'Task breakdown',
-          'Prioritization',
-          'Estimation',
-          'Feedback',
-          'Iteration',
-          'Collaboration',
-        ],
-      },
-      {
-        intro:
-          'Contributing to a data pipeline opened up data engineering and BI for me. I picked up:',
-        items: ['Python', 'AWS Glue', 'AWS Redshift', 'QlikSense'],
-      },
-      {
-        intro:
-          'Working across varied projects gave me exposure to several engineering disciplines:',
-        items: [
-          'Software Engineering',
-          'DevOps',
-          'Data Engineering',
-          'Software Quality Engineering',
-        ],
-      },
-    ],
-    teamImpact: [
-      {
-        icon: LuGitBranch,
-        title: 'CI/CD for a team of 5–8',
-        text: 'Pipeline from local → dev → staging with consistent environments, so the team ships features, reproduces bugs, and tests faster.',
-      },
-      {
-        icon: LuUsers,
-        title: 'Smooth IRRI → partner handoff',
-        text: 'Ran capacity-building sessions and documented setup, deployment, and database backup/restore.',
-      },
-      {
-        icon: LuWrench,
-        title: 'Maintainable codebase',
-        text: 'Applied the service/repository pattern and modularized the interview form for easier navigation.',
-      },
-      {
-        icon: LuCheckCheck,
-        title: 'Automated test coverage',
-        text: 'E2E tests for the interview form (sections 1–6) and API tests for recommendation endpoints: reliable results, faster changes.',
-      },
+      { text: 'RCM User Registration', tag: 'maintain' },
+      { text: 'RCM Farmer and Field Download', tag: 'maintain' },
+      { text: 'RCM Statistics', tag: 'maintain' },
+      { text: 'Rice Crop Manager Advisory Service', tag: 'rebuild' },
+      { text: 'RCMAS DevOps', tag: 'build' },
+      { text: 'TEIN', tag: 'etl' },
+      { text: 'RCM Myanmar', tag: 'maintain' },
     ],
   },
 ]
@@ -1088,6 +887,12 @@ export const contactLinks: ContactLink[] = [
     href: 'https://codewithjiyo.com',
     label: 'codewithjiyo.com',
     icon: SiSubstack,
+    external: true,
+  },
+  {
+    href: '/JiyoCollin_Pagtananan_SoftwareEngineer_Resume.pdf',
+    label: 'Download résumé (PDF)',
+    icon: LuFileText,
     external: true,
   },
 ]

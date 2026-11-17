@@ -3,11 +3,11 @@ import './globals.css'
 
 const siteUrl = 'https://jiyo-pagtananan.com'
 const description =
-  'Jiyo Collin Pagtananan — Software Engineer with 7+ years building and modernizing scalable web and mobile systems, from offline-first apps to unified platforms serving millions.'
+  'Jiyo Collin Pagtananan — Full Stack Engineer with 7+ years building and modernizing scalable web and mobile systems, from offline-first apps to unified platforms serving millions.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Jiyo Collin Pagtananan | Software Engineer',
+  title: 'Jiyo Collin Pagtananan | Full Stack Engineer',
   description,
   keywords: [
     'Jiyo Collin Pagtananan',
@@ -28,12 +28,12 @@ export const metadata: Metadata = {
     type: 'website',
     url: siteUrl,
     siteName: 'Jiyo Collin Pagtananan',
-    title: 'Jiyo Collin Pagtananan | Software Engineer',
+    title: 'Jiyo Collin Pagtananan | Full Stack Engineer',
     description,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jiyo Collin Pagtananan | Software Engineer',
+    title: 'Jiyo Collin Pagtananan | Full Stack Engineer',
     description,
   },
   icons: {
@@ -45,7 +45,7 @@ const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Jiyo Collin Pagtananan',
-  jobTitle: 'Software Engineer',
+  jobTitle: 'Full Stack Engineer',
   url: siteUrl,
   nationality: 'Filipino',
   worksFor: {

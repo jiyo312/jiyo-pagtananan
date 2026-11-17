@@ -222,6 +222,47 @@ function ProjectModal({ caseStudy, onClose }: ProjectModalProps) {
             </div>
           </section>
 
+          {/* What I worked on */}
+          {caseStudy.contributions ? (
+            <section>
+              <SectionLabel>
+                {caseStudy.contributions.label ?? 'What I worked on'}
+              </SectionLabel>
+              <p className="text-[#c8d5e3] leading-relaxed mb-5">
+                {caseStudy.contributions.intro}
+              </p>
+              <div className="space-y-4">
+                {caseStudy.contributions.items.map((item) => {
+                  const Icon = item.icon
+                  return (
+                    <div
+                      className="flex gap-4 bg-surface border rounded-xl p-5 transition hover:border-[rgba(67,211,107,0.55)]"
+                      style={{ borderColor: LINE }}
+                      key={item.name}
+                    >
+                      <div className="shrink-0 grid place-items-center w-11 h-11 rounded-lg bg-[rgba(118,201,255,0.12)]">
+                        <Icon className="text-[#76c9ff] text-[22px]" aria-hidden />
+                      </div>
+                      <div>
+                        <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1 mb-1">
+                          <h4 className="font-bold">{item.name}</h4>
+                          {item.role ? (
+                            <span className="text-green text-[13px] font-semibold">
+                              {item.role}
+                            </span>
+                          ) : null}
+                        </div>
+                        <p className="text-muted text-[14px] leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </section>
+          ) : null}
+
           {/* Modernization before/after */}
           {caseStudy.modernization ? (
             <section>

@@ -1,5 +1,6 @@
 import { FaLinkedin } from 'react-icons/fa6'
 import { SiGmail, SiSubstack } from 'react-icons/si'
+import { LuFileText } from 'react-icons/lu'
 import heroBgImg from '../assets/portfolio-hero-bg.jpg'
 import jiyoPortraitImg from '../assets/jiyo.png'
 import { button, buttonOutline, eyebrow, wrap } from '../../app/styles'
@@ -54,6 +55,16 @@ function Hero() {
             >
               <SiSubstack className="text-[18px]" aria-hidden />
               Blog
+            </a>
+            <a
+              className={`${button} ${buttonOutline} max-[460px]:w-full`}
+              href="/JiyoCollin_Pagtananan_SoftwareEngineer_Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              download
+            >
+              <LuFileText className="text-[18px]" aria-hidden />
+              Resume
             </a>
           </div>
         </div>

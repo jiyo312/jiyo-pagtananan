@@ -15,8 +15,9 @@ function About() {
             to Software Engineering
           </h2>
           <p className="text-[#d2deea] text-[17px] mt-3">
-            I'm a Software Engineer with 7+ years of experience in agricultural
-            research and development. I create scalable digital solutions that
+            I'm a Full Stack Engineer based in Los Baños, Philippines, with 7+
+            years of experience in agricultural research and development. I
+            create scalable digital solutions that
             empower researchers to develop improved crop varieties faster and
             help bring innovative farming practices to more farmers.
           </p>
