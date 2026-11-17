@@ -273,9 +273,9 @@ export const projects: Project[] = [
     id: 'rcm',
     art: '🌾📱',
     image: rcmImage,
-    title: 'Rice Crop Manager (RCM)',
+    title: 'Rice Crop Manager Advisory Service (RCMAS)',
     tagline: 'Scaling scientific farming recommendations to farmers',
-    description:
+    description:  
       "A mobile and web application that delivers IRRI's site-specific fertilizer recommendations to farmers across the Philippines, Indonesia, Myanmar, and India.",
     tags: ['Web', 'Mobile', 'PWA', 'Offline-first'],
     caseStudy: {

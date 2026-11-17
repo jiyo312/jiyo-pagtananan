@@ -86,11 +86,11 @@ function Projects() {
                     className="text-[#76c9ff] font-semibold hover:text-green"
                     onClick={() => setActiveProject(project)}
                   >
-                    Explore my contributions →
+                    Project Context →
                   </button>
                 ) : (
                   <a className="text-[#76c9ff] font-semibold" href="#experience">
-                    Explore my contributions →
+                    Project Context →
                   </a>
                 )}
               </div>
