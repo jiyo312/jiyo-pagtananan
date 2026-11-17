@@ -59,3 +59,84 @@
     line-height: 1.6;
   }
 }
+
+/* ---- Hero night sky ---- */
+
+/* Aurora: two broad colored bands that slowly drift and shift hue. */
+.hero-aurora {
+  background:
+    radial-gradient(
+      60% 40% at 25% 15%,
+      rgba(67, 211, 107, 0.28),
+      transparent 70%
+    ),
+    radial-gradient(
+      55% 38% at 70% 10%,
+      rgba(79, 172, 254, 0.26),
+      transparent 70%
+    ),
+    radial-gradient(
+      50% 45% at 50% 0%,
+      rgba(146, 108, 255, 0.2),
+      transparent 75%
+    );
+  filter: blur(14px);
+  opacity: 0.8;
+  background-repeat: no-repeat;
+  animation: hero-aurora-drift 18s ease-in-out infinite alternate;
+  will-change: transform, background-position;
+}
+
+@keyframes hero-aurora-drift {
+  0% {
+    background-position:
+      0% 0%,
+      0% 0%,
+      0% 0%;
+    transform: translateX(-3%) skewX(-4deg);
+  }
+  50% {
+    transform: translateX(3%) skewX(4deg);
+  }
+  100% {
+    background-position:
+      20% 10%,
+      -15% 5%,
+      10% 0%;
+    transform: translateX(3%) skewX(3deg);
+  }
+}
+
+/* Star field: three layers of dots at different sizes for depth, twinkling. */
+.hero-stars {
+  background-image:
+    radial-gradient(1.5px 1.5px at 20% 30%, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 75% 20%, #cfe3ff, transparent),
+    radial-gradient(1px 1px at 40% 70%, #ffffff, transparent),
+    radial-gradient(1px 1px at 90% 60%, #dbe8ff, transparent),
+    radial-gradient(1.5px 1.5px at 60% 45%, #ffffff, transparent),
+    radial-gradient(1px 1px at 10% 80%, #cfe3ff, transparent),
+    radial-gradient(1px 1px at 85% 85%, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 50% 12%, #eaf2ff, transparent),
+    radial-gradient(1px 1px at 30% 50%, #ffffff, transparent);
+  background-repeat: repeat;
+  background-size: 400px 400px;
+  animation: hero-stars-twinkle 4.5s ease-in-out infinite;
+}
+
+@keyframes hero-stars-twinkle {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-aurora,
+  .hero-stars {
+    animation: none;
+  }
+}

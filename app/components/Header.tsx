@@ -26,8 +26,13 @@ function Header() {
           className="font-bold tracking-[-0.03em] flex items-center gap-3 text-[15px] min-[500px]:text-base"
           href="#home"
         >
-          <span className="text-green text-[25px]">✳</span> Jiyo Collin
-          Pagtananan
+          <span
+            className="grid place-items-center w-8 h-8 rounded-lg bg-[rgba(67,211,107,0.12)] border border-[rgba(67,211,107,0.5)] text-green text-[13px] font-extrabold tracking-[-0.04em]"
+            aria-hidden
+          >
+            JP
+          </span>
+          Jiyo Collin Pagtananan
         </a>
 
         <button
