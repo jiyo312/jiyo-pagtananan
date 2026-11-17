@@ -10,16 +10,16 @@ function About() {
         <div>
           <div className={eyebrow}>About me</div>
           <h2 className={heading}>
-            From Rice Research
+            Engineering software
             <br />
-            to Software Engineering
+            that people rely on
           </h2>
           <p className="text-[#d2deea] text-[17px] mt-3">
             I'm a Full Stack Engineer based in Los Baños, Philippines, with 7+
-            years of experience in agricultural research and development. I
-            create scalable digital solutions that
-            empower researchers to develop improved crop varieties faster and
-            help bring innovative farming practices to more farmers.
+            years building and modernizing scalable web and mobile systems. Most
+            of that experience is in agricultural research and development, but
+            the skills travel: I'm adaptable across domains and open to work in
+            any sector where thoughtful engineering makes a difference.
           </p>
         </div>
         <div className="grid grid-cols-3 gap-3 max-[850px]:mt-2.5 max-[620px]:grid-cols-1">

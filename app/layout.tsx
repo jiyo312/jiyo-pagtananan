@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     description,
   },
   icons: {
-    icon: '/codewithjiyo-icon.webp',
+    icon: '/favicon-jp.svg',
   },
 }
 

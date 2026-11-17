@@ -27,8 +27,8 @@ function Hero() {
             Jiyo Pagtananan
           </h1>
           <p className="text-[clamp(18px,2.3vw,24px)] max-w-[600px] text-[#d7e2ee] mb-7">
-            Building technology that helps scientists and farmers grow a better
-            tomorrow.
+            Building scalable, reliable software that turns complex problems
+            into tools people rely on, across any domain.
           </p>
           <div className="flex flex-wrap gap-3 max-[460px]:flex-col max-[460px]:items-stretch">
             <a

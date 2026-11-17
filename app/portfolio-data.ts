@@ -242,21 +242,22 @@ export const navLinks: NavLink[] = [
 
 export const stats: StatItem[] = [
   {
-    symbol: '🌾',
+    symbol: '◆',
     title: 'My Mission',
     description:
-      'Build software that helps scientists and farmers improve rice productivity and food security.',
+      'Build scalable, reliable software that turns complex problems into tools people depend on.',
   },
   {
     symbol: '◎',
     title: 'My Experience',
-    description: '7+ years at IRRI working with multidisciplinary teams.',
+    description:
+      '7+ years delivering web and mobile systems with multidisciplinary teams, adaptable across domains.',
   },
   {
     symbol: '♡',
     title: 'My Impact',
     description:
-      'Supporting better farming practices, improved rice varieties, and a more food-secure world.',
+      'Shipped platforms used at scale, from internal tools to unified systems serving many users.',
   },
 ]
 
@@ -755,16 +756,6 @@ export const impactItems: ImpactItem[] = [
 
 export const skillCategories: SkillCategory[] = [
   {
-    label: 'Languages',
-    icon: LuLayers,
-    items: [
-      { icon: SiJavascript, name: 'JavaScript', color: '#f7df1e' },
-      { icon: SiTypescript, name: 'TypeScript', color: '#3178c6' },
-      { icon: SiPhp, name: 'PHP', color: '#777bb4' },
-      { icon: SiPython, name: 'Python', color: '#3776ab' },
-    ],
-  },
-  {
     label: 'Frontend',
     icon: LuLayers,
     items: [
@@ -789,6 +780,16 @@ export const skillCategories: SkillCategory[] = [
       { icon: SiLaravel, name: 'Laravel', color: '#ff2d20' },
       { icon: LuPuzzle, name: 'Slim Microframework' },
       { icon: LuPlug, name: 'REST APIs' },
+    ],
+  },
+  {
+    label: 'Languages',
+    icon: LuLayers,
+    items: [
+      { icon: SiJavascript, name: 'JavaScript', color: '#f7df1e' },
+      { icon: SiTypescript, name: 'TypeScript', color: '#3178c6' },
+      { icon: SiPhp, name: 'PHP', color: '#777bb4' },
+      { icon: SiPython, name: 'Python', color: '#3776ab' },
     ],
   },
   {

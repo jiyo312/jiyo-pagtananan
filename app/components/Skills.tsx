@@ -1,7 +1,31 @@
 import { skillCategories } from '../../app/portfolio-data'
 import { eyebrow, heading, LINE, section, wrap } from '../../app/styles'
 
+// Lead with these skills, in this order; everything else keeps its original order.
+const priorityOrder = [
+  'React',
+  'Angular',
+  'Ionic Framework',
+  'FastAPI',
+  'Laravel',
+  'PostgreSQL',
+  'MySQL',
+  'AWS Lambda',
+  'API Gateway',
+  'S3',
+  'EC2',
+  'SQS',
+  'VPC',
+]
+
 function Skills() {
+  const items = skillCategories.flatMap((category) => category.items)
+  const rank = (name: string) => {
+    const i = priorityOrder.indexOf(name)
+    return i === -1 ? priorityOrder.length : i
+  }
+  const orderedItems = [...items].sort((a, b) => rank(a.name) - rank(b.name))
+
   return (
     <section className={`${section} bg-[#0d1a2a]`} id="skills">
       <div className={wrap}>
@@ -15,29 +39,27 @@ function Skills() {
         </div>
 
         <div className="flex gap-3 overflow-x-auto pb-3 skill-scroll snap-x">
-          {skillCategories.flatMap((category) =>
-            category.items.map((item) => {
-              const ItemIcon = item.icon
-              return (
-                <div
-                  className="shrink-0 w-[120px] snap-start flex flex-col items-center justify-center text-center px-2 py-[18px] bg-surface border rounded-xl text-sm"
-                  style={{ borderColor: LINE }}
-                  key={item.name}
-                >
-                  {item.fullColor ? (
-                    <ItemIcon size={30} className="aws-blend mb-2" aria-hidden />
-                  ) : (
-                    <ItemIcon
-                      className="text-[28px] mb-2"
-                      style={{ color: item.color ?? 'var(--color-green)' }}
-                      aria-hidden
-                    />
-                  )}
-                  {item.name}
-                </div>
-              )
-            }),
-          )}
+          {orderedItems.map((item) => {
+            const ItemIcon = item.icon
+            return (
+              <div
+                className="shrink-0 w-[120px] snap-start flex flex-col items-center justify-center text-center px-2 py-[18px] bg-surface border rounded-xl text-sm"
+                style={{ borderColor: LINE }}
+                key={item.name}
+              >
+                {item.fullColor ? (
+                  <ItemIcon size={30} className="aws-blend mb-2" aria-hidden />
+                ) : (
+                  <ItemIcon
+                    className="text-[28px] mb-2"
+                    style={{ color: item.color ?? 'var(--color-green)' }}
+                    aria-hidden
+                  />
+                )}
+                {item.name}
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
