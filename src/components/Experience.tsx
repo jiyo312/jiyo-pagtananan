@@ -355,23 +355,33 @@ function ImpactCard({ role }: { role: Role }) {
             ) : null}
 
             {active === 'teamImpact' && role.teamImpact ? (
-              <ul className="space-y-3 m-0">
-                {role.teamImpact.map((item) => (
-                  <li key={item.did}>
-                    <div className="flex gap-2.5 text-[#dce8f5] text-[13px] font-medium leading-relaxed">
-                      <span className="mt-[7px] shrink-0 w-1.5 h-1.5 rounded-full bg-[#76c9ff]" />
-                      <span>{item.did}</span>
+              <div className="grid grid-cols-2 gap-2.5 max-[620px]:grid-cols-1">
+                {role.teamImpact.map((item) => {
+                  const Icon = item.icon
+                  return (
+                    <div
+                      className="rounded-lg border bg-[rgba(8,19,33,0.35)] p-3"
+                      style={{ borderColor: LINE }}
+                      key={item.title}
+                    >
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <span className="grid place-items-center w-7 h-7 rounded-md bg-[rgba(118,201,255,0.14)]">
+                          <Icon
+                            className="text-[#76c9ff] text-[15px]"
+                            aria-hidden
+                          />
+                        </span>
+                        <span className="text-[#dce8f5] text-[13px] font-semibold leading-snug">
+                          {item.title}
+                        </span>
+                      </div>
+                      <p className="text-muted text-[12px] leading-relaxed m-0">
+                        {item.text}
+                      </p>
                     </div>
-                    <div className="flex gap-2 pl-[16px] mt-1 text-muted text-[12px] leading-relaxed">
-                      <LuArrowRight
-                        className="shrink-0 text-[#76c9ff] text-[14px] mt-[2px]"
-                        aria-hidden
-                      />
-                      <span>{item.benefit}</span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+                  )
+                })}
+              </div>
             ) : null}
           </div>
         </div>

@@ -206,8 +206,8 @@ export interface Role {
     intro: string
     items: string[]
   }[]
-  /** Team-level impact for this role, each as an action and its benefit. */
-  teamImpact?: { did: string; benefit: string }[]
+  /** Team-level impact for this role, as compact titled highlights. */
+  teamImpact?: { icon: SkillIcon; title: string; text: string }[]
 }
 
 export interface ImpactItem {
@@ -696,24 +696,24 @@ export const roles: Role[] = [
     ],
     teamImpact: [
       {
-        did: 'Built a CI/CD pipeline from the Docker-based local environment through dev and staging for a team of 5–8 developers.',
-        benefit:
-          'Kept environments consistent, making it easy to ship features, reproduce bugs, and run integration testing and user training.',
+        icon: LuGitBranch,
+        title: 'CI/CD for a team of 5–8',
+        text: 'Pipeline from local → dev → staging with consistent environments, so the team ships features, reproduces bugs, and tests faster.',
       },
       {
-        did: 'Ran capacity-building sessions and documented local setup, deployment, and database backup and restoration.',
-        benefit:
-          'Ensured a smooth handoff of the unified RCMAS from IRRI to partner organizations.',
+        icon: LuUsers,
+        title: 'Smooth IRRI → partner handoff',
+        text: 'Ran capacity-building sessions and documented setup, deployment, and database backup/restore.',
       },
       {
-        did: 'Applied the service/repository pattern in the API and split a section of the interview form into its own module.',
-        benefit:
-          'Kept the codebase maintainable and easier for the team to navigate.',
+        icon: LuWrench,
+        title: 'Maintainable codebase',
+        text: 'Applied the service/repository pattern and modularized the interview form for easier navigation.',
       },
       {
-        did: 'Added end-to-end tests for the interview form (sections 1–6) and API tests for the recommendation-generation endpoints.',
-        benefit:
-          'Ensured the forms work as expected and generated recommendations are reliable and correct, while letting the team test changes faster.',
+        icon: LuCheckCheck,
+        title: 'Automated test coverage',
+        text: 'E2E tests for the interview form (sections 1–6) and API tests for recommendation endpoints — reliable results, faster changes.',
       },
     ],
   },
