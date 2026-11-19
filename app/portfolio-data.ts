@@ -14,6 +14,7 @@ import {
 } from 'aws-react-icons'
 import {
   SiAngular,
+  SiBootstrap,
   SiBitbucket,
   SiConfluence,
   SiCss,
@@ -33,6 +34,8 @@ import {
   SiMongodb,
   SiMysql,
   SiNamecheap,
+  SiNextdotjs,
+  SiNginx,
   SiPhp,
   SiPostgresql,
   SiPython,
@@ -42,7 +45,7 @@ import {
   SiTerraform,
   SiTypescript,
 } from 'react-icons/si'
-import { FaLinkedin } from 'react-icons/fa6'
+import { FaAws, FaLinkedin } from 'react-icons/fa6'
 import {
   LuBoxes,
   LuChartBar,
@@ -789,11 +792,13 @@ export const skillCategories: SkillCategory[] = [
     icon: LuLayers,
     items: [
       { icon: SiReact, name: 'React', color: '#61dafb' },
+      { icon: SiNextdotjs, name: 'Next.js', color: '#ffffff' },
       { icon: SiAngular, name: 'Angular', color: '#dd0031' },
       { icon: SiJquery, name: 'jQuery', color: '#0769ad' },
       { icon: SiHtml5, name: 'HTML5', color: '#e34f26' },
       { icon: SiCss, name: 'CSS3', color: '#663399' },
       { icon: SiTailwindcss, name: 'Tailwind CSS', color: '#06b6d4' },
+      { icon: SiBootstrap, name: 'Bootstrap', color: '#7952b3' },
     ],
   },
   {
@@ -807,7 +812,7 @@ export const skillCategories: SkillCategory[] = [
     items: [
       { icon: SiFastapi, name: 'FastAPI', color: '#009688' },
       { icon: SiLaravel, name: 'Laravel', color: '#ff2d20' },
-      { icon: LuPuzzle, name: 'Slim Microframework' },
+      { icon: SiPhp, name: 'Slim PHP', color: '#777bb4' },
       { icon: LuPlug, name: 'REST APIs' },
     ],
   },
@@ -825,6 +830,7 @@ export const skillCategories: SkillCategory[] = [
     label: 'Cloud & Serverless',
     icon: LuCloud,
     items: [
+      { icon: FaAws, name: 'AWS', color: '#ff9900' },
       { icon: ArchitectureServiceAWSLambda, name: 'AWS Lambda', fullColor: true },
       {
         icon: ArchitectureServiceAmazonSimpleQueueService,
@@ -867,6 +873,7 @@ export const skillCategories: SkillCategory[] = [
       { icon: SiDocker, name: 'Docker Compose', color: '#2496ed' },
       { icon: SiJenkins, name: 'Jenkins', color: '#d24939' },
       { icon: LuBoxes, name: 'Docker Swarm' },
+      { icon: SiNginx, name: 'Nginx', color: '#009639' },
       { icon: SiTerraform, name: 'Terraform', color: '#7b42bc' },
     ],
   },
