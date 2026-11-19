@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import { skillCategories, type SkillItem } from '../../app/portfolio-data'
 import { eyebrow, heading, LINE, section, wrap } from '../../app/styles'
 
@@ -20,7 +23,7 @@ const stacks = [
   },
   {
     label: 'Extra',
-    sub: undefined,
+    sub: 'Tools I use across all stacks',
     names: ['Git', 'Docker', 'Liquibase', 'Nginx', 'Terraform', 'Jenkins'],
   },
 ]
@@ -50,6 +53,9 @@ function SkillCard({ item }: { item: SkillItem }) {
 }
 
 function Skills() {
+  const [active, setActive] = useState(0)
+  const current = stacks[active]
+
   return (
     <section className={`${section} bg-[#0d1a2a]`} id="skills">
       <div className={wrap}>
@@ -62,26 +68,48 @@ function Skills() {
           </p>
         </div>
 
-        <div className="grid gap-6">
-          {stacks.map((stack) => (
-            <div key={stack.label}>
-              <div className="text-green uppercase tracking-[0.12em] font-extrabold text-[13px] mb-3">
+        <div
+          className="flex gap-2 overflow-x-auto pb-1 skill-scroll"
+          role="tablist"
+          aria-label="Technology stacks"
+        >
+          {stacks.map((stack, i) => {
+            const isActive = i === active
+            return (
+              <button
+                key={stack.label}
+                type="button"
+                role="tab"
+                id={`stack-tab-${i}`}
+                aria-selected={isActive}
+                aria-controls="stack-panel"
+                onClick={() => setActive(i)}
+                className={`shrink-0 cursor-pointer px-[18px] py-[10px] min-h-[44px] rounded-full border font-semibold text-sm transition duration-200 ${
+                  isActive
+                    ? 'bg-green-dark text-white border-green'
+                    : 'bg-transparent text-[#d8e1ed] hover:border-green hover:text-green'
+                }`}
+                style={isActive ? undefined : { borderColor: LINE }}
+              >
                 {stack.label}
-                {stack.sub && (
-                  <span className="text-muted normal-case tracking-normal font-semibold">
-                    {' '}
-                    · {stack.sub}
-                  </span>
-                )}
-              </div>
-              <div className="flex gap-3 overflow-x-auto pb-3 skill-scroll snap-x">
-                {stack.names.map((name) => {
-                  const item = findItem(name)
-                  return item ? <SkillCard item={item} key={name} /> : null
-                })}
-              </div>
-            </div>
-          ))}
+              </button>
+            )
+          })}
+        </div>
+
+        <div
+          id="stack-panel"
+          role="tabpanel"
+          aria-labelledby={`stack-tab-${active}`}
+          className="mt-5"
+        >
+          <p className="text-muted text-sm mb-3">{current.sub}</p>
+          <div className="flex gap-3 overflow-x-auto pb-3 skill-scroll snap-x">
+            {current.names.map((name) => {
+              const item = findItem(name)
+              return item ? <SkillCard item={item} key={name} /> : null
+            })}
+          </div>
         </div>
       </div>
     </section>
