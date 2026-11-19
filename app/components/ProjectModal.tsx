@@ -60,16 +60,31 @@ function ProjectModal({ caseStudy, onClose }: ProjectModalProps) {
           <h2 className="text-[clamp(26px,4vw,40px)] font-extrabold tracking-[-0.03em] leading-[1.05] max-w-[640px]">
             {caseStudy.title}
           </h2>
-          {caseStudy.liveUrl ? (
-            <a
-              href={caseStudy.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#76c9ff] hover:text-green mt-2"
-            >
-              <LuExternalLink className="text-[15px]" aria-hidden />
-              Visit live site
-            </a>
+          {caseStudy.liveUrl || caseStudy.videoUrl ? (
+            <div className="flex flex-wrap gap-x-5 gap-y-1 mt-2">
+              {caseStudy.liveUrl ? (
+                <a
+                  href={caseStudy.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#76c9ff] hover:text-green"
+                >
+                  <LuExternalLink className="text-[15px]" aria-hidden />
+                  Visit live site
+                </a>
+              ) : null}
+              {caseStudy.videoUrl ? (
+                <a
+                  href={caseStudy.videoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#76c9ff] hover:text-green"
+                >
+                  <LuExternalLink className="text-[15px]" aria-hidden />
+                  Watch video
+                </a>
+              ) : null}
+            </div>
           ) : null}
           <p className="text-green font-semibold mt-3 max-w-[640px]">
             {caseStudy.tagline}
@@ -255,6 +270,16 @@ function ProjectModal({ caseStudy, onClose }: ProjectModalProps) {
                         <p className="text-muted text-[14px] leading-relaxed">
                           {item.description}
                         </p>
+                        {item.link ? (
+                          <a
+                            href={item.link.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-block mt-2 text-green text-[13px] font-semibold underline underline-offset-2"
+                          >
+                            {item.link.label} ↗
+                          </a>
+                        ) : null}
                       </div>
                     </div>
                   )

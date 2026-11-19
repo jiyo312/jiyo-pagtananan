@@ -73,7 +73,9 @@ function Hero() {
             Jiyo Pagtananan
           </h1>
           <p className="text-[clamp(18px,2.3vw,24px)] max-w-[600px] text-[#d7e2ee] mb-7">
-            Building web app that solves people problem.
+            Building{' '}
+            <span className="text-green font-extrabold">web apps</span> that
+            solve people problems.
           </p>
           <a
             className={`${button} px-7 py-[14px] text-base border-green shadow-[0_8px_24px_rgba(67,211,107,0.25)] hover:shadow-[0_10px_30px_rgba(67,211,107,0.4)] max-[460px]:w-full`}

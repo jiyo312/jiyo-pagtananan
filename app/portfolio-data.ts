@@ -84,7 +84,17 @@ export interface NavLink {
 export interface StatItem {
   symbol: string
   title: string
-  description: string
+  description?: string
+  points?: {
+    who: string
+    value: string
+    detail: string
+    source?: string
+    /** Optional badge, e.g. "AI-assisted estimate". */
+    note?: string
+  }[]
+  /** Optional small print shown under the bullets. */
+  footnote?: string
 }
 
 export interface CaseStudyFact {
@@ -123,6 +133,8 @@ export interface CaseStudy {
   title: string
   /** Optional link to the live product, shown next to the title. */
   liveUrl?: string
+  /** Optional link to a demo video, shown next to the live site link. */
+  videoUrl?: string
   /** One-line hook shown under the title. */
   tagline: string
   summary: string
@@ -167,6 +179,8 @@ export interface CaseStudy {
       /** Optional short tagline (e.g. "The proofreader"). */
       role?: string
       description: string
+      /** Optional link, e.g. a demo video. */
+      link?: { href: string; label: string }
     }[]
   }
   /** Impact per audience. */
@@ -245,19 +259,35 @@ export const stats: StatItem[] = [
     symbol: '◆',
     title: 'My Mission',
     description:
-      'Build scalable, reliable software that turns complex problems into tools people depend on.',
-  },
-  {
-    symbol: '◎',
-    title: 'My Experience',
-    description:
-      '7+ years delivering web and mobile systems with multidisciplinary teams, adaptable across domains.',
+      'Building web applications that solve real-world problems.',
   },
   {
     symbol: '♡',
     title: 'My Impact',
-    description:
-      'Shipped platforms used at scale, from internal tools to unified systems serving many users.',
+    points: [
+      {
+        who: 'Farmers',
+        value: '+840 kg/ha',
+        detail: 'higher rice yield',
+        source:
+          'https://www.irri.org/news-and-events/news/how-can-rice-crop-manager-reach-more-farmers',
+      },
+      {
+        who: 'Rice breeding staff',
+        value: '4-6 weeks',
+        detail: 'of estimated staff time saved per year',
+        note: 'AI-assisted estimate',
+      },
+      {
+        who: 'Rice breeding program',
+        value: '$4,500-$14,000+ per year',
+        detail:
+          'estimated savings from avoided wasted test plots, lab assays, and manual rework',
+        note: 'AI-assisted estimate',
+      },
+    ],
+    footnote:
+      'AI-assisted estimates are modeled on published CGIAR and IRRI rice breeding costing studies for a typical 2,000-plot program. They are not measured results.',
   },
 ]
 
@@ -274,6 +304,7 @@ export const projects: Project[] = [
     caseStudy: {
       title: 'Rice Crop Manager Advisory Service',
       liveUrl: 'https://rcm.da.gov.ph/home',
+      videoUrl: 'https://www.youtube.com/watch?v=r0NBkyYQZQ0',
       tagline:
         'Bringing IRRI scientists\u2019 site-specific farming recommendations to millions of farmers.',
       summary:
@@ -547,7 +578,7 @@ export const projects: Project[] = [
       contributions: {
         label: 'What I worked on',
         intro:
-          'During this period I contributed to two projects, one building the form builder and one on a localized RCM backend:',
+          'During this period I contributed to the form builder:',
         items: [
           {
             icon: LuPuzzle,
@@ -555,13 +586,6 @@ export const projects: Project[] = [
             role: 'Form widgets',
             description:
               'Built the form builder itself, including a variety of widgets to express survey formats such as multiple choice, checkbox, and dropdown fields.',
-          },
-          {
-            icon: LuServerCog,
-            name: 'RCM Odisha (backend)',
-            role: 'API extraction & deployment',
-            description:
-              'Extracted the recommendation logic from the monolith legacy app into a separate API so another team could build independently, then dockerized and deployed it behind AWS API Gateway and added automated API tests to guard against regressions.',
           },
         ],
       },
@@ -669,6 +693,10 @@ export const projects: Project[] = [
             role: 'The proofreader',
             description:
               'When scientists walk a field measuring plants (height, grain weight), typos and odd numbers happen, like "500 inches" instead of "50". PDM spots the strange values and errors in the field notes and helps clean them up, so bad data doesn’t ruin the experiment.',
+            link: {
+              href: 'https://www.youtube.com/watch?v=LKN5XLSBzek',
+              label: 'Watch video',
+            },
           },
           {
             icon: LuTrendingUp,
@@ -676,6 +704,10 @@ export const projects: Project[] = [
             role: 'The scorekeeper',
             description:
               'A crop might thrive in a sunny field but struggle in a rainy one. Once the notes are clean, ARM takes the numbers from different farms, runs the math to account for weather and soil differences, and calculates a fair final score so breeders know which plants truly performed best.',
+            link: {
+              href: 'https://www.youtube.com/watch?v=GloxQkYWmjY',
+              label: 'Watch video',
+            },
           },
           {
             icon: LuDna,
@@ -746,12 +778,9 @@ export const roles: Role[] = [
 ]
 
 export const impactItems: ImpactItem[] = [
-  { icon: '🌱', text: 'Scaled scientific farming practices to thousands of farmers.' },
-  {
-    icon: '◎',
-    text: 'Supported research across the Philippines, Indonesia, Myanmar, and India.',
-  },
-  { icon: '👥', text: 'Contributed to improved rice varieties and food security.' },
+  { icon: '🌱', text: 'Scaled farming advice to thousands of farmers.' },
+  { icon: '◎', text: 'Tracked how well rice program interventions work.' },
+  { icon: '👥', text: 'Saved time and money improving rice varieties.' },
 ]
 
 export const skillCategories: SkillCategory[] = [
