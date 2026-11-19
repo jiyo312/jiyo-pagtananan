@@ -1,11 +1,9 @@
 'use client'
 
 import { useRef, useState, type CSSProperties, type MouseEvent } from 'react'
-import { FaLinkedin } from 'react-icons/fa6'
-import { SiGmail, SiSubstack } from 'react-icons/si'
-import { LuFileText } from 'react-icons/lu'
+import { LuMail } from 'react-icons/lu'
 import jiyoPortraitImg from '../assets/jiyo.png'
-import { button, buttonOutline, eyebrow, wrap } from '../../app/styles'
+import { button, eyebrow, wrap } from '../../app/styles'
 
 const jiyoPortrait = jiyoPortraitImg.src
 
@@ -75,46 +73,15 @@ function Hero() {
             Jiyo Pagtananan
           </h1>
           <p className="text-[clamp(18px,2.3vw,24px)] max-w-[600px] text-[#d7e2ee] mb-7">
-            Building scalable, reliable software that turns complex problems
-            into tools people rely on, across any domain.
+            Building web app that solves people problem.
           </p>
-          <div className="flex flex-wrap gap-3 max-[460px]:flex-col max-[460px]:items-stretch">
-            <a
-              className={`${button} max-[460px]:w-full`}
-              href="mailto:jiyocollin@gmail.com"
-            >
-              <SiGmail className="text-[18px]" aria-hidden />
-              Contact Me →
-            </a>
-            <a
-              className={`${button} ${buttonOutline} max-[460px]:w-full`}
-              href="https://www.linkedin.com/in/jiyo-pagtananan-5880a0148/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaLinkedin className="text-[18px]" aria-hidden />
-              LinkedIn
-            </a>
-            <a
-              className={`${button} ${buttonOutline} max-[460px]:w-full`}
-              href="https://codewithjiyo.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <SiSubstack className="text-[18px]" aria-hidden />
-              Blog
-            </a>
-            <a
-              className={`${button} ${buttonOutline} max-[460px]:w-full`}
-              href="/JiyoCollin_Pagtananan_SoftwareEngineer_Resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-              download
-            >
-              <LuFileText className="text-[18px]" aria-hidden />
-              Resume
-            </a>
-          </div>
+          <a
+            className={`${button} px-7 py-[14px] text-base border-green shadow-[0_8px_24px_rgba(67,211,107,0.25)] hover:shadow-[0_10px_30px_rgba(67,211,107,0.4)] max-[460px]:w-full`}
+            href="mailto:jiyocollin@gmail.com?subject=Start%20a%20project"
+          >
+            <LuMail className="text-[18px]" aria-hidden />
+            Let's Solve a Problem
+          </a>
         </div>
       </div>
     </section>
