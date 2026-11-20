@@ -14,12 +14,12 @@ const stacks = [
   {
     label: 'Stack 2',
     sub: 'Next.js full stack',
-    names: ['Next.js', 'React', 'TypeScript', 'Next.js API Routes', 'PostgreSQL'],
+    names: ['Next.js', 'React', 'TypeScript', 'API Routes', 'PostgreSQL'],
   },
   {
     label: 'Stack 3',
     sub: 'Cross-platform full stack',
-    names: ['Angular', 'Ionic Framework', 'Slim PHP', 'MySQL', 'Nginx'],
+    names: ['Angular', 'Ionic', 'Slim PHP', 'MySQL', 'Nginx'],
   },
   {
     label: 'Stack 4',

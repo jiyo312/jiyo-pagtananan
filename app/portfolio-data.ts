@@ -797,7 +797,7 @@ export const skillCategories: SkillCategory[] = [
     items: [
       { icon: SiReact, name: 'React', color: '#61dafb' },
       { icon: SiNextdotjs, name: 'Next.js', color: '#ffffff' },
-      { icon: SiNextdotjs, name: 'Next.js API Routes', color: '#ffffff' },
+      { icon: SiNextdotjs, name: 'API Routes', color: '#ffffff' },
       { icon: SiVuedotjs, name: 'Vue.js', color: '#4fc08d' },
       { icon: SiAngular, name: 'Angular', color: '#dd0031' },
       { icon: SiJquery, name: 'jQuery', color: '#0769ad' },
@@ -810,7 +810,7 @@ export const skillCategories: SkillCategory[] = [
   {
     label: 'Mobile',
     icon: LuSmartphone,
-    items: [{ icon: SiIonic, name: 'Ionic Framework', color: '#3880ff' }],
+    items: [{ icon: SiIonic, name: 'Ionic', color: '#3880ff' }],
   },
   {
     label: 'Backend',
