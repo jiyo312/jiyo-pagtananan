@@ -67,7 +67,13 @@ function Hero() {
         aria-hidden
       />
       <div className={`${wrap} relative z-[2]`}>
-        <div className="relative z-[1] max-w-[690px] py-[75px] max-[620px]:py-[65px]">
+        <div className="relative z-[1] max-w-[690px] py-[75px] max-[620px]:pt-[40px] max-[620px]:pb-[65px] max-[620px]:text-center">
+          {/* Phones: the large side portrait is hidden, so show a round photo above the text */}
+          <img
+            src={jiyoPortrait}
+            alt="Jiyo Collin Pagtananan"
+            className="hidden max-[620px]:block w-[112px] h-[112px] rounded-full object-cover object-top border-2 border-green bg-[#0d1a2a] mx-auto mb-6 select-none"
+          />
           <div className={eyebrow}>Full Stack Engineer · Philippines</div>
           <h1 className="text-[clamp(42px,7vw,76px)] font-extrabold leading-[1.02] tracking-[-0.055em] mt-3 mb-5">
             Jiyo Pagtananan
