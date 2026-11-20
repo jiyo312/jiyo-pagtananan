@@ -1,4 +1,4 @@
-import { LuMail } from 'react-icons/lu'
+import { LuArrowUp, LuMail } from 'react-icons/lu'
 import { contactLinks } from '../../app/portfolio-data'
 import { button, eyebrow, LINE, wrap } from '../../app/styles'
 
@@ -47,11 +47,22 @@ function Contact() {
           </a>
         </div>
         <footer
-          className="border-t mt-[45px] pt-5 text-center text-[#8293a7] text-[13px]"
+          className="border-t mt-[45px] pt-5 flex items-center justify-between gap-4 text-[#8293a7] text-[13px] max-[620px]:flex-col-reverse max-[620px]:text-center"
           style={{ borderColor: LINE }}
         >
-          © {year} Jiyo Collin Pagtananan · Building web apps that solve people
-          problems
+          <span>
+            © {year} Jiyo Collin Pagtananan · Building web apps that solve
+            people problems
+          </span>
+          <a
+            href="#home"
+            aria-label="Back to top"
+            className="shrink-0 inline-flex items-center gap-2 min-h-[44px] px-4 rounded-full border text-[#d8e1ed] transition duration-200 hover:-translate-y-0.5 hover:border-green hover:text-green"
+            style={{ borderColor: LINE }}
+          >
+            <LuArrowUp className="text-[16px]" aria-hidden />
+            Back to top
+          </a>
         </footer>
       </div>
     </section>
