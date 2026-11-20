@@ -1,11 +1,13 @@
 import type { ComponentType, SVGProps } from 'react'
 import ebsImageImport from './assets/ebs.png'
 import rcmImageImport from './assets/rcm.png'
+import PythonIcon from './python-icon'
 
 const ebsImage = ebsImageImport.src
 const rcmImage = rcmImageImport.src
 import {
   ArchitectureServiceAmazonAPIGateway,
+  ArchitectureServiceAmazonDynamoDB,
   ArchitectureServiceAmazonEC2,
   ArchitectureServiceAmazonSimpleQueueService,
   ArchitectureServiceAmazonSimpleStorageService,
@@ -14,6 +16,7 @@ import {
 } from 'aws-react-icons'
 import {
   SiAngular,
+  SiApache,
   SiBootstrap,
   SiBitbucket,
   SiConfluence,
@@ -30,6 +33,7 @@ import {
   SiJira,
   SiJquery,
   SiLaravel,
+  SiLinux,
   SiLiquibase,
   SiMongodb,
   SiMysql,
@@ -38,12 +42,12 @@ import {
   SiNginx,
   SiPhp,
   SiPostgresql,
-  SiPython,
   SiReact,
   SiSubstack,
   SiTailwindcss,
   SiTerraform,
   SiTypescript,
+  SiVuedotjs,
 } from 'react-icons/si'
 import { FaAws, FaLinkedin } from 'react-icons/fa6'
 import {
@@ -793,6 +797,8 @@ export const skillCategories: SkillCategory[] = [
     items: [
       { icon: SiReact, name: 'React', color: '#61dafb' },
       { icon: SiNextdotjs, name: 'Next.js', color: '#ffffff' },
+      { icon: SiNextdotjs, name: 'Next.js API Routes', color: '#ffffff' },
+      { icon: SiVuedotjs, name: 'Vue.js', color: '#4fc08d' },
       { icon: SiAngular, name: 'Angular', color: '#dd0031' },
       { icon: SiJquery, name: 'jQuery', color: '#0769ad' },
       { icon: SiHtml5, name: 'HTML5', color: '#e34f26' },
@@ -823,7 +829,7 @@ export const skillCategories: SkillCategory[] = [
       { icon: SiJavascript, name: 'JavaScript', color: '#f7df1e' },
       { icon: SiTypescript, name: 'TypeScript', color: '#3178c6' },
       { icon: SiPhp, name: 'PHP', color: '#777bb4' },
-      { icon: SiPython, name: 'Python', color: '#3776ab' },
+      { icon: PythonIcon, name: 'Python' },
     ],
   },
   {
@@ -840,6 +846,11 @@ export const skillCategories: SkillCategory[] = [
       {
         icon: ArchitectureServiceAmazonSimpleStorageService,
         name: 'S3',
+        fullColor: true,
+      },
+      {
+        icon: ArchitectureServiceAmazonDynamoDB,
+        name: 'DynamoDB',
         fullColor: true,
       },
       { icon: ArchitectureServiceAmazonEC2, name: 'EC2', fullColor: true },
@@ -873,6 +884,8 @@ export const skillCategories: SkillCategory[] = [
       { icon: SiDocker, name: 'Docker Compose', color: '#2496ed' },
       { icon: SiJenkins, name: 'Jenkins', color: '#d24939' },
       { icon: LuBoxes, name: 'Docker Swarm' },
+      { icon: SiLinux, name: 'Linux', color: '#fcc624' },
+      { icon: SiApache, name: 'Apache', color: '#d22128' },
       { icon: SiNginx, name: 'Nginx', color: '#009639' },
       { icon: SiTerraform, name: 'Terraform', color: '#7b42bc' },
     ],

@@ -9,22 +9,32 @@ const stacks = [
   {
     label: 'Stack 1',
     sub: 'Modern full stack',
-    names: ['React', 'Next.js', 'Tailwind CSS', 'FastAPI', 'PostgreSQL', 'AWS'],
+    names: ['React', 'Python', 'FastAPI', 'PostgreSQL', 'AWS'],
   },
   {
     label: 'Stack 2',
-    sub: 'Cross-platform full stack',
-    names: ['Angular', 'Ionic Framework', 'Slim PHP', 'MySQL', 'MongoDB', 'AWS'],
+    sub: 'Next.js full stack',
+    names: ['Next.js', 'React', 'TypeScript', 'Next.js API Routes', 'PostgreSQL'],
   },
   {
     label: 'Stack 3',
+    sub: 'Cross-platform full stack',
+    names: ['Angular', 'Ionic Framework', 'Slim PHP', 'MySQL', 'Nginx'],
+  },
+  {
+    label: 'Stack 4',
     sub: 'Traditional full stack',
-    names: ['Laravel', 'Bootstrap'],
+    names: ['Laravel', 'MySQL', 'Apache'],
+  },
+  {
+    label: 'Stack 5',
+    sub: 'Serverless full stack',
+    names: ['React', 'API Gateway', 'AWS Lambda', 'DynamoDB', 'S3', 'SQS'],
   },
   {
     label: 'Extra',
     sub: 'Tools I use across all stacks',
-    names: ['Git', 'Docker', 'Liquibase', 'Nginx', 'Terraform', 'Jenkins'],
+    names: ['Git', 'Docker', 'Liquibase', 'Terraform'],
   },
 ]
 
@@ -39,7 +49,7 @@ function SkillCard({ item }: { item: SkillItem }) {
       style={{ borderColor: LINE }}
     >
       {item.fullColor ? (
-        <ItemIcon size={30} className="aws-blend mb-2" aria-hidden />
+        <ItemIcon size={30} className="rounded-[4px] mb-2" aria-hidden />
       ) : (
         <ItemIcon
           className="text-[28px] mb-2"
@@ -63,7 +73,7 @@ function Skills() {
           <div className={eyebrow}>Technical skills</div>
           <h2 className={heading}>Tools and Technologies I Work With</h2>
           <p className="text-muted max-w-[720px] mt-3">
-            Three full-stack setups I build with, plus the tools I use across
+            Five full-stack setups I build with, plus the tools I use across
             all of them.
           </p>
         </div>
