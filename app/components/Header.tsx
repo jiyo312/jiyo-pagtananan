@@ -27,7 +27,7 @@ function Header() {
           href="#home"
         >
           <span
-            className="grid place-items-center w-8 h-8 rounded-lg bg-[rgba(67,211,107,0.12)] border border-[rgba(67,211,107,0.5)] text-green text-[13px] font-extrabold tracking-[-0.04em]"
+            className="grid place-items-center w-8 h-8 rounded-lg bg-[rgba(67,211,107,0.12)] text-green text-[13px] font-extrabold tracking-[-0.04em]"
             aria-hidden
           >
             JP

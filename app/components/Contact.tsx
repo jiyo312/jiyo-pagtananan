@@ -1,16 +1,13 @@
-import footerBgImg from '../assets/portfolio-footer-bg.jpg'
+import { LuMail } from 'react-icons/lu'
 import { contactLinks } from '../../app/portfolio-data'
 import { button, eyebrow, LINE, wrap } from '../../app/styles'
-
-const footerBg = footerBgImg.src
 
 const year = new Date().getFullYear()
 
 function Contact() {
   return (
     <section
-      className="relative overflow-hidden pt-[65px] pb-[35px] [scroll-margin-top:82px] bg-cover bg-center after:content-[''] after:absolute after:inset-0 after:pointer-events-none after:bg-[linear-gradient(180deg,rgba(13,26,42,0.88),rgba(7,17,30,0.94))]"
-      style={{ backgroundImage: `url(${footerBg})` }}
+      className="relative overflow-hidden pt-[65px] pb-[35px] [scroll-margin-top:82px] bg-[linear-gradient(180deg,#0a1726_0%,#061024_55%,#02060f_100%)] before:content-[''] before:absolute before:inset-0 before:pointer-events-none before:bg-[radial-gradient(600px_300px_at_15%_0%,rgba(67,211,107,0.10),transparent_70%)]"
       id="contact"
     >
       <div className={`${wrap} relative z-[1]`}>
@@ -42,18 +39,19 @@ function Contact() {
             })}
           </div>
           <a
-            className={`${button} max-[620px]:w-full`}
-            href="mailto:jiyocollin@gmail.com"
+            className={`${button} px-7 py-[14px] text-base border-green shadow-[0_8px_24px_rgba(67,211,107,0.25)] hover:shadow-[0_10px_30px_rgba(67,211,107,0.4)] max-[620px]:w-full`}
+            href="mailto:jiyocollin@gmail.com?subject=Let%27s%20solve%20a%20problem"
           >
-            Get in Touch →
+            <LuMail className="text-[18px]" aria-hidden />
+            Let's solve a problem
           </a>
         </div>
         <footer
           className="border-t mt-[45px] pt-5 text-center text-[#8293a7] text-[13px]"
           style={{ borderColor: LINE }}
         >
-          © {year} Jiyo Collin Pagtananan · Building technology for a food-secure
-          future 🌾
+          © {year} Jiyo Collin Pagtananan · Building web apps that solve people
+          problems
         </footer>
       </div>
     </section>
