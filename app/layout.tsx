@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
-const siteUrl = 'https://jiyo-pagtananan.com'
+const siteUrl = 'https://jiyopagtananan.com'
 const description =
   'Jiyo Collin Pagtananan — Full Stack Engineer with 7+ years building and modernizing scalable web and mobile systems, from offline-first apps to unified platforms serving millions.'
 
