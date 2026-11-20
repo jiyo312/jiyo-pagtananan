@@ -23,7 +23,7 @@ function Projects() {
           <div className={eyebrow}>Featured projects</div>
           <h2 className={heading}>Turning Science into Scalable Solutions</h2>
         </div>
-        <div className="grid grid-cols-3 gap-5 max-[850px]:grid-cols-2 max-[620px]:flex max-[620px]:overflow-x-auto max-[620px]:snap-x max-[620px]:snap-mandatory max-[620px]:pb-3 max-[620px]:-mx-[2px] skill-scroll">
+        <div className="grid grid-cols-3 gap-5 max-[850px]:grid-cols-2 max-[620px]:flex max-[620px]:overflow-x-auto max-[620px]:snap-x max-[620px]:snap-proximity max-[620px]:pb-3 max-[620px]:-mx-[2px] skill-scroll">
           {projects.map((project) => (
             <article
               className="flex flex-col bg-surface border rounded-[18px] overflow-hidden transition-[border-color] duration-200 hover:border-[rgba(67,211,107,0.55)] max-[620px]:shrink-0 max-[620px]:w-[85%] max-[620px]:snap-start"
@@ -85,14 +85,14 @@ function Projects() {
                 {project.caseStudy ? (
                   <button
                     type="button"
-                    className="self-start text-[#76c9ff] font-semibold hover:text-green"
+                    className="self-start inline-flex items-center min-h-[44px] pr-4 text-[#76c9ff] font-semibold hover:text-green touch-manipulation cursor-pointer"
                     onClick={() => setActiveProject(project)}
                   >
                     Project Context →
                   </button>
                 ) : (
                   <a
-                    className="self-start text-[#76c9ff] font-semibold"
+                    className="self-start inline-flex items-center min-h-[44px] pr-4 text-[#76c9ff] font-semibold"
                     href="#experience"
                   >
                     Project Context →

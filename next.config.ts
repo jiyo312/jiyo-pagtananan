@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   images: { unoptimized: true },
   // Emit folder-style URLs (/about/ -> /about/index.html) for static hosting.
   trailingSlash: true,
+  // Dev only: let other devices on the local network (e.g. a phone testing via
+  // this Mac's IP) load the dev server's JavaScript. Ignored in production builds.
+  allowedDevOrigins: ['192.168.1.3'],
 }
 
 export default nextConfig
