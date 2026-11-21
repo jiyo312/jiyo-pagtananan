@@ -33,8 +33,16 @@ const steps = [
 ]
 
 function HowIWork() {
-  const [active, setActive] = useState(0)
-  const current = steps[active]
+  // First step is open by default. Clicking the open step closes it, and
+  // opening another step closes the previous one (only one open at a time).
+  const [active, setActive] = useState<number | null>(0)
+  const current = active === null ? null : steps[active]
+  const toggle = (i: number) => setActive((prev) => (prev === i ? null : i))
+
+  // Phone list: every step starts collapsed, still only one open at a time.
+  const [mobileActive, setMobileActive] = useState<number | null>(null)
+  const toggleMobile = (i: number) =>
+    setMobileActive((prev) => (prev === i ? null : i))
 
   return (
     <section className={section} id="how-i-work">
@@ -63,7 +71,7 @@ function HowIWork() {
                   id={`how-tab-${i}`}
                   aria-selected={isActive}
                   aria-controls="how-panel"
-                  onClick={() => setActive(i)}
+                  onClick={() => toggle(i)}
                   className="text-left cursor-pointer bg-transparent text-inherit"
                 >
                   <div
@@ -88,31 +96,33 @@ function HowIWork() {
             })}
           </div>
 
-          <div
-            id="how-panel"
-            role="tabpanel"
-            aria-labelledby={`how-tab-${active}`}
-            className="mt-6 pt-5 border-t max-[620px]:hidden"
-            style={{ borderColor: LINE }}
-          >
-            <div className="text-green font-bold mb-3">{current.title}</div>
-            <ul className="flex flex-wrap gap-2.5 list-none p-0 m-0">
-              {current.details.map((detail) => (
-                <li
-                  key={detail}
-                  className="px-4 py-2 rounded-full border text-sm"
-                  style={{ borderColor: LINE }}
-                >
-                  {detail}
-                </li>
-              ))}
-            </ul>
-          </div>
+          {current && (
+            <div
+              id="how-panel"
+              role="tabpanel"
+              aria-labelledby={`how-tab-${active}`}
+              className="mt-6 pt-5 border-t max-[620px]:hidden"
+              style={{ borderColor: LINE }}
+            >
+              <div className="text-green font-bold mb-3">{current.title}</div>
+              <ul className="flex flex-wrap gap-2.5 list-none p-0 m-0">
+                {current.details.map((detail) => (
+                  <li
+                    key={detail}
+                    className="px-4 py-2 rounded-full border text-sm"
+                    style={{ borderColor: LINE }}
+                  >
+                    {detail}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* Phones: vertical list, details open directly under the tapped step */}
           <div className="hidden max-[620px]:flex flex-col">
             {steps.map((step, i) => {
-              const isActive = i === active
+              const isActive = i === mobileActive
               return (
                 <div
                   key={step.title}
@@ -122,7 +132,7 @@ function HowIWork() {
                   <button
                     type="button"
                     aria-expanded={isActive}
-                    onClick={() => setActive(i)}
+                    onClick={() => toggleMobile(i)}
                     className="w-full flex items-center gap-4 py-4 text-left cursor-pointer bg-transparent text-inherit min-h-[44px]"
                   >
                     <span
