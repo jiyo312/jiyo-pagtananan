@@ -1,11 +1,91 @@
 'use client'
 
-import { useRef, useState, type CSSProperties, type MouseEvent } from 'react'
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type MouseEvent,
+} from 'react'
 import { LuMail } from 'react-icons/lu'
 import jiyoPortraitImg from '../assets/jiyo.png'
 import { button, eyebrow, wrap } from '../../app/styles'
 
 const jiyoPortrait = jiyoPortraitImg.src
+
+// Tagline split into parts so "web apps" keeps its green highlight while typing.
+const TAGLINE_PARTS = [
+  { text: 'Building ', highlight: false },
+  { text: 'web apps', highlight: true },
+  { text: ' that solve people problems.', highlight: false },
+]
+const TAGLINE_LENGTH = TAGLINE_PARTS.reduce((n, p) => n + p.text.length, 0)
+
+function renderTagline(count: number) {
+  let remaining = count
+  return TAGLINE_PARTS.map((part) => {
+    const shown = part.text.slice(0, Math.max(0, remaining))
+    remaining -= part.text.length
+    if (!shown) return null
+    return part.highlight ? (
+      <span key={part.text} className="text-green font-extrabold">
+        {shown}
+      </span>
+    ) : (
+      <span key={part.text}>{shown}</span>
+    )
+  })
+}
+
+function TypedTagline() {
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setCount(TAGLINE_LENGTH)
+      return
+    }
+    // Type -> hold -> erase -> pause -> repeat.
+    const TYPE_MS = 55
+    const ERASE_MS = 30
+    const HOLD_MS = 2200
+    const RESTART_MS = 600
+    let i = 0
+    let timer: ReturnType<typeof setTimeout>
+
+    const type = () => {
+      i += 1
+      setCount(i)
+      timer = setTimeout(i >= TAGLINE_LENGTH ? hold : type, i >= TAGLINE_LENGTH ? HOLD_MS : TYPE_MS)
+    }
+    const hold = () => erase()
+    const erase = () => {
+      i -= 1
+      setCount(i)
+      timer = setTimeout(i <= 0 ? type : erase, i <= 0 ? RESTART_MS : ERASE_MS)
+    }
+
+    timer = setTimeout(type, 400)
+    return () => clearTimeout(timer)
+  }, [])
+
+  return (
+    <>
+      {/* Full text for screen readers and crawlers */}
+      <span className="sr-only">
+        {TAGLINE_PARTS.map((p) => p.text).join('')}
+      </span>
+      <span className="relative block" aria-hidden>
+        {/* Invisible full text reserves the final height so nothing shifts */}
+        <span className="invisible">{renderTagline(TAGLINE_LENGTH)}</span>
+        <span className="absolute inset-0">
+          {renderTagline(count)}
+          <span className="typing-caret" />
+        </span>
+      </span>
+    </>
+  )
+}
 
 function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -79,9 +159,7 @@ function Hero() {
             Jiyo Pagtananan
           </h1>
           <p className="text-[clamp(18px,2.3vw,24px)] max-w-[600px] text-[#d7e2ee] mb-7">
-            Building{' '}
-            <span className="text-green font-extrabold">web apps</span> that
-            solve people problems.
+            <TypedTagline />
           </p>
           <a
             className={`${button} px-7 py-[14px] text-base border-green shadow-[0_8px_24px_rgba(67,211,107,0.25)] hover:shadow-[0_10px_30px_rgba(67,211,107,0.4)] max-[460px]:w-full`}
