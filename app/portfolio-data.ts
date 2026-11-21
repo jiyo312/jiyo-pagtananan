@@ -292,7 +292,7 @@ export const stats: StatItem[] = [
   },
   {
     symbol: '♡',
-    title: 'My Impact',
+    title: 'Impact of the Apps I Contributed To',
     points: [
       {
         who: 'Farmers',
