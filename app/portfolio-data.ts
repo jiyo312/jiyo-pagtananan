@@ -790,6 +790,42 @@ export const impactItems: ImpactItem[] = [
   { icon: '👥', text: 'Saved time and money improving rice varieties.' },
 ]
 
+export type Testimonial = {
+  quotes: string[]
+  name: string
+  role: string
+  org: string
+}
+
+export const testimonials: Testimonial[] = [
+  {
+    quotes: [
+      'Jiyo was able to deliver more than what was asked of him. He accomplishes tasks on the fly and with high confidence of accuracy and correctness. He can efficiently work independently or in a team. His insights are valuable and truly results in improvements of workflow and software development. I must say that we may have lost a very good team member but his contributions have really helped the team and the project move forward.',
+      'All his tasks were excellently done and have met the set expectations and specifications. There were tight days that we needed to deliver features for our collaborations with other projects and we hit the target/s just on time. This just reflects how he can manage pressure and time-sensitive deliverables. Whether he works on the deployment process and/or front-back end developments, his efforts contributed much to the successful delivery of the products. In addition, he was able to capacitate every team member before he left for another team/project last October 2022.',
+    ],
+    name: 'Jerome Vila',
+    role: 'Senior Specialist - Information Systems (Software Design)',
+    org: 'IRRI',
+  },
+  {
+    quotes: [
+      'I wanted to take the opportunity to personally thank you for all your contributions, and support over the years. It has truly been a pleasure working with you. Your dedication, expertise, and commitment have made an enormous impact on our projects and on the team as a whole. I sincerely hope that this transition opens the door to new and exciting opportunities for you. Given your skills, experience, and dedication, I have no doubt that you will continue to do great things wherever your career takes you.',
+    ],
+    name: 'Rosemary Shrestha, Ph.D.',
+    role: 'Data Coordinator',
+    org: 'CIMMYT',
+  },
+  {
+    quotes: [
+      "Jiyo's adept utilization of the years of experience and established processes within IRRI and in EBS in particular has significantly fortified his capabilities as a software developer in the Breeding Analytics team. Demonstrating proficiency in tools like Git, Docker, and Agile Scrum/Kanban, Jiyo has been instrumental in our project's success by applying these best practices. Jiyo's commitment to incorporating new technologies such as React, PrimeReact UI components, Plotly, React Advanced Pattern, Storybook, and Jest reflects his dedication staying ahead in the ever-evolving landscape of software development. His learner mindset and continuous pursuit of improvement set a standard for the entire team. I am eager to witness Jiyo's ongoing growth and the positive impact on our project in the upcoming year.",
+      "Jiyo has been a great developer on the BA team this year. His technical skills and in-depth knowledge of the Phenotypic Data Manager (PDM) have greatly contributed to the success of the BA domain of EBS. Jiyo's ability to collaborate across domains has been commendable, fostering a more integrated approach to our products. He truly deserves recognition for his hard work and valuable contributions.",
+    ],
+    name: 'Argem Flores',
+    role: 'IT Lead and Software Engineer',
+    org: 'IRRI',
+  },
+]
+
 export const skillCategories: SkillCategory[] = [
   {
     label: 'Frontend',
