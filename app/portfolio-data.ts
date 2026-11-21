@@ -12,6 +12,8 @@ import seoCertImport from './assets/seo.webp'
 import wordpressCertImport from './assets/wordpress.webp'
 import liquibaseCertImport from './assets/liquibase.webp'
 import qlikSenseCertImport from './assets/qlick-sense.webp'
+import pythonCertImport from './assets/python.webp'
+import awardImport from './assets/award.webp'
 import PythonIcon from './python-icon'
 
 const ebsImage = ebsImageImport.src
@@ -27,6 +29,8 @@ const seoCertImage = seoCertImport.src
 const wordpressCertImage = wordpressCertImport.src
 const liquibaseCertImage = liquibaseCertImport.src
 const qlikSenseCertImage = qlikSenseCertImport.src
+const pythonCertImage = pythonCertImport.src
+const awardImage = awardImport.src
 import {
   ArchitectureServiceAmazonAPIGateway,
   ArchitectureServiceAmazonDynamoDB,
@@ -861,6 +865,7 @@ export const certificates: Certificate[] = [
     image: liquibaseCertImage,
   },
   { title: 'Qlik Sense', image: qlikSenseCertImage },
+  { title: 'Python', image: pythonCertImage },
   {
     title: 'Advanced React Component Pattern',
     image: reactPatternCertImage,
@@ -873,6 +878,35 @@ export const certificates: Certificate[] = [
   { title: 'PHP and MySQL', image: phpMysqlCertImage },
   { title: 'SEO', image: seoCertImage },
   { title: 'WordPress', image: wordpressCertImage },
+]
+
+export type Award = {
+  title: string
+  context: string
+  image: string
+}
+
+export const awards: Award[] = [
+  {
+    title: 'Best in Web Development',
+    context:
+      'Laguna State Polytechnic University Sta. Cruz Campus - Department of Computer Studies, 2019',
+    image: awardImage,
+  },
+]
+
+export type Education = {
+  degree: string
+  school: string
+  year: string
+}
+
+export const education: Education[] = [
+  {
+    degree: 'Bachelor of Science in Information Technology',
+    school: 'Laguna State Polytechnic University Sta. Cruz Campus',
+    year: 'June 2019',
+  },
 ]
 
 export const skillCategories: SkillCategory[] = [
