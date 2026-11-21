@@ -1,10 +1,32 @@
 import type { ComponentType, SVGProps } from 'react'
-import ebsImageImport from './assets/ebs.png'
-import rcmImageImport from './assets/rcm.png'
+import ebsImageImport from './assets/ebs.webp'
+import rcmImageImport from './assets/rcm.webp'
+import reactPatternCertImport from './assets/Advanced React Component Pattern.jpg'
+import agileScrumCertImport from './assets/agile-scrum.webp'
+import phpFrameworkCertImport from './assets/building-custom-php-framework.webp'
+import htmlCssBootstrapCertImport from './assets/html-css-and-bootstrap.webp'
+import javascriptCertImport from './assets/javascript.webp'
+import laravelCertImport from './assets/laravel.webp'
+import phpMysqlCertImport from './assets/php-and-mysql.webp'
+import seoCertImport from './assets/seo.webp'
+import wordpressCertImport from './assets/wordpress.webp'
+import liquibaseCertImport from './assets/liquibase.webp'
+import qlikSenseCertImport from './assets/qlick-sense.webp'
 import PythonIcon from './python-icon'
 
 const ebsImage = ebsImageImport.src
 const rcmImage = rcmImageImport.src
+const reactPatternCertImage = reactPatternCertImport.src
+const agileScrumCertImage = agileScrumCertImport.src
+const phpFrameworkCertImage = phpFrameworkCertImport.src
+const htmlCssBootstrapCertImage = htmlCssBootstrapCertImport.src
+const javascriptCertImage = javascriptCertImport.src
+const laravelCertImage = laravelCertImport.src
+const phpMysqlCertImage = phpMysqlCertImport.src
+const seoCertImage = seoCertImport.src
+const wordpressCertImage = wordpressCertImport.src
+const liquibaseCertImage = liquibaseCertImport.src
+const qlikSenseCertImage = qlikSenseCertImport.src
 import {
   ArchitectureServiceAmazonAPIGateway,
   ArchitectureServiceAmazonDynamoDB,
@@ -824,6 +846,33 @@ export const testimonials: Testimonial[] = [
     role: 'IT Lead and Software Engineer',
     org: 'IRRI',
   },
+]
+
+export type Certificate = {
+  title: string
+  url?: string
+  linkLabel?: string
+  image?: string
+}
+
+export const certificates: Certificate[] = [
+  {
+    title: 'Liquibase Certification',
+    image: liquibaseCertImage,
+  },
+  { title: 'Qlik Sense', image: qlikSenseCertImage },
+  {
+    title: 'Advanced React Component Pattern',
+    image: reactPatternCertImage,
+  },
+  { title: 'Agile Scrum', image: agileScrumCertImage },
+  { title: 'Building a Custom PHP Framework', image: phpFrameworkCertImage },
+  { title: 'HTML, CSS and Bootstrap', image: htmlCssBootstrapCertImage },
+  { title: 'JavaScript', image: javascriptCertImage },
+  { title: 'Laravel', image: laravelCertImage },
+  { title: 'PHP and MySQL', image: phpMysqlCertImage },
+  { title: 'SEO', image: seoCertImage },
+  { title: 'WordPress', image: wordpressCertImage },
 ]
 
 export const skillCategories: SkillCategory[] = [
